@@ -449,8 +449,8 @@
     #servicios {
       padding: 100px 0;
       background:
-        linear-gradient(rgba(18,8,10,0.80), rgba(18,8,10,0.80)),
-        url('foto-grupo.jpeg') center 35% / cover no-repeat;
+        linear-gradient(rgba(18,8,10,0.72), rgba(18,8,10,0.72)),
+        url('foto-personal2.jpeg') center 28% / cover no-repeat;
       position: relative; overflow: hidden;
     }
     #servicios::before {
@@ -655,10 +655,20 @@
       align-items: center; justify-content: center;
       position: relative; overflow: hidden;
     }
-    .ct1 { background: linear-gradient(135deg, #2D1B1E 0%, #4a2d32 100%); }
-    .ct2 { background: linear-gradient(135deg, #C4612B 0%, #8B3010 100%); }
-    .ct3 { background: linear-gradient(135deg, #D4960A 0%, #F5C02A 100%); }
-    .cur-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
+    .ct1 { background: #2D1B1E; }
+    .ct2 { background: #8B3010; }
+    .ct3 { background: #D4960A; }
+    .cur-thumb img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      position: absolute; inset: 0; z-index: 1;
+      filter: blur(5px); transform: scale(1.14);
+    }
+    .cur-thumb::after {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+    }
+    .ct1::after { background: linear-gradient(135deg, rgba(45,27,30,0.68), rgba(74,45,50,0.55)); }
+    .ct2::after { background: linear-gradient(135deg, rgba(196,97,43,0.68), rgba(139,48,16,0.55)); }
+    .ct3::after { background: linear-gradient(135deg, rgba(212,150,10,0.58), rgba(245,192,42,0.46)); }
     .cur-body { padding: 22px; }
     .cur-body h3 { font-size: 0.97rem; font-weight: 700; color: var(--marron); margin-bottom: 7px; line-height: 1.35; }
     .cur-body p  { font-size: 0.80rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; margin-bottom: 14px; }
@@ -1295,7 +1305,7 @@
 
       <div class="cur-card featured fade-up d1">
         <div class="featured-badge">✦ Disponible</div>
-        <div class="cur-thumb ct1"><img src="thumb-desarrollo.png" alt="Potenciá tu Desarrollo Personal"></div>
+        <div class="cur-thumb ct1"><img src="foto-grupo.jpeg" alt="Potenciá tu Desarrollo Personal"></div>
         <div class="cur-body">
           <h3>Potenciá tu Desarrollo Personal</h3>
           <p>6 módulos grabados para transformar tu relación con vos mismo/a. Coaching ontológico + neurociencias. A tu ritmo, con workbook descargable.</p>
@@ -1312,7 +1322,7 @@
       </div>
 
       <div class="cur-card fade-up d2">
-        <div class="cur-thumb ct2"><img src="thumb-autoliderazgo.png" alt="Autoliderazgo: Tu Brújula Interior"></div>
+        <div class="cur-thumb ct2"><img src="foto-grupo.jpeg" alt="Autoliderazgo: Tu Brújula Interior"></div>
         <div class="cur-body">
           <h3>Autoliderazgo: Tu Brújula Interior</h3>
           <p>Herramientas prácticas para liderar tu vida desde adentro: emociones, creencias, decisiones y acción. Próxima edición en preparación.</p>
@@ -1328,7 +1338,7 @@
       </div>
 
       <div class="cur-card fade-up d3">
-        <div class="cur-thumb ct3"><img src="thumb-amorpropio.png" alt="Amor Propio sin Autoexigencia"></div>
+        <div class="cur-thumb ct3"><img src="foto-grupo.jpeg" alt="Amor Propio sin Autoexigencia"></div>
         <div class="cur-body">
           <h3>Amor Propio sin Autoexigencia</h3>
           <p>Un recorrido por la autocompasión, el merecimiento y la construcción de una relación más amable con vos mismo/a.</p>

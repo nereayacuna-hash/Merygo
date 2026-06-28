@@ -296,16 +296,15 @@
     }
 
     .dolor-card {
-      background: var(--blanco); border-radius: var(--radio);
-      padding: 28px 24px; border-left: 4px solid var(--amarillo);
+      background: linear-gradient(175deg, var(--blanco) 0%, rgba(45,27,30,0.04) 100%);
+      border-radius: var(--radio); padding: 26px 22px;
+      border: 1px solid rgba(45,27,30,0.08);
+      border-bottom: 3px solid rgba(45,27,30,0.13);
       transition: transform 0.22s, box-shadow 0.22s;
     }
     .dolor-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--sombra); }
-    .d-icon {
-      width: 50px; height: 50px; border-radius: 50%;
-      background: var(--crema-m); display: flex; align-items: center;
-      justify-content: center; font-size: 1.35rem; margin-bottom: 14px;
-    }
+    #tab-personas .dolor-card { border-top: 3px solid var(--amarillo); }
+    #tab-empresas .dolor-card { border-top: 3px solid var(--terracota); }
     .dolor-card h3 { font-size: 0.93rem; font-weight: 700; color: var(--marron); margin-bottom: 8px; }
     .dolor-card p  { font-size: 0.83rem; font-weight: 400; color: var(--texto-s); line-height: 1.65; }
 
@@ -651,6 +650,7 @@
     .ct1 { background: linear-gradient(135deg, #2D1B1E 0%, #4a2d32 100%); }
     .ct2 { background: linear-gradient(135deg, #C4612B 0%, #8B3010 100%); }
     .ct3 { background: linear-gradient(135deg, #D4960A 0%, #F5C02A 100%); }
+    .cur-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; position: absolute; inset: 0; }
     .cur-body { padding: 22px; }
     .cur-body h3 { font-size: 0.97rem; font-weight: 700; color: var(--marron); margin-bottom: 7px; line-height: 1.35; }
     .cur-body p  { font-size: 0.80rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; margin-bottom: 14px; }
@@ -861,10 +861,8 @@
 
       <!-- Texto -->
       <div class="fade-up">
-        <div class="hero-badge">🐝 &nbsp;Coaching Ontológico &amp; Neurociencias</div>
-        <h1 class="hero-h1">
-          Descubrí quién sos<br>y construí la vida<br><span class="gold">que realmente querés</span>
-        </h1>
+        <div class="hero-badge">Coaching Ontológico &amp; Neurociencias</div>
+        <h1 class="hero-h1">Descubrí quién sos y construí la vida <span class="gold">que realmente querés</span></h1>
         <p class="hero-sub">
           Acompañamiento profesional que une el poder del coaching ontológico con las últimas investigaciones en neurociencias. Para personas y equipos que quieren resultados reales y duraderos.
         </p>
@@ -878,7 +876,7 @@
       <div class="hero-photo-col fade-up d2">
         <div class="hero-frame">
           <img src="fotopersonal.jpeg" alt="María Isabel González – MeryGo Coach"
-               style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+               style="width:100%;height:100%;object-fit:cover;object-position:50% 5%;">
         </div>
         <div class="h-float h-float-1">
           <span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--marron)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
@@ -915,40 +913,34 @@
     <!-- Tabs -->
     <div class="tab-toggle fade-up">
       <div class="tab-wrap">
-        <button class="tab-btn active" onclick="showTab('personas', this)">🙋 Personas</button>
-        <button class="tab-btn" onclick="showTab('empresas', this)">🏢 Empresas &amp; Equipos</button>
+        <button class="tab-btn active" onclick="showTab('personas', this)">Personas</button>
+        <button class="tab-btn" onclick="showTab('empresas', this)">Empresas &amp; Equipos</button>
       </div>
     </div>
 
     <!-- Panel personas -->
     <div class="tab-panel active fade-up" id="tab-personas">
       <div class="dolor-card d1">
-        <div class="d-icon">😶‍🌫️</div>
         <h3>"Sé que puedo más, pero algo me frena"</h3>
         <p>Tenés claridad de que tu potencial es mayor, pero la distancia entre donde estás y donde querés estar parece imposible de cruzar sola/solo.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🔁</div>
         <h3>"Siempre termino en el mismo lugar"</h3>
         <p>Cambiás de trabajo, de pareja, de ciudad... pero los mismos problemas reaparecen. Los patrones se repiten y no entendés por qué.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🪞</div>
         <h3>"Me exijo demasiado y nunca es suficiente"</h3>
         <p>La autocrítica es constante. El síndrome del impostor aparece justo cuando más lo necesitás. Nunca te sentís merecedor/a de lo que lograste.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🎯</div>
         <h3>"No sé qué quiero en mi vida"</h3>
         <p>Perdiste el propósito o quizás nunca lo encontraste. Cumplís con todo, pero sentís un vacío que no sabés cómo nombrar.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">😰</div>
         <h3>"El estrés no me da tregua"</h3>
         <p>Las demandas no paran. La ansiedad aparece como señal de que algo está desequilibrado, pero no tenés las herramientas para gestionarlo.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🏁</div>
         <h3>"Tengo proyectos que nunca arrancan"</h3>
         <p>Ideas, sueños, metas. Pero la procrastinación, el miedo o la falta de estructura te paralizan antes de dar el primer paso.</p>
       </div>
@@ -957,32 +949,26 @@
     <!-- Panel empresas -->
     <div class="tab-panel" id="tab-empresas">
       <div class="dolor-card">
-        <div class="d-icon">🔥</div>
         <h3>"El equipo está agotado y desmotivado"</h3>
         <p>La rotación aumenta, el compromiso baja y el clima se deteriora. Sabés que el problema es profundo pero no sabés cómo abordarlo.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">💬</div>
         <h3>"La comunicación interna no funciona"</h3>
         <p>Los conflictos se evitan en lugar de resolverse. Las conversaciones importantes no se tienen. Los malentendidos se multiplican.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">👑</div>
         <h3>"Los líderes no saben liderar personas"</h3>
         <p>Excelentes profesionales técnicos que al asumir posiciones de liderazgo no tienen las habilidades para gestionar equipos y emociones.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">📉</div>
         <h3>"Los resultados no acompañan el esfuerzo"</h3>
         <p>El equipo trabaja mucho pero los resultados no lo reflejan. Hay algo en la dinámica grupal que frena el rendimiento colectivo.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🔄</div>
         <h3>"El cambio genera resistencia constante"</h3>
         <p>Cada vez que la empresa intenta transformarse, el equipo se resiste. La gestión del cambio nunca sale bien y la incertidumbre paraliza.</p>
       </div>
       <div class="dolor-card">
-        <div class="d-icon">🧩</div>
         <h3>"No hay cultura de equipo real"</h3>
         <p>Cada persona trabaja en su silo. Sin confianza, sin colaboración genuina. El equipo funciona como individuos, no como un sistema.</p>
       </div>
@@ -1008,10 +994,10 @@
         <div class="quien-deco-circle"></div>
         <div class="quien-frame">
           <img src="foto-personal2.jpeg" alt="Mery González – Coach Ontológica"
-               style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+               style="width:100%;height:100%;object-fit:cover;object-position:center 10%;">
         </div>
         <div class="quien-badge-float">
-          <span class="num">🐝</span>
+          <span class="num">M.</span>
           <span class="lbl">MeryGo. Coach</span>
         </div>
       </div>
@@ -1019,25 +1005,21 @@
       <!-- Texto -->
       <div class="fade-up d2">
         <span class="tag tag-gold">¿Quién es Mery?</span>
-        <h2 class="h2">Soy María Isabel González.<br>Todos me llaman <span class="gold">Mery.</span></h2>
+        <h2 class="h2">Soy María Isabel González, todos me llaman <span class="gold">Mery.</span></h2>
 
         <blockquote>
           "Mi propósito es servir y compartir mi filosofía de vida: conectar con lo que realmente importa, disfrutar los procesos y confiar en una misma."
         </blockquote>
 
-        <p>Soy <strong>Coach Ontológica Profesional con Posgrado en Neurociencias</strong>. Nací en Río Gallegos, Patagonia Argentina, y desde allí acompaño a personas y equipos en todo el país y el mundo en formato online.</p>
+        <p>Soy <strong>Coach Ontológica Profesional con Posgrado en Neurociencias</strong>, nacida en Río Gallegos, Patagonia Argentina. Acompaño a personas y equipos en todo el país y el mundo.</p>
 
-        <p>Hace unos años atravesé situaciones difíciles que me llevaron a cuestionar mi vida y mis elecciones. Fue entonces cuando descubrí la importancia de conectar con el cuerpo y la mente — y que la naturaleza era mi camino para hacerlo. Esa búsqueda me llevó al coaching, y el coaching me llevó a vos.</p>
-
-        <p>Hoy combino la profundidad del <strong>coaching ontológico</strong> con el rigor científico de las <strong>neurociencias</strong> para acompañar procesos reales: sin fórmulas mágicas, sin atajos, con presencia auténtica y herramientas concretas.</p>
+        <p>Hace unos años atravesé mi propio proceso de transformación que me llevó al coaching. Hoy combino la profundidad ontológica con el rigor científico de las <strong>neurociencias</strong> para acompañar cambios reales: sin fórmulas, con presencia auténtica.</p>
 
         <div class="chips">
-          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg> Coach Ontológica Profesional</span>
-          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Posgrado en Neurociencias</span>
-          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Río Gallegos, Argentina</span>
-          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 16,21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Online y presencial</span>
-          <span class="chip">🌿 Mente · Cuerpo · Naturaleza</span>
-          <span class="chip">👩‍👧‍👦 Mamá presente</span>
+          <span class="chip">Coach Ontológica Profesional</span>
+          <span class="chip">Posgrado en Neurociencias</span>
+          <span class="chip">Río Gallegos, Argentina</span>
+          <span class="chip">Online y presencial</span>
         </div>
       </div>
 
@@ -1059,7 +1041,6 @@
     <div class="pq-grid fade-up">
 
       <div class="pq-card pq-personas">
-        <div class="pq-icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
         <h3>Para personas</h3>
         <p class="sub">Si estás en un momento de búsqueda, transición o simplemente querés vivir de forma más plena y auténtica.</p>
         <ul class="pq-list">
@@ -1074,7 +1055,6 @@
       </div>
 
       <div class="pq-card pq-empresas">
-        <div class="pq-icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <h3>Para empresas y equipos</h3>
         <p class="sub">Si liderás un equipo, una empresa o un área y querés que las personas den lo mejor de sí mismas.</p>
         <ul class="pq-list">
@@ -1275,127 +1255,6 @@
   </div>
 </section>
 
-<!-- ══════════════════════════════════════
-     TESTIMONIOS — CARRUSEL
-══════════════════════════════════════ -->
-<section id="testimonios">
-  <div class="container">
-    <div class="section-head fade-up">
-      <span class="tag tag-terra">Testimonios</span>
-      <h2 class="h2">Lo que dicen quienes ya<br><span class="gold">dieron el paso</span></h2>
-      <p class="lead center">El cambio real se mide en la vida de las personas que decidieron empezar.</p>
-    </div>
-
-    <div class="carousel-wrap fade-up">
-      <div class="carousel-track-outer">
-        <div class="carousel-track" id="carouselTrack">
-
-          <div class="test-slide">
-            <div class="test-card">
-              <div class="test-q">"</div>
-              <div class="test-stars">★★★★★</div>
-              <p class="test-text">"El proceso con Mery fue un antes y un después en mi vida. Por primera vez entendí por qué repetía los mismos patrones y cómo salir de ellos. No es solo 'hablar con alguien': es un trabajo profundo que te transforma desde adentro."</p>
-              <div class="test-author">
-                <div class="test-avatar">👩</div>
-                <div>
-                  <strong>Laura G.</strong>
-                  <span>Profesional, 38 años · Buenos Aires</span>
-                </div>
-              </div>
-              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
-            </div>
-          </div>
-
-          <div class="test-slide">
-            <div class="test-card">
-              <div class="test-q">"</div>
-              <div class="test-stars">★★★★★</div>
-              <p class="test-text">"Llegué sintiéndome perdido en mi carrera y sin energía para nada. Hoy lidero mi equipo desde un lugar completamente diferente. Las herramientas que me dio Mery son para toda la vida."</p>
-              <div class="test-author">
-                <div class="test-avatar">👨</div>
-                <div>
-                  <strong>Marcos T.</strong>
-                  <span>Gerente de Operaciones, 44 años · Mendoza</span>
-                </div>
-              </div>
-              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
-            </div>
-          </div>
-
-          <div class="test-slide">
-            <div class="test-card">
-              <div class="test-q">"</div>
-              <div class="test-stars">★★★★★</div>
-              <p class="test-text">"Lo que más me sorprendió fue la calidez del acompañamiento. Mery no te juzga, te escucha de verdad y sabe exactamente qué preguntas hacerte para que vos mismo encontrés las respuestas. Eso no tiene precio."</p>
-              <div class="test-author">
-                <div class="test-avatar">👩</div>
-                <div>
-                  <strong>Valeria M.</strong>
-                  <span>Emprendedora, 35 años · Córdoba</span>
-                </div>
-              </div>
-              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
-            </div>
-          </div>
-
-          <div class="test-slide">
-            <div class="test-card">
-              <div class="test-q">"</div>
-              <div class="test-stars">★★★★★</div>
-              <p class="test-text">"Contratamos a Mery para un programa con nuestro equipo de liderazgo y el impacto fue inmediato. La comunicación mejoró notablemente y el clima organizacional cambió en pocas semanas."</p>
-              <div class="test-author">
-                <div class="test-avatar">🏢</div>
-                <div>
-                  <strong>Empresa — [Nombre a agregar]</strong>
-                  <span>⚠️ Testimonio empresarial placeholder</span>
-                </div>
-              </div>
-              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="carousel-controls">
-        <button class="c-btn" onclick="moveCarousel(-1)">←</button>
-        <div class="c-dots" id="cDots">
-          <div class="c-dot active" onclick="goToSlide(0)"></div>
-          <div class="c-dot" onclick="goToSlide(1)"></div>
-          <div class="c-dot" onclick="goToSlide(2)"></div>
-          <div class="c-dot" onclick="goToSlide(3)"></div>
-        </div>
-        <button class="c-btn" onclick="moveCarousel(1)">→</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══════════════════════════════════════
-     CONTADORES ANIMADOS
-══════════════════════════════════════ -->
-<section id="contadores">
-  <div class="container">
-    <div class="cnt-grid">
-      <div class="cnt-item fade-up d1">
-        <span class="cnt-num" data-target="100" data-suffix="+">0</span>
-        <p class="cnt-lbl">Personas acompañadas</p>
-      </div>
-      <div class="cnt-item fade-up d2">
-        <span class="cnt-num" data-target="5" data-suffix="+">0</span>
-        <p class="cnt-lbl">Años de experiencia</p>
-      </div>
-      <div class="cnt-item fade-up d3">
-        <span class="cnt-num" data-target="10" data-suffix="+">0</span>
-        <p class="cnt-lbl">Empresas y equipos</p>
-      </div>
-      <div class="cnt-item fade-up d4">
-        <span class="cnt-num" data-target="98" data-suffix="%">0</span>
-        <p class="cnt-lbl">Recomendarían el proceso</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- ══════════════════════════════════════
      CURSOS Y RECURSOS
@@ -1412,7 +1271,7 @@
 
       <div class="cur-card featured fade-up d1">
         <div class="featured-badge">✦ Disponible</div>
-        <div class="cur-thumb ct1"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
+        <div class="cur-thumb ct1"><img src="thumb-desarrollo.png" alt="Potenciá tu Desarrollo Personal"></div>
         <div class="cur-body">
           <h3>Potenciá tu Desarrollo Personal</h3>
           <p>6 módulos grabados para transformar tu relación con vos mismo/a. Coaching ontológico + neurociencias. A tu ritmo, con workbook descargable.</p>
@@ -1429,7 +1288,7 @@
       </div>
 
       <div class="cur-card fade-up d2">
-        <div class="cur-thumb ct2"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="rgba(255,255,255,0.7)" stroke="none"/></svg></div>
+        <div class="cur-thumb ct2"><img src="thumb-autoliderazgo.png" alt="Autoliderazgo: Tu Brújula Interior"></div>
         <div class="cur-body">
           <h3>Autoliderazgo: Tu Brújula Interior</h3>
           <p>Herramientas prácticas para liderar tu vida desde adentro: emociones, creencias, decisiones y acción. Próxima edición en preparación.</p>
@@ -1445,7 +1304,7 @@
       </div>
 
       <div class="cur-card fade-up d3">
-        <div class="cur-thumb ct3"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(45,27,30,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="cur-thumb ct3"><img src="thumb-amorpropio.png" alt="Amor Propio sin Autoexigencia"></div>
         <div class="cur-body">
           <h3>Amor Propio sin Autoexigencia</h3>
           <p>Un recorrido por la autocompasión, el merecimiento y la construcción de una relación más amable con vos mismo/a.</p>
@@ -1464,7 +1323,7 @@
 
     <div class="cur-banner fade-up">
       <div>
-        <h3>🐝 ¿Querés ser el primero en saber sobre nuevos cursos?</h3>
+        <h3>¿Querés ser el primero en saber sobre nuevos cursos?</h3>
         <p>Escribinos y te avisamos antes que a nadie. Sin spam — solo lo que te suma.</p>
       </div>
       <div class="btns">
@@ -1540,15 +1399,14 @@
         <ul>
           <li><a href="#quien">Sobre Mery</a></li>
           <li><a href="#por-que">Por qué MeryGo.</a></li>
-          <li><a href="#testimonios">Testimonios</a></li>
           <li><a href="#cta-final">Contacto</a></li>
         </ul>
       </div>
       <div class="ft-col">
         <h4>Contacto</h4>
         <ul>
-          <li><a href="https://wa.me/549XXXXXXXXXX" target="_blank">💬 WhatsApp</a></li>
-          <li><a href="mailto:merygon@gmail.com">✉️ merygon@gmail.com</a></li>
+          <li><a href="https://wa.me/549XXXXXXXXXX" target="_blank">WhatsApp</a></li>
+          <li><a href="mailto:merygon@gmail.com">merygon@gmail.com</a></li>
           <li><a href="https://www.instagram.com/merygo.coach" target="_blank">📸 @merygo.coach</a></li>
           <li><a href="#">📍 Río Gallegos, Argentina</a></li>
         </ul>
@@ -1557,9 +1415,15 @@
     <div class="ft-bottom">
       <p>© 2024 MeryGo. Coach — Todos los derechos reservados</p>
       <div class="social">
-        <a href="https://www.instagram.com/merygo.coach" class="soc-link" target="_blank">📸</a>
-        <a href="https://wa.me/549XXXXXXXXXX" class="soc-link" target="_blank">💬</a>
-        <a href="mailto:merygon@gmail.com" class="soc-link">✉️</a>
+        <a href="https://www.instagram.com/merygo.coach" class="soc-link" target="_blank" title="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/549XXXXXXXXXX" class="soc-link" target="_blank" title="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+        <a href="mailto:merygon@gmail.com" class="soc-link" title="Email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
       </div>
       <p>Diseñado con ❤️ para <a href="#">MeryGo. Coach</a></p>
     </div>
@@ -1568,7 +1432,7 @@
 
 <!-- WhatsApp flotante -->
 <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!" class="wpp-float" target="_blank" title="Escribirme por WhatsApp">💬</a>
-<div class="wpp-tip">¡Hablemos! 🐝</div>
+<div class="wpp-tip">¡Hablemos!</div>
 
 
 <!-- ══════════════════════════════════════

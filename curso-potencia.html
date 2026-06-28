@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Potenciá tu Desarrollo Personal | MeryGo. Coach</title>
+  <meta name="description" content="Curso online autoasistido de 6 módulos. Coaching ontológico + neurociencias para transformar tu relación con vos mismo/a." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --amarillo: #F5C02A;
+      --marron:   #2D1B1E;
+      --marron-m: #4a2d32;
+      --terra:    #C4612B;
+      --crema:    #FDF6E3;
+      --crema-m:  #F5E8B0;
+      --blanco:   #FFFFFF;
+      --gris:     #F8F5F0;
+      --texto:    #3D2B2E;
+      --texto-s:  #7A6065;
+      --t: all 0.3s ease;
+      --f: 'Poppins', sans-serif;
+      --r: 16px; --rl: 24px;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--f); color:var(--texto); background:var(--blanco); overflow-x:hidden; }
+    a { text-decoration:none; color:inherit; }
+    ul { list-style:none; }
+
+    .container { max-width:1060px; margin:0 auto; padding:0 24px; }
+    .container-sm { max-width:740px; margin:0 auto; padding:0 24px; }
+
+    /* Animaciones */
+    .fu { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+    .fu.v { opacity:1; transform:translateY(0); }
+    .fu.d1 { transition-delay:.10s; } .fu.d2 { transition-delay:.20s; }
+    .fu.d3 { transition-delay:.30s; } .fu.d4 { transition-delay:.40s; }
+
+    /* Botones */
+    .btn { display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:50px; font-weight:700; font-size:.93rem; border:2px solid transparent; transition:var(--t); cursor:pointer; font-family:var(--f); }
+    .btn-gold  { background:var(--amarillo); color:var(--marron); }
+    .btn-gold:hover  { background:var(--terra); color:var(--blanco); transform:translateY(-2px); box-shadow:0 8px 20px rgba(196,97,43,.35); }
+    .btn-dark  { background:var(--marron); color:var(--blanco); }
+    .btn-dark:hover  { background:var(--terra); transform:translateY(-2px); }
+    .btn-wpp   { background:#25D366; color:var(--blanco); font-size:1.02rem; padding:17px 44px; }
+    .btn-wpp:hover { background:#1dbc5b; transform:translateY(-2px); box-shadow:0 10px 28px rgba(37,211,102,.42); }
+    .btn-outline { border-color:var(--amarillo); color:var(--marron); background:transparent; }
+    .btn-outline:hover { background:var(--amarillo); }
+
+    /* Tags */
+    .tag { display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase; padding:5px 14px; border-radius:50px; margin-bottom:12px; }
+    .tg { background:var(--amarillo); color:var(--marron); }
+    .tt { background:var(--terra); color:var(--blanco); }
+    .td { background:var(--marron); color:var(--amarillo); }
+
+    /* ── NAV ── */
+    #nav { position:fixed; top:0; left:0; right:0; z-index:900; background:rgba(255,255,255,.97); backdrop-filter:blur(12px); border-bottom:2px solid var(--amarillo); padding:12px 0; }
+    .nav-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+    .nav-logo { font-size:1.3rem; font-weight:800; color:var(--marron); display:flex; align-items:center; gap:6px; }
+    .nav-logo span { color:var(--amarillo); }
+    .nav-back { font-size:.80rem; font-weight:600; color:var(--texto-s); display:flex; align-items:center; gap:6px; transition:color .2s; }
+    .nav-back:hover { color:var(--terra); }
+
+    /* ── HERO ── */
+    #hero {
+      padding: 110px 0 70px;
+      background: linear-gradient(155deg, var(--marron) 0%, var(--marron-m) 60%, var(--terra) 100%);
+      position:relative; overflow:hidden;
+    }
+    .hero-deco { position:absolute; border-radius:50%; pointer-events:none; }
+    .hd1 { width:380px; height:380px; background:var(--amarillo); opacity:.06; top:-80px; right:-80px; }
+    .hd2 { width:220px; height:220px; background:var(--terra); opacity:.12; bottom:40px; left:-60px; }
+
+    .hero-grid { display:grid; grid-template-columns:1fr 420px; gap:56px; align-items:center; position:relative; z-index:1; }
+
+    .hero-badge {
+      display:inline-flex; align-items:center; gap:8px;
+      background:rgba(245,192,42,.14); border:1px solid rgba(245,192,42,.32);
+      color:var(--amarillo); font-size:.74rem; font-weight:600;
+      letter-spacing:.12em; text-transform:uppercase;
+      padding:7px 18px; border-radius:50px; margin-bottom:20px;
+    }
+    .hero-h1 { font-size:clamp(2rem,4vw,3.4rem); font-weight:800; color:var(--blanco); line-height:1.12; margin-bottom:18px; }
+    .hero-h1 .gold { color:var(--amarillo); }
+    .hero-sub { font-size:1rem; font-weight:300; color:rgba(255,255,255,.76); line-height:1.75; max-width:480px; margin-bottom:32px; }
+
+    .hero-meta { display:flex; flex-wrap:wrap; gap:16px; margin-bottom:36px; }
+    .meta-item {
+      display:flex; align-items:center; gap:8px;
+      background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.12);
+      border-radius:50px; padding:8px 16px;
+      font-size:.80rem; font-weight:600; color:rgba(255,255,255,.82);
+    }
+    .meta-item span { font-size:1rem; }
+
+    /* Card precio hero */
+    .price-card {
+      background:var(--blanco); border-radius:var(--rl);
+      padding:36px 32px; text-align:center;
+      box-shadow:0 16px 48px rgba(45,27,30,.28);
+    }
+    .pc-label { font-size:.72rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--texto-s); margin-bottom:8px; }
+    .pc-price { font-size:3rem; font-weight:800; color:var(--marron); line-height:1; margin-bottom:4px; }
+    .pc-price .currency { font-size:1.4rem; vertical-align:super; font-weight:700; }
+    .pc-desc { font-size:.80rem; color:var(--texto-s); font-weight:300; margin-bottom:24px; line-height:1.5; }
+    .pc-includes { text-align:left; margin-bottom:24px; }
+    .pc-includes li {
+      font-size:.82rem; font-weight:500; color:var(--texto);
+      padding:7px 0; border-bottom:1px solid rgba(45,27,30,.06);
+      display:flex; align-items:center; gap:9px;
+    }
+    .pc-includes li::before { content:'✓'; color:var(--amarillo); font-weight:800; flex-shrink:0; }
+    .pc-guarantee { font-size:.72rem; color:var(--texto-s); margin-top:14px; text-align:center; }
+
+    /* ── PARA QUIÉN ── */
+    #para-quien { padding:88px 0; background:var(--crema); }
+    .pq-header { text-align:center; margin-bottom:52px; }
+    .pq-header h2 { font-size:clamp(1.7rem,3.2vw,2.5rem); font-weight:800; color:var(--marron); line-height:1.2; margin-bottom:12px; }
+    .pq-header p { font-size:.95rem; color:var(--texto-s); font-weight:300; max-width:520px; margin:0 auto; line-height:1.72; }
+
+    .pq-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .pq-card {
+      background:var(--blanco); border-radius:var(--r);
+      padding:28px 22px; border-top:3px solid var(--amarillo);
+      transition:transform .2s, box-shadow .2s;
+    }
+    .pq-card:hover { transform:translateY(-4px); box-shadow:0 12px 30px rgba(45,27,30,.10); }
+    .pq-card .ic { font-size:1.8rem; margin-bottom:12px; display:block; }
+    .pq-card h3 { font-size:.92rem; font-weight:700; color:var(--marron); margin-bottom:8px; }
+    .pq-card p { font-size:.82rem; color:var(--texto-s); line-height:1.65; font-weight:300; }
+
+    /* ── RESULTADOS ── */
+    #resultados { padding:88px 0; background:var(--blanco); }
+    .res-header { text-align:center; margin-bottom:52px; }
+    .res-header h2 { font-size:clamp(1.7rem,3.2vw,2.5rem); font-weight:800; color:var(--marron); margin-bottom:12px; line-height:1.2; }
+    .res-header h2 span { color:var(--amarillo); }
+    .res-header p { font-size:.95rem; color:var(--texto-s); font-weight:300; max-width:520px; margin:0 auto; line-height:1.72; }
+
+    .res-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+    .res-item {
+      display:flex; align-items:flex-start; gap:16px;
+      background:var(--gris); border-radius:var(--r); padding:24px 20px;
+    }
+    .res-icon {
+      width:48px; height:48px; border-radius:50%;
+      background:var(--crema-m); display:flex; align-items:center;
+      justify-content:center; font-size:1.3rem; flex-shrink:0;
+      border:2px solid rgba(245,192,42,.4);
+    }
+    .res-item h3 { font-size:.90rem; font-weight:700; color:var(--marron); margin-bottom:5px; }
+    .res-item p { font-size:.80rem; color:var(--texto-s); line-height:1.62; font-weight:300; }
+
+    /* ── MÓDULOS ── */
+    #modulos { padding:88px 0; background:var(--marron); }
+    .mod-header { text-align:center; margin-bottom:56px; }
+    .mod-header h2 { font-size:clamp(1.7rem,3.2vw,2.5rem); font-weight:800; color:var(--blanco); margin-bottom:12px; line-height:1.2; }
+    .mod-header h2 span { color:var(--amarillo); }
+    .mod-header p { font-size:.95rem; color:rgba(255,255,255,.65); font-weight:300; max-width:520px; margin:0 auto; line-height:1.72; }
+
+    .modulos-list { display:flex; flex-direction:column; gap:16px; }
+    .mod-card {
+      background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.09);
+      border-radius:var(--r); overflow:hidden; transition:var(--t);
+    }
+    .mod-card:hover { background:rgba(245,192,42,.07); border-color:rgba(245,192,42,.22); }
+
+    .mod-head {
+      display:flex; align-items:center; gap:18px;
+      padding:22px 28px; cursor:pointer;
+    }
+    .mod-num {
+      width:44px; height:44px; border-radius:50%;
+      background:var(--amarillo); color:var(--marron);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.80rem; font-weight:800; flex-shrink:0;
+    }
+    .mod-head-text { flex:1; }
+    .mod-head-text h3 { font-size:1rem; font-weight:700; color:var(--blanco); margin-bottom:3px; }
+    .mod-head-text p { font-size:.78rem; color:rgba(255,255,255,.55); font-weight:300; }
+    .mod-arrow { color:rgba(255,255,255,.4); font-size:1rem; transition:transform .3s; }
+    .mod-card.open .mod-arrow { transform:rotate(180deg); }
+
+    .mod-body { display:none; padding:0 28px 26px; }
+    .mod-card.open .mod-body { display:block; }
+
+    .mod-concept {
+      background:rgba(245,192,42,.08); border-left:3px solid var(--amarillo);
+      border-radius:0 var(--r) var(--r) 0; padding:16px 20px; margin-bottom:18px;
+    }
+    .mod-concept h4 { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--amarillo); margin-bottom:6px; }
+    .mod-concept p { font-size:.85rem; color:rgba(255,255,255,.75); line-height:1.68; font-weight:300; }
+
+    .mod-temas h4 { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:rgba(255,255,255,.45); margin-bottom:12px; }
+    .mod-temas li {
+      font-size:.84rem; color:rgba(255,255,255,.78); font-weight:400;
+      padding:6px 0; border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex; align-items:center; gap:9px;
+    }
+    .mod-temas li::before { content:'→'; color:var(--amarillo); font-size:.75rem; flex-shrink:0; }
+
+    .mod-ejercicio {
+      margin-top:18px; background:rgba(255,255,255,.04);
+      border-radius:var(--r); padding:16px 20px;
+      border:1px solid rgba(255,255,255,.08);
+    }
+    .mod-ejercicio h4 { font-size:.75rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase; color:var(--terra); margin-bottom:6px; }
+    .mod-ejercicio p { font-size:.83rem; color:rgba(255,255,255,.65); line-height:1.65; font-weight:300; }
+
+    /* ── QUÉ INCLUYE ── */
+    #incluye { padding:88px 0; background:var(--crema); }
+    .inc-header { text-align:center; margin-bottom:52px; }
+    .inc-header h2 { font-size:clamp(1.7rem,3.2vw,2.5rem); font-weight:800; color:var(--marron); margin-bottom:12px; }
+    .inc-header h2 span { color:var(--amarillo); }
+
+    .inc-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+    .inc-card {
+      background:var(--blanco); border-radius:var(--r);
+      padding:28px 22px; text-align:center;
+      border:1.5px solid rgba(45,27,30,.07);
+      transition:var(--t);
+    }
+    .inc-card:hover { border-color:var(--amarillo); transform:translateY(-3px); box-shadow:0 10px 28px rgba(45,27,30,.10); }
+    .inc-icon {
+      width:60px; height:60px; border-radius:50%;
+      background:var(--crema-m); border:2px solid rgba(245,192,42,.4);
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; margin:0 auto 14px;
+    }
+    .inc-card h3 { font-size:.92rem; font-weight:700; color:var(--marron); margin-bottom:7px; }
+    .inc-card p { font-size:.80rem; color:var(--texto-s); line-height:1.62; font-weight:300; }
+
+    /* ── FAQ ── */
+    #faq { padding:88px 0; background:var(--blanco); }
+    .faq-header { text-align:center; margin-bottom:52px; }
+    .faq-header h2 { font-size:clamp(1.7rem,3.2vw,2.5rem); font-weight:800; color:var(--marron); margin-bottom:12px; }
+
+    .faq-list { max-width:720px; margin:0 auto; display:flex; flex-direction:column; gap:12px; }
+    .faq-item { border:1.5px solid rgba(45,27,30,.09); border-radius:var(--r); overflow:hidden; }
+    .faq-q {
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+      padding:20px 24px; cursor:pointer; transition:background .2s;
+    }
+    .faq-q:hover { background:var(--gris); }
+    .faq-q h3 { font-size:.92rem; font-weight:600; color:var(--marron); }
+    .faq-arr { color:var(--texto-s); font-size:1rem; transition:transform .3s; flex-shrink:0; }
+    .faq-item.open .faq-arr { transform:rotate(180deg); }
+    .faq-a { display:none; padding:0 24px 20px; }
+    .faq-item.open .faq-a { display:block; }
+    .faq-a p { font-size:.85rem; color:var(--texto-s); line-height:1.72; font-weight:300; }
+
+    /* ── CTA FINAL ── */
+    #cta {
+      padding:100px 0; text-align:center;
+      background:linear-gradient(155deg, var(--marron) 0%, var(--marron-m) 60%, var(--terra) 100%);
+      position:relative; overflow:hidden;
+    }
+    .cta-d { position:absolute; border-radius:50%; pointer-events:none; }
+    .cd1 { width:350px; height:350px; background:var(--amarillo); opacity:.06; top:-80px; right:-80px; }
+    .cd2 { width:200px; height:200px; background:var(--amarillo); opacity:.06; bottom:-50px; left:-50px; }
+
+    .cta-inner { position:relative; z-index:1; }
+    .cta-h2 { font-size:clamp(1.9rem,3.8vw,3rem); font-weight:800; color:var(--blanco); line-height:1.15; margin:12px 0 16px; }
+    .cta-h2 span { color:var(--amarillo); }
+    .cta-sub { font-size:1rem; color:rgba(255,255,255,.70); font-weight:300; line-height:1.72; margin-bottom:40px; max-width:520px; margin-left:auto; margin-right:auto; }
+    .cta-email { margin-top:16px; font-size:.82rem; color:rgba(255,255,255,.40); }
+    .cta-email a { color:var(--amarillo); }
+
+    /* ── FOOTER ── */
+    footer { background:#190e10; padding:36px 0 24px; text-align:center; }
+    .ft-logo { font-size:1.3rem; font-weight:800; color:var(--blanco); margin-bottom:10px; }
+    .ft-logo span { color:var(--amarillo); }
+    .ft-links { display:flex; justify-content:center; gap:22px; flex-wrap:wrap; margin-bottom:16px; }
+    .ft-links a { font-size:.76rem; color:rgba(255,255,255,.38); transition:color .2s; }
+    .ft-links a:hover { color:var(--amarillo); }
+    .ft-copy { font-size:.70rem; color:rgba(255,255,255,.22); }
+
+    /* WPP flotante */
+    .wpp-float {
+      position:fixed; bottom:24px; right:24px; z-index:800;
+      width:56px; height:56px; background:#25D366; border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      font-size:1.6rem; box-shadow:0 4px 20px rgba(37,211,102,.52);
+      animation:pulse 2.8s ease-in-out infinite;
+    }
+    .wpp-float:hover { transform:scale(1.1); animation:none; }
+    @keyframes pulse {
+      0%,100% { box-shadow:0 4px 20px rgba(37,211,102,.52); }
+      50% { box-shadow:0 4px 32px rgba(37,211,102,.80), 0 0 0 10px rgba(37,211,102,.10); }
+    }
+
+    /* Responsive */
+    @media (max-width:900px) {
+      .hero-grid { grid-template-columns:1fr; gap:40px; }
+      .pq-grid { grid-template-columns:1fr; }
+      .res-grid { grid-template-columns:1fr; }
+      .inc-grid { grid-template-columns:1fr; }
+    }
+    @media (max-width:600px) {
+      .hero-meta { flex-direction:column; align-items:flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">🐝 Mery<span>Go.</span></a>
+      <a href="index.html" class="nav-back">← Volver al inicio</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-deco hd1"></div>
+  <div class="hero-deco hd2"></div>
+  <div class="container">
+    <div class="hero-grid">
+
+      <div class="fu">
+        <div class="hero-badge">🎓 Curso Online Autoasistido</div>
+        <h1 class="hero-h1">Potenciá tu<br><span class="gold">Desarrollo Personal</span></h1>
+        <p class="hero-sub">6 módulos con metodología de coaching ontológico y neurociencias para transformar tu relación con vos mismo/a. A tu ritmo, desde donde estés, cuando quieras.</p>
+
+        <div class="hero-meta">
+          <div class="meta-item"><span>📚</span> 6 módulos completos</div>
+          <div class="meta-item"><span>🎧</span> Acceso de por vida</div>
+          <div class="meta-item"><span>📄</span> Workbook descargable</div>
+          <div class="meta-item"><span>💻</span> 100% online</div>
+        </div>
+
+        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20adquirir%20el%20curso%20Potenciá%20tu%20Desarrollo%20Personal." class="btn btn-wpp" target="_blank">
+          💬 &nbsp;Quiero este curso
+        </a>
+      </div>
+
+      <!-- Card precio -->
+      <div class="fu d2">
+        <div class="price-card">
+          <p class="pc-label">Inversión en vos</p>
+          <div class="pc-price"><span class="currency">$</span> Consultá</div>
+          <p class="pc-desc">Precio accesible · Pago único<br>Acceso inmediato al comprar</p>
+          <ul class="pc-includes">
+            <li>6 módulos con contenido en video</li>
+            <li>Workbook PDF completo (descargable)</li>
+            <li>Ejercicios prácticos por módulo</li>
+            <li>Acceso de por vida al material</li>
+            <li>Actualizaciones incluidas</li>
+          </ul>
+          <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20adquirir%20el%20curso%20Potenciá%20tu%20Desarrollo%20Personal." class="btn btn-gold" style="width:100%;justify-content:center;" target="_blank">
+            Quiero inscribirme →
+          </a>
+          <p class="pc-guarantee">🐝 Escribinos y te respondemos en menos de 24 hs</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PARA QUIÉN -->
+<section id="para-quien">
+  <div class="container">
+    <div class="pq-header fu">
+      <span class="tag tg">¿Es para mí?</span>
+      <h2>Este curso es para vos si...</h2>
+      <p>No importa en qué punto estés. Lo que importa es que algo en vos siente que podés más.</p>
+    </div>
+    <div class="pq-grid">
+      <div class="pq-card fu d1">
+        <span class="ic">🔁</span>
+        <h3>Repetís siempre los mismos patrones</h3>
+        <p>Cambián las circunstancias pero los problemas siguen siendo los mismos. Sentís que algo en vos no cambia por más que lo intentés.</p>
+      </div>
+      <div class="pq-card fu d2">
+        <span class="ic">🧭</span>
+        <h3>Perdiste el propósito o la dirección</h3>
+        <p>Cumplís con todo pero algo falta. No encontrás para qué ni hacia dónde. Vivís en piloto automático sin saber bien qué querés.</p>
+      </div>
+      <div class="pq-card fu d3">
+        <span class="ic">🪞</span>
+        <h3>Tu peor crítico/a sos vos mismo/a</h3>
+        <p>La exigencia interna no para. El síndrome del impostor aparece seguido. Nunca es suficiente, nunca está bien del todo.</p>
+      </div>
+      <div class="pq-card fu d1">
+        <span class="ic">💭</span>
+        <h3>Tus emociones te superan</h3>
+        <p>El estrés, la ansiedad o la tristeza aparecen sin que puedas manejarlos. Reaccionás desde el impulso y después lamentás.</p>
+      </div>
+      <div class="pq-card fu d2">
+        <span class="ic">🏁</span>
+        <h3>Tus proyectos nunca arrancan</h3>
+        <p>Tenés ideas, sueños y metas, pero la procrastinación, el miedo o la falta de estructura te frenan antes de empezar.</p>
+      </div>
+      <div class="pq-card fu d3">
+        <span class="ic">✨</span>
+        <h3>Querés conocerte más profundo</h3>
+        <p>Simplemente sentís que hay una versión de vos que todavía no encontraste. Y querés ir a buscarla con herramientas reales.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTADOS -->
+<section id="resultados">
+  <div class="container">
+    <div class="res-header fu">
+      <span class="tag tt">Transformaciones</span>
+      <h2>Al terminar el curso, <span>vas a poder</span></h2>
+      <p>No son promesas vacías. Son cambios concretos que suceden cuando entendés cómo funcionás y empezás a actuar desde ahí.</p>
+    </div>
+    <div class="res-grid">
+      <div class="res-item fu d1">
+        <div class="res-icon">👁</div>
+        <div>
+          <h3>Verte sin juicio</h3>
+          <p>Reconocer tus patrones, creencias y emociones desde la curiosidad y no desde la crítica. Entender cómo tu forma de observar el mundo determina tus resultados.</p>
+        </div>
+      </div>
+      <div class="res-item fu d2">
+        <div class="res-icon">💬</div>
+        <div>
+          <h3>Usar el lenguaje a tu favor</h3>
+          <p>Identificar cómo tus palabras — las que decís hacia afuera y las que te decís a vos mismo/a — construyen o limitan tu realidad.</p>
+        </div>
+      </div>
+      <div class="res-item fu d3">
+        <div class="res-icon">🎯</div>
+        <div>
+          <h3>Tomar decisiones alineadas</h3>
+          <p>Conectar con tus valores reales y usarlos como brújula para tomar decisiones que tengan sentido y te den paz, no solo resultados.</p>
+        </div>
+      </div>
+      <div class="res-item fu d4">
+        <div class="res-icon">⚡</div>
+        <div>
+          <h3>Gestionar tus emociones</h3>
+          <p>Comprender qué te mueven las emociones, qué información traen y cómo usarlas como aliadas en lugar de dejar que te dominen.</p>
+        </div>
+      </div>
+      <div class="res-item fu d1">
+        <div class="res-icon">🔓</div>
+        <div>
+          <h3>Liberarte de creencias limitantes</h3>
+          <p>Identificar los relatos internos que te frenan y abrirte a posibilidades nuevas que antes no podías ver desde donde estabas parado/a.</p>
+        </div>
+      </div>
+      <div class="res-item fu d2">
+        <div class="res-icon">🗺</div>
+        <div>
+          <h3>Diseñar tu plan de acción real</h3>
+          <p>Crear compromisos concretos y sostenibles — no listas de deseos — que transformen lo que aprendiste en cambios observables en tu vida cotidiana.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="container">
+    <div class="mod-header fu">
+      <span class="tag td">Contenido del curso</span>
+      <h2>Los <span>6 módulos</span></h2>
+      <p>Cada módulo incluye teoría, conceptos clave, reflexiones guiadas y un ejercicio práctico que forma parte del workbook descargable.</p>
+    </div>
+
+    <div class="modulos-list fu">
+
+      <!-- M1 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">01</div>
+          <div class="mod-head-text">
+            <h3>El Observador que Soy</h3>
+            <p>La base de todo cambio: entender cómo interpretás el mundo</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>En coaching ontológico, cada persona observa el mundo a través de una lente única construida por su historia, sus creencias, sus emociones y su cuerpo. Este "observador" determina qué ve, qué siente y cómo actúa. Cambiar resultados implica primero ampliar y transformar quién es ese observador.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>Qué es el observador y por qué es el punto de partida</li>
+              <li>La diferencia entre los hechos y las interpretaciones que hacemos de ellos</li>
+              <li>Cómo nuestras interpretaciones habituales limitan o amplían lo posible</li>
+              <li>El modelo Observador → Acción → Resultado</li>
+              <li>Cómo identificar tu observador en situaciones concretas</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"Mi mapa de interpretaciones" — Identificás 3 situaciones recurrentes en tu vida y explorás qué historia te contás sobre cada una. Descubrís el patrón detrás de tus reacciones.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- M2 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">02</div>
+          <div class="mod-head-text">
+            <h3>El Poder del Lenguaje</h3>
+            <p>Tus palabras no describen tu realidad — la crean</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>El coaching ontológico entiende el lenguaje como acción: no solo describimos el mundo con palabras, sino que lo generamos. Lo que nos decimos a nosotros mismos y a los demás construye o limita nuestra realidad. Aprender a observar nuestro lenguaje es aprender a observar nuestra vida.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>Lenguaje generativo vs. lenguaje descriptivo</li>
+              <li>Tipos de actos de habla: afirmaciones, declaraciones, promesas, pedidos y ofertas</li>
+              <li>Cómo el diálogo interno moldea tu autoconcepto y tus posibilidades</li>
+              <li>Palabras que abren y palabras que cierran puertas</li>
+              <li>El rol de las promesas en la construcción de confianza</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"El registro de mis palabras" — Durante 3 días registrás frases recurrentes que usás (especialmente las que te decís a vos mismo/a). Analizás si son afirmaciones, juicios o declaraciones y qué realidad construyen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- M3 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">03</div>
+          <div class="mod-head-text">
+            <h3>Mis Emociones como Información</h3>
+            <p>Las emociones no son el problema — son la brújula</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>Las emociones no son obstáculos ni debilidades: son predisposiciones para la acción que traen información valiosa sobre lo que nos importa, lo que nos amenaza y lo que necesitamos. Aprenderlas a escuchar — en lugar de reprimirlas o ser arrastrado/a por ellas — es una habilidad que se entrena.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>El modelo ontológico de las emociones (no son reacciones involuntarias)</li>
+              <li>Qué predisposición para la acción genera cada emoción</li>
+              <li>Cómo la neurociencia explica la regulación emocional</li>
+              <li>La diferencia entre sentir una emoción y ser dominado/a por ella</li>
+              <li>Emociones recurrentes: qué dicen de tu observador</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"Mi mapa emocional" — Identificás las 5 emociones que aparecen con mayor frecuencia en tu vida, en qué situaciones emergen, qué acción te predisponen a tomar y qué información útil traen.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- M4 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">04</div>
+          <div class="mod-head-text">
+            <h3>Creencias que Me Frenan (y las que me Impulsan)</h3>
+            <p>El mapa no es el territorio — pero vivimos como si lo fuera</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>Las creencias son juicios que tomamos como verdades absolutas. Fueron instaladas en nuestra historia — muchas en la infancia — y operan de fondo, filtrando lo que vemos como posible o imposible. No podemos cambiar lo que no podemos ver. Este módulo te enseña a ver las tuyas.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>Cómo se forman las creencias y por qué son tan difíciles de cambiar</li>
+              <li>Diferencia entre juicios fundados y juicios infundados</li>
+              <li>Creencias limitantes más comunes en el desarrollo personal</li>
+              <li>Qué dice la neurociencia sobre la neuroplasticidad y el cambio de creencias</li>
+              <li>El proceso de cuestionar y ampliar una creencia limitante</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"El árbol de mis creencias" — Identificás 5 creencias limitantes activas en tu vida hoy, rastreás su origen probable, evaluás la evidencia que las sostiene (o contradice) y escribís una creencia alternativa más expandida.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- M5 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">05</div>
+          <div class="mod-head-text">
+            <h3>Propósito y Valores: Tu Brújula Interior</h3>
+            <p>Cuando sabés quién sos, las decisiones se vuelven más claras</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>El propósito no es algo que se encuentra — es algo que se construye y se elige. Los valores son los principios que ya están operando en vos, aunque quizás no los tengas conscientes. Cuando tus decisiones se alinean con tus valores, desaparece la sensación de vivir en conflicto interno.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>Diferencia entre propósito, metas y deseos</li>
+              <li>Cómo identificar tus valores reales (no los que "deberías" tener)</li>
+              <li>Por qué vivir en conflicto con tus valores genera desgaste</li>
+              <li>El propósito como horizonte que orienta la acción</li>
+              <li>Cómo comunicar tu propósito y vivir desde él</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"Mi brújula interior" — A través de 3 ejercicios de reflexión guiada identificás tus 5 valores core, explorás cómo se expresan (o no) en tu vida actual y escribís tu declaración personal de propósito.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- M6 -->
+      <div class="mod-card" onclick="toggleMod(this)">
+        <div class="mod-head">
+          <div class="mod-num">06</div>
+          <div class="mod-head-text">
+            <h3>Acción Comprometida: De la Conciencia al Cambio</h3>
+            <p>El saber no transforma — solo la acción transforma</p>
+          </div>
+          <span class="mod-arrow">▼</span>
+        </div>
+        <div class="mod-body">
+          <div class="mod-concept">
+            <h4>Concepto central</h4>
+            <p>El coaching ontológico no termina en la reflexión: termina en la acción. Este módulo integra todo lo anterior y te lleva a diseñar compromisos concretos — no listas de deseos, sino actos de habla con fecha y condiciones de satisfacción. El cambio no se piensa: se actúa.</p>
+          </div>
+          <div class="mod-temas">
+            <h4>En este módulo exploramos</h4>
+            <ul>
+              <li>La diferencia entre intención, deseo y compromiso</li>
+              <li>Cómo diseñar compromisos que se sostengan en el tiempo</li>
+              <li>El rol del cuerpo en la acción: postura, respiración y presencia</li>
+              <li>Cómo manejar los obstáculos y las recaídas sin abandonar</li>
+              <li>Construcción de hábitos desde la neurociencia</li>
+            </ul>
+          </div>
+          <div class="mod-ejercicio">
+            <h4>Ejercicio del workbook</h4>
+            <p>"Mi plan de 90 días" — Diseñás 3 compromisos concretos alineados con tu propósito y valores, con fechas, indicadores de avance y un sistema simple de accountability. Esto es lo que te llevás como hoja de ruta.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUÉ INCLUYE -->
+<section id="incluye">
+  <div class="container">
+    <div class="inc-header fu">
+      <span class="tag tg">¿Qué incluye?</span>
+      <h2>Todo lo que necesitás para <span>transformarte de verdad</span></h2>
+    </div>
+    <div class="inc-grid">
+      <div class="inc-card fu d1">
+        <div class="inc-icon">🎥</div>
+        <h3>6 módulos en video</h3>
+        <p>Contenido grabado con metodología ontológica y neurociencias. Podés verlos cuando quieras, pausarlos y volver cuantas veces necesites.</p>
+      </div>
+      <div class="inc-card fu d2">
+        <div class="inc-icon">📄</div>
+        <h3>Workbook PDF completo</h3>
+        <p>Guía descargable con la teoría de cada módulo, reflexiones guiadas y todos los ejercicios prácticos para completar a tu propio ritmo.</p>
+      </div>
+      <div class="inc-card fu d3">
+        <div class="inc-icon">♾</div>
+        <h3>Acceso de por vida</h3>
+        <p>El material es tuyo para siempre. Lo podés volver a ver cada vez que lo necesites, en distintas etapas de tu vida.</p>
+      </div>
+      <div class="inc-card fu d1">
+        <div class="inc-icon">🔄</div>
+        <h3>Actualizaciones incluidas</h3>
+        <p>Si el contenido se actualiza o se agregan nuevos materiales, lo recibís sin costo adicional.</p>
+      </div>
+      <div class="inc-card fu d2">
+        <div class="inc-icon">💬</div>
+        <h3>Soporte por WhatsApp</h3>
+        <p>Ante cualquier duda sobre el contenido podés escribirle directamente a Mery. No estás solo/a en el proceso.</p>
+      </div>
+      <div class="inc-card fu d3">
+        <div class="inc-icon">🐝</div>
+        <h3>Metodología con respaldo</h3>
+        <p>Coaching ontológico certificado + posgrado en neurociencias. No intuición: un marco teórico sólido al servicio de tu proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header fu">
+      <span class="tag td">Preguntas frecuentes</span>
+      <h2>Lo que más nos preguntan</h2>
+    </div>
+    <div class="faq-list fu">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Cuánto tiempo necesito para hacer el curso?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>El curso está diseñado para hacerse en 6 semanas (un módulo por semana), pero podés ir a tu ritmo. Hay personas que lo hacen en 3 semanas y otras que lo extienden más. No hay fechas de vencimiento.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Necesito tener experiencia previa en coaching?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>No. El curso está diseñado para personas que se acercan por primera vez al coaching ontológico. Los conceptos se explican desde cero, con ejemplos cotidianos y sin jerga técnica innecesaria.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Cómo accedo al material después de comprarlo?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Una vez que coordinás el pago por WhatsApp, Mery te envía el acceso al material completo directamente. El workbook PDF podés descargarlo de inmediato.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿El workbook va a estar disponible para imprimir?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Sí. El workbook está en formato PDF optimizado para imprimir. Muchas personas prefieren completarlo a mano, lo cual potencia el proceso de reflexión.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Este curso reemplaza un proceso de coaching individual?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>No. El curso es una puerta de entrada al autoconocimiento con herramientas concretas. El proceso de coaching individual con Mery va mucho más profundo y es personalizado. Muchas personas hacen el curso y después continúan con sesiones 1:1.</p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <h3>¿Puedo hacer el curso si estoy en un momento de crisis?</h3>
+          <span class="faq-arr">▼</span>
+        </div>
+        <div class="faq-a">
+          <p>Depende del tipo de crisis. Para situaciones de duelo muy reciente, crisis de salud mental aguda o situaciones que requieran atención psicológica urgente, recomendamos primero consultar con un profesional de salud mental. Para momentos de confusión, cansancio, falta de propósito o querer hacer un cambio, el curso puede ser muy útil.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta">
+  <div class="cta-d cd1"></div>
+  <div class="cta-d cd2"></div>
+  <div class="container">
+    <div class="cta-inner fu">
+      <span class="tag td">¿Empezamos?</span>
+      <h2 class="cta-h2">El momento de empezar<br>es <span>ahora</span></h2>
+      <p class="cta-sub">No esperés a tener todo resuelto para empezar a conocerte. El proceso empieza con una decisión, no con condiciones perfectas.</p>
+      <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20adquirir%20el%20curso%20Potenciá%20tu%20Desarrollo%20Personal." class="btn btn-wpp" target="_blank">
+        💬 &nbsp;Quiero este curso
+      </a>
+      <p class="cta-email">Dudas: <a href="mailto:merygon@gmail.com">merygon@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="ft-logo">🐝 Mery<span>Go.</span> Coach</p>
+  <div class="ft-links">
+    <a href="index.html">Inicio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#cursos">Más cursos</a>
+    <a href="index.html#cta-final">Contacto</a>
+  </div>
+  <p class="ft-copy">© 2024 MeryGo. Coach — Todos los derechos reservados</p>
+</footer>
+
+<a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!" class="wpp-float" target="_blank" title="WhatsApp">💬</a>
+
+<script>
+'use strict';
+// Scroll fade-up
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting){ x.target.classList.add('v'); io.unobserve(x.target); } }), { threshold:.10, rootMargin:'0px 0px -30px 0px' });
+document.querySelectorAll('.fu').forEach(el => io.observe(el));
+
+// Acordeón módulos
+function toggleMod(card) {
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.mod-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+
+// Acordeón FAQ
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>

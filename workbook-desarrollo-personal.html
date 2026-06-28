@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workbook — Potenciá tu Desarrollo Personal | MeryGo. Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --amarillo: #F5C02A;
+      --marron:   #2D1B1E;
+      --marron-m: #4a2d32;
+      --terra:    #C4612B;
+      --crema:    #FDF6E3;
+      --crema-m:  #F5E8B0;
+      --blanco:   #FFFFFF;
+      --gris:     #F8F5F0;
+      --texto:    #3D2B2E;
+      --texto-s:  #7A6065;
+      --f: 'Poppins', sans-serif;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { font-family:var(--f); color:var(--texto); background:#e5e5e5; }
+
+    /* ── BARRA DE ACCIONES (solo pantalla) ── */
+    .action-bar {
+      position:fixed; top:0; left:0; right:0; z-index:999;
+      background:var(--marron); padding:10px 24px;
+      display:flex; align-items:center; justify-content:space-between; gap:16px;
+    }
+    .ab-logo { color:var(--amarillo); font-weight:800; font-size:.9rem; }
+    .ab-btns { display:flex; gap:10px; }
+    .ab-btn {
+      display:inline-flex; align-items:center; gap:6px;
+      padding:7px 18px; border-radius:50px; font-size:.76rem; font-weight:700;
+      font-family:var(--f); cursor:pointer; border:none; transition:all .2s;
+    }
+    .ab-pdf   { background:var(--amarillo); color:var(--marron); }
+    .ab-pdf:hover { background:var(--terra); color:var(--blanco); }
+    .ab-back  { background:transparent; color:rgba(255,255,255,.6); border:1px solid rgba(255,255,255,.18); }
+    .ab-back:hover { color:var(--blanco); border-color:var(--amarillo); }
+
+    /* ── PÁGINAS (simulan A4) ── */
+    .page {
+      width:794px; min-height:1123px;
+      margin:68px auto 0; background:var(--blanco);
+      padding:72px 64px;
+      position:relative;
+      page-break-after:always;
+    }
+    .page:first-of-type { margin-top:74px; }
+
+    /* ── PORTADA ── */
+    .cover {
+      background:linear-gradient(155deg, var(--marron) 0%, var(--marron-m) 60%, var(--terra) 100%);
+      display:flex; flex-direction:column; justify-content:space-between;
+      padding:72px 64px;
+    }
+    .cover-top { }
+    .cover-bee { font-size:3rem; margin-bottom:8px; display:block; }
+    .cover-brand { font-size:.9rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--amarillo); margin-bottom:48px; }
+    .cover-tag {
+      display:inline-block; background:rgba(245,192,42,.16); border:1px solid rgba(245,192,42,.32);
+      color:var(--amarillo); font-size:.65rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      padding:6px 16px; border-radius:50px; margin-bottom:20px;
+    }
+    .cover-h1 { font-size:3rem; font-weight:800; color:var(--blanco); line-height:1.1; margin-bottom:16px; }
+    .cover-h1 span { color:var(--amarillo); }
+    .cover-sub { font-size:.95rem; color:rgba(255,255,255,.65); line-height:1.72; max-width:440px; }
+    .cover-bottom { }
+    .cover-bottom p { font-size:.78rem; color:rgba(255,255,255,.40); }
+    .cover-bottom strong { color:rgba(255,255,255,.70); }
+
+    .cover-deco {
+      position:absolute; border-radius:50%; pointer-events:none;
+    }
+    .cd1 { width:300px; height:300px; background:var(--amarillo); opacity:.05; top:-60px; right:-60px; }
+    .cd2 { width:180px; height:180px; background:var(--terra); opacity:.10; bottom:80px; right:80px; }
+
+    /* ── CARTA DE MERY ── */
+    .letter-header {
+      border-bottom:2px solid var(--amarillo); padding-bottom:20px; margin-bottom:32px;
+    }
+    .letter-header .lh-brand { font-size:.68rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--texto-s); margin-bottom:4px; }
+    .letter-header h1 { font-size:1.7rem; font-weight:800; color:var(--marron); }
+    .letter-header h1 span { color:var(--amarillo); }
+
+    .letter-body p {
+      font-size:.88rem; color:var(--texto); line-height:1.82; margin-bottom:16px; font-weight:300;
+    }
+    .letter-body p strong { font-weight:600; color:var(--marron); }
+    .letter-sign { margin-top:36px; }
+    .letter-sign p { font-size:.82rem; color:var(--texto-s); font-weight:300; }
+    .letter-sign strong { font-size:1rem; font-weight:700; color:var(--marron); display:block; margin-top:8px; }
+    .letter-sign em { font-size:.78rem; color:var(--texto-s); font-style:normal; }
+
+    /* ── ENCABEZADO DE MÓDULO ── */
+    .mod-cover {
+      background:linear-gradient(135deg, var(--marron) 0%, var(--marron-m) 100%);
+      margin:-72px -64px 0; padding:64px 64px 48px;
+      margin-bottom:40px; position:relative; overflow:hidden;
+    }
+    .mc-deco { position:absolute; border-radius:50%; background:var(--amarillo); opacity:.06; }
+    .mcd1 { width:250px; height:250px; top:-60px; right:-60px; }
+    .mcd2 { width:140px; height:140px; bottom:-30px; left:200px; }
+    .mc-num {
+      font-size:.68rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--amarillo); margin-bottom:10px;
+    }
+    .mc-title { font-size:2rem; font-weight:800; color:var(--blanco); line-height:1.15; margin-bottom:10px; }
+    .mc-sub { font-size:.88rem; color:rgba(255,255,255,.60); font-weight:300; max-width:460px; line-height:1.65; }
+
+    /* ── BLOQUES DE CONTENIDO ── */
+    .section-title {
+      font-size:.62rem; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--texto-s); margin:32px 0 14px; padding-bottom:8px;
+      border-bottom:1px solid rgba(45,27,30,.09);
+    }
+
+    .concept-box {
+      background:var(--crema); border-left:4px solid var(--amarillo);
+      border-radius:0 12px 12px 0; padding:20px 22px; margin-bottom:22px;
+    }
+    .concept-box h4 { font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--terra); margin-bottom:8px; }
+    .concept-box p { font-size:.85rem; color:var(--texto); line-height:1.78; font-weight:400; }
+
+    .key-concepts { margin-bottom:22px; }
+    .key-concepts h4 { font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--texto-s); margin-bottom:12px; }
+    .key-concepts ul { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+    .key-concepts li {
+      background:var(--gris); border-radius:8px; padding:10px 14px;
+      font-size:.80rem; color:var(--texto); font-weight:500; line-height:1.4;
+    }
+    .key-concepts li::before { content:none; }
+
+    .body-text { font-size:.87rem; color:var(--texto); line-height:1.82; font-weight:300; margin-bottom:16px; }
+    .body-text strong { font-weight:600; color:var(--marron); }
+
+    /* ── REFLEXIÓN ── */
+    .reflection {
+      background:linear-gradient(135deg, rgba(45,27,30,.03) 0%, rgba(245,192,42,.06) 100%);
+      border:1.5px solid rgba(245,192,42,.25); border-radius:14px; padding:24px 26px;
+      margin:24px 0;
+    }
+    .reflection h4 {
+      font-size:.65rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--amarillo); margin-bottom:14px; display:flex; align-items:center; gap:8px;
+    }
+    .reflection h4::before { content:'✦'; }
+    .reflection p { font-size:.85rem; color:var(--texto); font-style:italic; line-height:1.72; font-weight:400; margin-bottom:12px; }
+    .reflection p:last-child { margin-bottom:0; }
+
+    /* ── LÍNEAS DE ESCRITURA ── */
+    .write-area { margin:20px 0; }
+    .write-area label { font-size:.70rem; font-weight:600; color:var(--texto-s); display:block; margin-bottom:10px; text-transform:uppercase; letter-spacing:.12em; }
+    .write-line {
+      border:none; border-bottom:1.5px solid rgba(45,27,30,.14);
+      display:block; width:100%; height:32px; margin-bottom:4px;
+      background:transparent;
+    }
+    .write-box {
+      border:1.5px solid rgba(45,27,30,.14); border-radius:10px;
+      width:100%; min-height:80px; display:block; margin-top:8px;
+      background:rgba(248,245,240,.5);
+    }
+
+    /* ── EJERCICIO ── */
+    .exercise {
+      border:2px solid var(--terra); border-radius:14px; overflow:hidden; margin:28px 0;
+    }
+    .exercise-header {
+      background:var(--terra); padding:14px 22px;
+      display:flex; align-items:center; gap:10px;
+    }
+    .exercise-header h3 { font-size:.82rem; font-weight:700; color:var(--blanco); }
+    .exercise-header span { font-size:1.1rem; }
+    .exercise-body { padding:22px 24px; }
+    .exercise-body p { font-size:.84rem; color:var(--texto); line-height:1.76; font-weight:300; margin-bottom:12px; }
+    .exercise-body p:last-child { margin-bottom:0; }
+    .exercise-body strong { font-weight:600; color:var(--marron); }
+
+    .ex-step {
+      display:flex; gap:12px; align-items:flex-start; margin-bottom:14px;
+    }
+    .ex-step-num {
+      width:26px; height:26px; border-radius:50%; background:var(--terra);
+      color:var(--blanco); font-size:.72rem; font-weight:700;
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+    .ex-step-text { font-size:.83rem; color:var(--texto); line-height:1.68; font-weight:300; }
+    .ex-step-text strong { font-weight:600; color:var(--marron); }
+
+    /* Tabla de ejercicio */
+    .ex-table {
+      width:100%; border-collapse:collapse; margin:16px 0; font-size:.78rem;
+    }
+    .ex-table th {
+      background:var(--crema); color:var(--marron); font-weight:700; font-size:.68rem;
+      text-transform:uppercase; letter-spacing:.10em; padding:10px 12px; text-align:left;
+      border:1px solid rgba(45,27,30,.12);
+    }
+    .ex-table td {
+      padding:8px 12px; border:1px solid rgba(45,27,30,.10); color:var(--texto);
+      font-weight:300; height:44px; vertical-align:top;
+    }
+    .ex-table tr:nth-child(even) td { background:rgba(248,245,240,.5); }
+
+    /* ── CIERRE DE MÓDULO ── */
+    .mod-close {
+      background:var(--crema); border-radius:14px; padding:22px 26px; margin-top:32px;
+    }
+    .mod-close h4 { font-size:.68rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--terra); margin-bottom:10px; }
+    .mod-close p { font-size:.83rem; color:var(--texto); line-height:1.72; font-weight:300; }
+
+    /* ── ÍNDICE ── */
+    .toc-list { margin-top:28px; }
+    .toc-item {
+      display:flex; align-items:center; gap:12px;
+      padding:14px 0; border-bottom:1px solid rgba(45,27,30,.08);
+    }
+    .toc-num {
+      width:36px; height:36px; border-radius:50%; background:var(--amarillo);
+      display:flex; align-items:center; justify-content:center;
+      font-size:.72rem; font-weight:800; color:var(--marron); flex-shrink:0;
+    }
+    .toc-text h3 { font-size:.90rem; font-weight:700; color:var(--marron); margin-bottom:2px; }
+    .toc-text p { font-size:.75rem; color:var(--texto-s); font-weight:300; }
+    .toc-dots { flex:1; border-top:1.5px dotted rgba(45,27,30,.15); margin:0 8px; }
+    .toc-page { font-size:.72rem; font-weight:600; color:var(--texto-s); }
+
+    /* ── IMPRIMIR ── */
+    @media print {
+      .action-bar { display:none !important; }
+      body { background:white; }
+      .page {
+        margin:0; width:100%; box-shadow:none;
+        padding:54px 52px;
+        page-break-after:always;
+        min-height:auto;
+      }
+      .mod-cover { margin:-54px -52px 0; padding:54px 52px 40px; }
+    }
+
+    @media (max-width:860px) {
+      .page { width:100%; margin-top:60px; padding:40px 28px; }
+      .mod-cover { margin:-40px -28px 0; padding:40px 28px 32px; }
+      .key-concepts ul { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- BARRA SUPERIOR -->
+<div class="action-bar">
+  <span class="ab-logo">🐝 MeryGo. — Workbook Desarrollo Personal</span>
+  <div class="ab-btns">
+    <button class="ab-btn ab-pdf" onclick="window.print()">⬇ Descargar PDF</button>
+    <a href="curso-potencia.html" class="ab-btn ab-back">← Volver al curso</a>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     PORTADA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page cover">
+  <div class="cover-deco cd1"></div>
+  <div class="cover-deco cd2"></div>
+  <div class="cover-top">
+    <span class="cover-bee">🐝</span>
+    <p class="cover-brand">MeryGo. Coach — Coaching Ontológico &amp; Neurociencias</p>
+    <div class="cover-tag">Workbook descargable</div>
+    <h1 class="cover-h1">Potenciá tu<br><span>Desarrollo</span><br>Personal</h1>
+    <p class="cover-sub">Tu guía de trabajo para los 6 módulos del curso. Completá cada ejercicio a tu propio ritmo. Este workbook es tuyo: escribí, tachá, subrayá y volvé a él cuantas veces necesites.</p>
+  </div>
+  <div class="cover-bottom">
+    <p>Creado por <strong>María Isabel González</strong> — Coach Ontológica | Posgrado en Neurociencias</p>
+    <p style="margin-top:6px; color:rgba(255,255,255,.30);">MeryGo. Coach · Río Gallegos, Argentina</p>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CARTA DE MERY
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="letter-header">
+    <p class="lh-brand">MeryGo. Coach — Carta de bienvenida</p>
+    <h1>Hola, <span>me alegra que estés acá</span></h1>
+  </div>
+  <div class="letter-body">
+    <p>Este workbook no es un cuaderno más. Es el espacio donde vas a encontrarte con vos mismo/a de una manera que quizás todavía no conocés.</p>
+    <p>Elegí el coaching ontológico porque es una metodología que <strong>no te dice quién tenés que ser</strong>. En cambio, te ayuda a ver quién sos — con todo lo que eso implica — y desde ahí diseñar una vida que tenga más sentido para vos.</p>
+    <p>El trabajo no lo hago yo. Lo hacés vos. Mi rol es acompañarte con preguntas, marcos conceptuales y herramientas que amplíen lo que podés ver. Este workbook es la extensión escrita de ese proceso.</p>
+    <p>Algunos ejercicios van a resultarte fáciles. Otros van a incomodarte. Eso está bien. La incomodidad es la señal de que estás rozando algo que vale la pena explorar. No te saltees esos momentos: quedate con ellos.</p>
+    <p>No hay respuestas incorrectas. No hay un puntaje final. Solo hay lo que es verdad para vos, hoy, en este momento de tu vida.</p>
+    <p><strong>Tomátelo con el tiempo que necesites.</strong> Un módulo por semana es un buen ritmo, pero si algún ejercicio te pide más días, dátelos. Esto no es una carrera.</p>
+    <p>Que este proceso te traiga más de lo que esperabas.</p>
+    <div class="letter-sign">
+      <p>Con afecto,</p>
+      <strong>Mery González</strong>
+      <em>Coach Ontológica · Posgrado en Neurociencias · MeryGo. Coach</em>
+    </div>
+  </div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     ÍNDICE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="letter-header">
+    <p class="lh-brand">Contenido del workbook</p>
+    <h1>Los <span>6 Módulos</span></h1>
+  </div>
+  <div class="toc-list">
+    <div class="toc-item">
+      <div class="toc-num">01</div>
+      <div class="toc-text">
+        <h3>El Observador que Soy</h3>
+        <p>La base de todo cambio: entender cómo interpretás el mundo</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 1</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">02</div>
+      <div class="toc-text">
+        <h3>El Poder del Lenguaje</h3>
+        <p>Tus palabras no describen tu realidad — la crean</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 2</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">03</div>
+      <div class="toc-text">
+        <h3>Mis Emociones como Información</h3>
+        <p>Las emociones no son el problema — son la brújula</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 3</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">04</div>
+      <div class="toc-text">
+        <h3>Creencias que Me Frenan (y las que me Impulsan)</h3>
+        <p>El mapa no es el territorio — pero vivimos como si lo fuera</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 4</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">05</div>
+      <div class="toc-text">
+        <h3>Propósito y Valores: Tu Brújula Interior</h3>
+        <p>Cuando sabés quién sos, las decisiones se vuelven más claras</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 5</span>
+    </div>
+    <div class="toc-item">
+      <div class="toc-num">06</div>
+      <div class="toc-text">
+        <h3>Acción Comprometida: De la Conciencia al Cambio</h3>
+        <p>El saber no transforma — solo la acción transforma</p>
+      </div>
+      <div class="toc-dots"></div>
+      <span class="toc-page">Módulo 6</span>
+    </div>
+  </div>
+
+  <div class="concept-box" style="margin-top:40px;">
+    <h4>Cómo usar este workbook</h4>
+    <p>Leé el contenido de cada módulo en el video antes de completar los ejercicios. Respondé desde lo que genuinamente sentís, no desde lo que "debería" ser. Volvé a los módulos anteriores cuando lo necesites — muchos de los conceptos se conectan entre sí. Y recordá: no hay respuestas correctas o incorrectas. Solo hay las tuyas.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 1
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 01 de 06</p>
+    <h2 class="mc-title">El Observador<br>que Soy</h2>
+    <p class="mc-sub">La base de todo cambio: entender cómo interpretás el mundo y por qué eso determina tus resultados.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>En el coaching ontológico, el observador es el "punto de vista" desde el cual cada persona percibe y le da sentido al mundo. No vemos la realidad tal como es: vemos la realidad tal como somos. Dos personas pueden vivir la misma situación y tener experiencias radicalmente distintas, porque cada una la interpreta desde su propio observador — formado por su historia, sus creencias, sus emociones y su cuerpo.</p>
+  </div>
+
+  <p class="body-text">El modelo central del coaching ontológico es: <strong>Observador → Acción → Resultado.</strong> Solemos querer cambiar los resultados cambiando las acciones. Pero si seguimos siendo el mismo observador, tarde o temprano volvemos a las mismas acciones. El cambio profundo empieza por ampliar o transformar quién es ese observador.</p>
+
+  <p class="body-text">Importante: el observador no es fijo. Cambia con nuevas experiencias, nuevas conversaciones, nuevos aprendizajes. Este curso entero es una invitación a expandir tu observador.</p>
+
+  <div class="key-concepts">
+    <h4>Conceptos clave del módulo</h4>
+    <ul>
+      <li>Observador: el "lente" desde el que ves</li>
+      <li>Interpretaciones ≠ hechos objetivos</li>
+      <li>Modelo O → A → R</li>
+      <li>Trasfondo de obviedad</li>
+      <li>Puntos ciegos del observador</li>
+      <li>El juicio: tipos y consecuencias</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de reflexión</h4>
+    <p>Pensá en una situación que se repite en tu vida — un conflicto, un patrón de resultado. ¿Qué historia te contás sobre por qué pasa eso?</p>
+    <p>¿Qué diría alguien que te conoce bien sobre cómo ves esa situación? ¿Coincide con lo que te contás vos?</p>
+    <p>¿Alguna vez cambiaste de opinión sobre algo que estabas convencido/a que era de cierta manera? ¿Qué hizo que cambiaras?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones sobre estas preguntas</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: Mi Mapa de Interpretaciones</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Elegí <strong>3 situaciones recurrentes en tu vida</strong> — algo que se repite, que te genera malestar o que no cambia pese a que lo intentás. Pueden ser en el trabajo, en vínculos, con vos mismo/a.</p>
+      <p>Para cada una, completá la tabla a continuación siendo lo más honesto/a que puedas.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Situación 1</p>
+  <div class="write-area">
+    <label>Describí brevemente la situación</label>
+    <div class="write-box" style="min-height:50px;"></div>
+  </div>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>¿Cuál es el hecho concreto?</th>
+        <th>¿Qué interpretación le doy?</th>
+        <th>¿Qué emoción genera en mí?</th>
+        <th>¿Qué hago desde ahí?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Situación 2</p>
+  <div class="write-area">
+    <label>Describí brevemente la situación</label>
+    <div class="write-box" style="min-height:50px;"></div>
+  </div>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>¿Cuál es el hecho concreto?</th>
+        <th>¿Qué interpretación le doy?</th>
+        <th>¿Qué emoción genera en mí?</th>
+        <th>¿Qué hago desde ahí?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Situación 3</p>
+  <div class="write-area">
+    <label>Describí brevemente la situación</label>
+    <div class="write-box" style="min-height:50px;"></div>
+  </div>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>¿Cuál es el hecho concreto?</th>
+        <th>¿Qué interpretación le doy?</th>
+        <th>¿Qué emoción genera en mí?</th>
+        <th>¿Qué hago desde ahí?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="write-area" style="margin-top:24px;">
+    <label>¿Qué patrón notás en tus 3 situaciones? ¿Qué dice eso de tu observador?</label>
+    <div class="write-box"></div>
+  </div>
+
+  <div class="mod-close">
+    <h4>Para llevar del Módulo 1</h4>
+    <p>La próxima semana, cuando algo te moleste o te frustre, pausá antes de reaccionar y preguntate: <em>"¿Este es el hecho o es mi interpretación?"</em> Esa pausa es el comienzo de ampliar tu observador.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 2
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 02 de 06</p>
+    <h2 class="mc-title">El Poder del<br>Lenguaje</h2>
+    <p class="mc-sub">Tus palabras no describen tu realidad — la crean. Aprender a observar tu lenguaje es aprender a observar tu vida.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>El coaching ontológico parte de una premisa radical: el lenguaje no solo describe el mundo, lo genera. Cuando hacemos una declaración ("no puedo con esto", "soy mala para relacionarme", "eso es imposible"), no solo estamos describiendo algo: estamos creando una realidad que antes no existía — o reforzando una que sí existe.</p>
+  </div>
+
+  <p class="body-text">Uno de los aportes más poderosos del filósofo J.L. Austin, recuperado por el coaching ontológico, es la distinción entre diferentes tipos de actos de habla. No todas las palabras hacen lo mismo. <strong>Afirmaciones</strong> describen algo verificable ("hoy llueve"). <strong>Declaraciones</strong> generan una nueva realidad ("te perdono", "renuncio", "acepto"). <strong>Promesas</strong> crean compromisos. <strong>Pedidos</strong> abren posibilidades. <strong>Ofertas</strong> ponen en juego lo que podemos dar.</p>
+
+  <p class="body-text">El diálogo interno — lo que nos decimos a nosotros mismos en silencio — es el más poderoso de todos. Muchas veces ni siquiera somos conscientes de él. Sin embargo, moldea profundamente nuestra autoestima, nuestra motivación y nuestra capacidad de actuar.</p>
+
+  <div class="key-concepts">
+    <h4>Tipos de actos de habla</h4>
+    <ul>
+      <li>Afirmaciones: describen hechos</li>
+      <li>Declaraciones: generan realidad nueva</li>
+      <li>Promesas: crean compromisos</li>
+      <li>Pedidos: abren posibilidades</li>
+      <li>Ofertas: ponen en juego nuestro dar</li>
+      <li>Juicios: evaluaciones que tomamos como verdad</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de reflexión</h4>
+    <p>¿Cuáles son las frases que más usás para describir cómo sos? ("Soy muy...", "Siempre me pasa que...", "Nunca puedo...")</p>
+    <p>¿Hay algo que te decís a vos mismo/a que si alguien más te lo dijera sentirías que es un maltrato?</p>
+    <p>¿Qué declaraciones podrías hacer hoy que abrirían nuevas posibilidades en tu vida?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: El Registro de Mis Palabras</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Durante <strong>3 días</strong>, registrá las frases que más usás — especialmente las que te decís a vos mismo/a. Al final de cada día, anotá 3 frases recurrentes y analizalas.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Día 1 — frases recurrentes que noté hoy</p>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Frase</th>
+        <th>Tipo (afirmación / juicio / declaración)</th>
+        <th>¿Abre o cierra posibilidades?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Día 2 — frases recurrentes que noté hoy</p>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Frase</th>
+        <th>Tipo (afirmación / juicio / declaración)</th>
+        <th>¿Abre o cierra posibilidades?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Día 3 — frases recurrentes que noté hoy</p>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Frase</th>
+        <th>Tipo (afirmación / juicio / declaración)</th>
+        <th>¿Abre o cierra posibilidades?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+      <tr><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Reescribí 3 frases limitantes en versiones que abran posibilidades</p>
+  <table class="ex-table">
+    <thead>
+      <tr><th>Frase limitante original</th><th>Versión expandida</th></tr>
+    </thead>
+    <tbody>
+      <tr><td></td><td></td></tr>
+      <tr><td></td><td></td></tr>
+      <tr><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <div class="mod-close">
+    <h4>Para llevar del Módulo 2</h4>
+    <p>Elegí UNA declaración que quieras incorporar a tu vida. Escribila en un papel y ponela donde la veas todos los días. Las declaraciones necesitan repetición para instalarse en tu observador.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 3
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 03 de 06</p>
+    <h2 class="mc-title">Mis Emociones<br>como Información</h2>
+    <p class="mc-sub">Las emociones no son el problema: son la brújula. Cada emoción trae información sobre lo que te importa.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>En el modelo ontológico, las emociones son <em>predisposiciones para la acción</em>. No son reacciones irracionales ni signos de debilidad: son información biológica y experiencial sobre cómo estamos interpretando una situación y qué necesitamos. El miedo nos prepara para protegernos. La tristeza nos invita a procesar una pérdida. La alegría expande nuestra apertura. El enojo señala que algo que valoramos está siendo violado.</p>
+  </div>
+
+  <p class="body-text">La neurociencia complementa esto: las emociones tienen un origen en el sistema límbico y en el cuerpo antes de llegar a la conciencia racional. No podemos elegir no sentir, pero sí podemos aprender a responder en lugar de reaccionar. La diferencia entre ambas es el espacio de conciencia que creamos entre el estímulo y la respuesta.</p>
+
+  <p class="body-text">Reprimir emociones no las hace desaparecer: las empuja debajo de la superficie, donde siguen influyendo en nuestras decisiones sin que nos demos cuenta. Aprender a nombrarlas, reconocerlas y entender qué traen es uno de los aprendizajes más transformadores del proceso de autoconocimiento.</p>
+
+  <div class="key-concepts">
+    <h4>Predisposiciones emocionales clave</h4>
+    <ul>
+      <li>Miedo → protección / evitación</li>
+      <li>Enojo → acción / reclamo de valor</li>
+      <li>Tristeza → cierre / integración</li>
+      <li>Alegría → apertura / expansión</li>
+      <li>Vergüenza → ocultamiento</li>
+      <li>Culpa → reparación</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de reflexión</h4>
+    <p>¿Qué emociones evitás sentir o expresar? ¿Qué hacés en cambio cuando esa emoción aparece?</p>
+    <p>¿Hay una emoción que sientas "demasiado" o "muy seguido"? ¿Qué te está señalando?</p>
+    <p>¿En qué áreas de tu vida permitís sentir y en cuáles no? ¿Por qué creés que es así?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: Mi Mapa Emocional</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Identificá las <strong>5 emociones que aparecen con más frecuencia en tu vida</strong>. Para cada una, completá la tabla. Sé honesto/a: lo importante no es lo que "deberías" sentir, sino lo que realmente sentís.</p>
+    </div>
+  </div>
+
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Emoción</th>
+        <th>¿En qué situaciones aparece?</th>
+        <th>¿Qué te predispone a hacer?</th>
+        <th>¿Qué información trae?</th>
+        <th>¿La expresás o la ocultás?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1.</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>2.</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>3.</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>4.</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td>5.</td><td></td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Elegí una emoción que querés aprender a gestionar mejor</p>
+  <div class="write-area">
+    <label>¿Qué emoción elegís?</label>
+    <div class="write-box" style="min-height:40px;"></div>
+  </div>
+
+  <div class="ex-step"><div class="ex-step-num">1</div><div class="ex-step-text"><strong>¿Qué la dispara?</strong> Describí las situaciones concretas.</div></div>
+  <div class="write-box" style="min-height:56px;"></div>
+
+  <div class="ex-step" style="margin-top:12px;"><div class="ex-step-num">2</div><div class="ex-step-text"><strong>¿Qué hacés habitualmente cuando aparece?</strong> (reacción automática)</div></div>
+  <div class="write-box" style="min-height:56px;"></div>
+
+  <div class="ex-step" style="margin-top:12px;"><div class="ex-step-num">3</div><div class="ex-step-text"><strong>¿Qué podrías hacer diferente?</strong> (respuesta consciente)</div></div>
+  <div class="write-box" style="min-height:56px;"></div>
+
+  <div class="mod-close">
+    <h4>Para llevar del Módulo 3</h4>
+    <p>Esta semana, cuando sientas una emoción intensa, probá este simple ejercicio: pausá, nombrá la emoción en voz alta o por escrito ("estoy sintiendo ___"), y preguntate: <em>"¿Qué me está mostrando?"</em> No para resolverlo, sino para escucharlo.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 4
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 04 de 06</p>
+    <h2 class="mc-title">Creencias que Me<br>Frenan</h2>
+    <p class="mc-sub">El mapa no es el territorio — pero vivimos como si lo fuera. Es hora de ver qué mapa estás usando.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>Las creencias son juicios que tomamos como verdades absolutas. No son hechos: son interpretaciones que se fueron solidificando con el tiempo hasta volverse tan automáticas que dejamos de cuestionarlas. Operan como un filtro invisible que decide qué posibilidades podemos ver — y cuáles directamente no existen para nosotros.</p>
+  </div>
+
+  <p class="body-text">La neurociencia nos enseña que el cerebro es <strong>predictivo</strong>: prefiere confirmar lo que ya cree antes que procesar información nueva que la contradiga. Por eso las creencias limitantes son tan difíciles de cambiar: el cerebro trabaja activamente para mantenerlas. No porque sea malo, sino porque la eficiencia energética es una prioridad biológica.</p>
+
+  <p class="body-text">La buena noticia es la neuroplasticidad: el cerebro puede crear nuevas conexiones neuronales a cualquier edad. Cambiar una creencia no es un acto de voluntad instantáneo — es un proceso que requiere exposición repetida a nuevas interpretaciones, nuevas experiencias y nuevas formas de hablar sobre uno mismo.</p>
+
+  <div class="key-concepts">
+    <h4>Creencias limitantes más comunes</h4>
+    <ul>
+      <li>"No soy suficiente"</li>
+      <li>"No merezco esto"</li>
+      <li>"Eso es para otros, no para mí"</li>
+      <li>"Si fallo, me van a juzgar"</li>
+      <li>"Tengo que ser perfecto/a"</li>
+      <li>"No puedo cambiar, soy así"</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de reflexión</h4>
+    <p>¿Qué cosas te decís sobre vos mismo/a que asumís que son verdades y nunca cuestionaste? ("Siempre fui así", "No sirvo para...")</p>
+    <p>¿Hay áreas de tu vida donde sientes que algo está bloqueado sin importar lo que hagas? ¿Qué creencia podría estar operando detrás?</p>
+    <p>¿De dónde viene esa creencia? ¿Qué la instaló? ¿Alguien te lo dijo? ¿Lo viviste? ¿En qué contexto?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: El Árbol de Mis Creencias</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Identificá <strong>5 creencias limitantes activas</strong> en tu vida. Para cada una, explorá su origen, la evidencia que la sostiene (o la contradice) y una creencia alternativa más expandida.</p>
+    </div>
+  </div>
+
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Creencia limitante</th>
+        <th>¿Cuándo se instaló?</th>
+        <th>¿Qué evidencia la contradice?</th>
+        <th>Creencia alternativa expandida</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1.</td><td></td><td></td><td></td></tr>
+      <tr><td>2.</td><td></td><td></td><td></td></tr>
+      <tr><td>3.</td><td></td><td></td><td></td></tr>
+      <tr><td>4.</td><td></td><td></td><td></td></tr>
+      <tr><td>5.</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Trabajá en profundidad sobre la creencia más limitante</p>
+  <div class="write-area">
+    <label>Creencia elegida</label>
+    <div class="write-box" style="min-height:40px;"></div>
+  </div>
+
+  <div class="ex-step"><div class="ex-step-num">1</div><div class="ex-step-text"><strong>¿Cómo se manifiesta en tu vida cotidiana?</strong> ¿En qué decisiones te frena? ¿A qué no te animás por ella?</div></div>
+  <div class="write-box" style="min-height:70px;"></div>
+
+  <div class="ex-step" style="margin-top:12px;"><div class="ex-step-num">2</div><div class="ex-step-text"><strong>¿Qué perdés por seguir sosteniendo esta creencia?</strong></div></div>
+  <div class="write-box" style="min-height:56px;"></div>
+
+  <div class="ex-step" style="margin-top:12px;"><div class="ex-step-num">3</div><div class="ex-step-text"><strong>Escribí una nueva creencia</strong> que te habilite más posibilidades. Que sea creíble para vos — no una fantasía, sino un paso real.</div></div>
+  <div class="write-box" style="min-height:56px;"></div>
+
+  <div class="mod-close">
+    <h4>Para llevar del Módulo 4</h4>
+    <p>Elegí UNA creencia alternativa y escribíla 3 veces por día durante 21 días. La repetición consciente es cómo se instalan nuevas redes neuronales. No es suficiente entenderlo: hay que practicarlo.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 5
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 05 de 06</p>
+    <h2 class="mc-title">Propósito y Valores:<br>Tu Brújula Interior</h2>
+    <p class="mc-sub">Cuando sabés quién sos y qué te importa, las decisiones se vuelven más claras y la vida se siente más liviana.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>Los valores no son ideas bonitas en un póster: son los principios que ya están operando en vos, que guían tus decisiones aunque no los tengas conscientes. Cuando vivimos en conflicto con nuestros valores — cuando actuamos de maneras que los violan — sentimos malestar, incoherencia o vacío aunque "tengamos todo". Clarificar los valores reales (no los que deberíamos tener) es una de las prácticas más liberadoras del autoconocimiento.</p>
+  </div>
+
+  <p class="body-text">El propósito es diferente a las metas: no es algo que se tiene sino algo desde lo que se vive. No es un destino al que llegar — es una dirección que orienta. Las personas con propósito claro no necesitan motivación externa para levantarse: tienen algo que las mueve desde adentro. No es un privilegio de pocos: es una práctica que se puede cultivar.</p>
+
+  <p class="body-text">Importante: el propósito no tiene que ser grandioso. No tenés que "salvar al mundo". Puede ser tan simple como crear vínculos auténticos, hacer un trabajo de calidad, acompañar a las personas que amás, o aprender constantemente. Lo importante es que sea tuyo.</p>
+
+  <div class="key-concepts">
+    <h4>Distinción propósito vs. metas</h4>
+    <ul>
+      <li>Propósito: dirección, horizonte</li>
+      <li>Meta: destino específico, medible</li>
+      <li>Valores: principios que guían</li>
+      <li>Deseos: lo que queremos tener</li>
+      <li>Coherencia: alineación entre estos</li>
+      <li>Disonancia: cuando entran en conflicto</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de reflexión</h4>
+    <p>Pensá en los momentos de tu vida donde te sentiste más vivo/a, más completo/a, más en tu lugar. ¿Qué estabas haciendo? ¿Qué valores estaban presentes?</p>
+    <p>Si pudieras elegir cómo te recordarían las personas que te importan, ¿qué querrías que dijeran de vos?</p>
+    <p>¿Hay algo que hacés aunque no recibas reconocimiento ni dinero por ello? ¿Por qué lo hacés?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: Mi Brújula Interior</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Este ejercicio tiene 3 partes. Tomátelo con calma — es uno de los más importantes del curso.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Parte 1 — Identificá tus valores reales</p>
+  <p class="body-text" style="font-size:.80rem;">De la lista de abajo, circulá o marcá los 10 que resonan más con vos. Después elegí los 5 más importantes.</p>
+  <div style="display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:14px 0;">
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Autenticidad</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Libertad</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Familia</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Creatividad</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Aprendizaje</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Conexión</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Impacto</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Integridad</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Salud</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Seguridad</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Aventura</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Servicio</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Reconocimiento</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Trascendencia</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Humor</span>
+    <span style="font-size:.74rem; padding:6px 10px; border:1px solid rgba(45,27,30,.15); border-radius:6px; text-align:center;">Amor</span>
+  </div>
+
+  <p class="section-title">Mis 5 valores core</p>
+  <table class="ex-table">
+    <thead>
+      <tr>
+        <th>Valor</th>
+        <th>¿Cómo se expresa en mi vida hoy?</th>
+        <th>¿Cuánto (0-10)?</th>
+        <th>¿Qué falta?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1.</td><td></td><td></td><td></td></tr>
+      <tr><td>2.</td><td></td><td></td><td></td></tr>
+      <tr><td>3.</td><td></td><td></td><td></td></tr>
+      <tr><td>4.</td><td></td><td></td><td></td></tr>
+      <tr><td>5.</td><td></td><td></td><td></td></tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Parte 2 — Mi declaración de propósito</p>
+  <p class="body-text" style="font-size:.80rem;">Completá la frase: <strong>"Mi propósito es _____ para que/porque _____."</strong></p>
+  <div class="write-box" style="min-height:80px; margin-top:10px;"></div>
+
+  <div class="mod-close">
+    <h4>Para llevar del Módulo 5</h4>
+    <p>Poné tu declaración de propósito en un lugar visible. No tiene que ser perfecta — puede ir cambiando. Lo importante es que te mueva algo cuando la lees.</p>
+  </div>
+</div>
+
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     MÓDULO 6
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="mod-cover">
+    <div class="mc-deco mcd1"></div>
+    <div class="mc-deco mcd2"></div>
+    <p class="mc-num">Módulo 06 de 06</p>
+    <h2 class="mc-title">Acción Comprometida:<br>De la Conciencia al Cambio</h2>
+    <p class="mc-sub">El saber no transforma — solo la acción transforma. Es momento de convertir todo lo aprendido en compromisos reales.</p>
+  </div>
+
+  <div class="concept-box">
+    <h4>Concepto central</h4>
+    <p>El coaching no termina en la reflexión: termina en la acción. Podemos tener toda la claridad del mundo sobre quiénes somos, qué queremos y qué nos frena — pero si eso no se traduce en actos concretos, sigue siendo solo pensamiento. El último módulo es una bisagra: cierra el proceso de autoconocimiento y abre el proceso de transformación.</p>
+  </div>
+
+  <p class="body-text">Un compromiso no es un deseo ni una intención. Un compromiso es un acto de habla: una promesa que hacemos — a nosotros mismos o a otros — con fecha, condición de satisfacción y responsabilidad. Cuando nos comprometemos con algo que está alineado con nuestros valores y propósito, la motivación no es un problema: es una consecuencia natural.</p>
+
+  <p class="body-text">La neurociencia también aporta aquí: los hábitos se forman mediante repetición en contextos similares. No alcanza con querer cambiar: hace falta diseñar el entorno y las rutinas que hagan que el nuevo comportamiento sea el más fácil. Cambiar requiere fricción a favor del cambio, no solo de la voluntad.</p>
+
+  <div class="key-concepts">
+    <h4>Elementos de un compromiso real</h4>
+    <ul>
+      <li>Acción concreta y observable</li>
+      <li>Fecha o plazo definido</li>
+      <li>Condición de satisfacción</li>
+      <li>Sistema de seguimiento</li>
+      <li>Soporte o accountability</li>
+      <li>Plan para los obstáculos</li>
+    </ul>
+  </div>
+
+  <div class="reflection">
+    <h4>Preguntas de cierre del proceso</h4>
+    <p>¿Qué aprendizaje de este curso te impactó más? ¿Por qué?</p>
+    <p>¿Quién eras cuando empezaste este proceso vs. quién sos hoy? ¿Qué cambió en tu observador?</p>
+    <p>¿Cuál es el cambio más importante que querés sostener en los próximos 90 días?</p>
+  </div>
+
+  <div class="write-area">
+    <label>Mis reflexiones finales</label>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+    <div class="write-line"></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="exercise">
+    <div class="exercise-header">
+      <span>✏️</span>
+      <h3>Ejercicio: Mi Plan de 90 Días</h3>
+    </div>
+    <div class="exercise-body">
+      <p>Diseñá <strong>3 compromisos concretos</strong> para los próximos 90 días. Uno por cada área clave que quieras transformar. Tiene que ser algo específico, que puedas observar si lo hiciste o no.</p>
+    </div>
+  </div>
+
+  <p class="section-title">Compromiso 1</p>
+  <table class="ex-table">
+    <tbody>
+      <tr>
+        <td style="font-weight:600; width:35%; background:var(--crema);">¿Qué me comprometo a hacer?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Para qué? (conexión con valores/propósito)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cuándo? (fecha/frecuencia)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cómo voy a saber que lo cumplí?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Qué podría frenarlo? ¿Qué haré si eso pasa?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Compromiso 2</p>
+  <table class="ex-table">
+    <tbody>
+      <tr>
+        <td style="font-weight:600; width:35%; background:var(--crema);">¿Qué me comprometo a hacer?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Para qué? (conexión con valores/propósito)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cuándo? (fecha/frecuencia)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cómo voy a saber que lo cumplí?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Qué podría frenarlo? ¿Qué haré si eso pasa?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p class="section-title">Compromiso 3</p>
+  <table class="ex-table">
+    <tbody>
+      <tr>
+        <td style="font-weight:600; width:35%; background:var(--crema);">¿Qué me comprometo a hacer?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Para qué? (conexión con valores/propósito)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cuándo? (fecha/frecuencia)</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Cómo voy a saber que lo cumplí?</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td style="font-weight:600; background:var(--crema);">¿Qué podría frenarlo? ¿Qué haré si eso pasa?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="reflection" style="margin-top:24px;">
+    <h4>Mi compromiso más importante</h4>
+    <p>Si solo pudieras cumplir UNO de estos tres compromisos, ¿cuál elegiría? Escribí por qué ese y no otro. Eso te dice algo sobre lo que más importa.</p>
+  </div>
+  <div class="write-box" style="margin-top:10px;"></div>
+</div>
+
+<!-- ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+     CIERRE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ -->
+<div class="page">
+  <div class="letter-header">
+    <p class="lh-brand">Cierre del proceso</p>
+    <h1>El proceso <span>continúa</span></h1>
+  </div>
+  <div class="letter-body">
+    <p>Llegaste al final de los 6 módulos. Eso no es menor: requirió tiempo, honestidad y la disposición de mirarte de maneras que quizás no estabas acostumbrado/a.</p>
+    <p>Lo que aprendiste en este curso — el observador, el lenguaje, las emociones, las creencias, los valores, la acción comprometida — no son conceptos para aplicar una sola vez y guardar. Son <strong>prácticas</strong>. Cuanto más las uses en tu vida cotidiana, más se vuelven parte de tu manera de ser.</p>
+    <p>Si sentís que este proceso despertó algo en vos y querés profundizar, <strong>el coaching individual con Mery</strong> es el siguiente paso natural. Un proceso 1:1 personalizado que va exactamente adonde vos necesitás ir.</p>
+    <p>Gracias por confiar en esta metodología. Gracias por confiar en vos mismo/a.</p>
+    <p>Seguimos en contacto.</p>
+    <div class="letter-sign">
+      <p>Con afecto,</p>
+      <strong>Mery González</strong>
+      <em>MeryGo. Coach · wa.me/549XXXXXXXXXX</em>
+    </div>
+  </div>
+
+  <div class="concept-box" style="margin-top:40px;">
+    <h4>¿Qué sigue?</h4>
+    <p>Si querés continuar tu proceso de transformación con un acompañamiento personalizado, escribile a Mery por WhatsApp. El coaching individual va exactamente adonde vos necesitás ir — nada genérico, todo diseñado para vos.</p>
+  </div>
+
+  <div style="text-align:center; margin-top:48px; padding:32px; background:var(--marron); border-radius:16px;">
+    <p style="font-size:.68rem; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--amarillo); margin-bottom:8px;">MeryGo. Coach</p>
+    <p style="font-size:1.4rem; font-weight:800; color:var(--blanco); margin-bottom:6px;">María Isabel González</p>
+    <p style="font-size:.80rem; color:rgba(255,255,255,.55); font-weight:300;">Coach Ontológica · Posgrado en Neurociencias · Río Gallegos, Argentina</p>
+    <p style="font-size:.80rem; color:var(--amarillo); margin-top:16px; font-weight:600;">🐝 MeryGo.Coach</p>
+  </div>
+</div>
+
+</body>
+</html>

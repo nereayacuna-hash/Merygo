@@ -270,7 +270,12 @@
     /* ================================================================
        ANTES — DOLORES
     ================================================================ */
-    #antes { padding: 96px 0 80px; background: var(--crema); }
+    #antes {
+      padding: 96px 0 80px;
+      background:
+        linear-gradient(rgba(245,235,220,0.90), rgba(245,235,220,0.90)),
+        url('sesion.jpeg') center 40% / cover no-repeat;
+    }
 
     .section-head { text-align: center; margin-bottom: 56px; }
     .section-head .lead { margin: 14px auto 0; }
@@ -342,10 +347,15 @@
       background: linear-gradient(135deg, var(--crema-m), var(--amarillo));
       display: flex; align-items: center; justify-content: center;
     }
-    /* ── PARA AGREGAR FOTO: reemplazar div.quien-placeholder con <img ...> ── */
     .quien-placeholder {
       font-size: 7rem; opacity: 0.5;
       position: relative; z-index: 2;
+    }
+    .quien-frame img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: center top;
+      z-index: 1;
     }
     .quien-frame::after {
       content: '';
@@ -430,56 +440,56 @@
     .pq-card .btn { margin-top: 28px; }
 
     /* ================================================================
-       SERVICIOS — FAN CAROUSEL
+       SERVICIOS — GRILLA
     ================================================================ */
     #servicios {
       padding: 100px 0;
-      background: linear-gradient(145deg, #2D1B1E 0%, #3e2226 55%, #4a2d32 100%);
+      background:
+        linear-gradient(rgba(18,8,10,0.80), rgba(18,8,10,0.80)),
+        url('foto-grupo.jpeg') center 35% / cover no-repeat;
       position: relative; overflow: hidden;
     }
     #servicios::before {
       content: ''; position: absolute;
       width: 600px; height: 600px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(245,192,42,0.07) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(245,192,42,0.05) 0%, transparent 65%);
       top: -150px; right: -150px; pointer-events: none;
     }
     #servicios::after {
       content: ''; position: absolute;
       width: 400px; height: 400px; border-radius: 50%;
-      background: radial-gradient(circle, rgba(196,97,43,0.07) 0%, transparent 65%);
+      background: radial-gradient(circle, rgba(196,97,43,0.05) 0%, transparent 65%);
       bottom: -100px; left: -100px; pointer-events: none;
     }
     #servicios .section-head { position: relative; z-index: 1; }
     #servicios .h2 { color: var(--blanco); }
     #servicios .lead { color: rgba(255,255,255,0.65); }
 
-    /* Fan outer */
-    .sv-fan-outer {
-      position: relative; margin-top: 56px;
-      display: flex; flex-direction: column; align-items: center;
-    }
-    .sv-fan-layout {
-      position: relative; width: 100%; height: 480px;
-      display: flex; align-items: center; justify-content: center;
+    /* Services grid */
+    .sv-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 56px;
     }
 
     /* Glass cards */
     .sv-fan-card {
-      position: absolute;
-      width: 320px;
+      position: relative;
+      width: 100%;
       background: rgba(255,255,255,0.09);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border: 1px solid rgba(255,255,255,0.15);
       border-radius: 22px;
       box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
-      will-change: transform, opacity;
-      cursor: pointer;
+      cursor: default;
       display: flex; flex-direction: column;
+      transition: transform 0.22s ease, box-shadow 0.22s ease;
     }
-    .sv-fan-card.sv-center-card {
-      background: rgba(255,255,255,0.13);
-      border-color: rgba(255,255,255,0.22);
+    .sv-fan-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 18px 52px rgba(0,0,0,0.52), inset 0 1px 0 rgba(255,255,255,0.14);
     }
 
     .sv-top { padding: 28px 26px 16px; display: flex; align-items: flex-start; gap: 16px; }
@@ -515,37 +525,8 @@
       border: 1px solid rgba(245,192,42,0.22);
     }
 
-    /* Fan controls */
-    .sv-controls {
-      display: flex; align-items: center; gap: 22px;
-      margin-top: 28px; position: relative; z-index: 20;
-    }
-    .sv-arrow {
-      width: 46px; height: 46px; border-radius: 50%;
-      border: 1.5px solid rgba(255,255,255,0.18);
-      background: rgba(255,255,255,0.07);
-      backdrop-filter: blur(12px);
-      color: rgba(255,255,255,0.65);
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; transition: all 0.25s ease;
-    }
-    .sv-arrow:hover { background: rgba(245,192,42,0.18); border-color: rgba(245,192,42,0.45); color: var(--amarillo); transform: scale(1.08); }
-
-    .sv-dots { display: flex; gap: 8px; align-items: center; }
-    .sv-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: rgba(255,255,255,0.22); transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    .sv-dot.active { background: var(--amarillo); transform: scale(1.45); }
-
     @media (max-width: 768px) {
-      .sv-fan-layout { height: 400px; }
-      .sv-fan-card { width: 272px; }
-    }
-    @media (max-width: 480px) {
-      .sv-fan-layout { height: 340px; }
-      .sv-fan-card { width: 236px; }
+      .sv-grid { grid-template-columns: 1fr; }
     }
 
     /* ================================================================
@@ -562,45 +543,57 @@
     .pq-bg-1 { width: 360px; height: 360px; background: var(--amarillo); opacity: 0.05; top: -80px; right: -80px; }
     .pq-bg-2 { width: 220px; height: 220px; background: var(--terracota); opacity: 0.10; bottom: -40px; left: -40px; }
 
-    /* Diferenciadores fan layout */
+    /* Diferenciadores single-card carousel */
     .dif-fan-layout {
-      position: relative; width: 100%; height: 430px;
+      position: relative; width: 100%; height: 360px;
       display: flex; align-items: center; justify-content: center;
-      margin-top: 48px; margin-bottom: 44px; overflow: visible;
+      margin-top: 48px; margin-bottom: 32px; overflow: hidden;
     }
     .dif-fan-card {
       position: absolute;
-      width: 224px; height: 336px;
+      width: min(500px, 88vw);
       background: rgba(255,255,255,0.07);
       border: 1px solid rgba(245,192,42,0.16);
       border-top: 3px solid var(--amarillo);
       border-radius: 20px;
-      padding: 30px 22px 24px;
+      padding: 44px 40px 36px;
       text-align: center;
       display: flex; flex-direction: column; align-items: center;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 28px 64px rgba(0,0,0,0.46), inset 0 0 0 1px rgba(255,255,255,0.05);
-      will-change: transform, opacity;
-      cursor: default;
-      overflow: hidden;
+      opacity: 0; pointer-events: none;
+      transform: translateX(60px);
+      transition: opacity 0.45s ease, transform 0.45s ease;
+    }
+    .dif-fan-card.dif-active {
+      opacity: 1; pointer-events: auto; transform: translateX(0);
     }
     .dif-fan-icon {
-      width: 66px; height: 66px;
+      width: 76px; height: 76px;
       background: rgba(245,192,42,0.13);
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       color: var(--amarillo);
-      margin-bottom: 16px; flex-shrink: 0;
+      margin-bottom: 22px; flex-shrink: 0;
     }
     .dif-fan-card h3 {
-      font-size: 0.92rem; font-weight: 700;
-      color: var(--blanco); margin-bottom: 10px; line-height: 1.3;
+      font-size: 1.12rem; font-weight: 700;
+      color: var(--blanco); margin-bottom: 14px; line-height: 1.3;
     }
     .dif-fan-card p {
-      font-size: 0.77rem; font-weight: 300;
-      color: rgba(255,255,255,0.62); line-height: 1.65;
+      font-size: 0.88rem; font-weight: 300;
+      color: rgba(255,255,255,0.70); line-height: 1.75;
     }
+    .dif-dots {
+      display: flex; gap: 10px; justify-content: center; margin-bottom: 44px;
+    }
+    .dif-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.22); cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .dif-dot.active { background: var(--amarillo); transform: scale(1.5); }
 
     /* Bloque ontología + neurociencias */
     .neuro-block {
@@ -790,84 +783,6 @@
     .wpp-float:hover ~ .wpp-tip { opacity: 1; }
 
     /* ================================================================
-       PARALLAX SCROLL SECTION
-    ================================================================ */
-    .px-section { background: #fff; padding: 0; }
-
-    .px-block { padding: 0 12px; }
-
-    .px-inner {
-      position: relative;
-      height: 150vh;
-    }
-
-    .px-img {
-      position: sticky;
-      top: 12px;
-      height: calc(100vh - 24px);
-      border-radius: 24px;
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-      transform-origin: center center;
-      will-change: transform;
-    }
-
-    .px-dim {
-      position: absolute;
-      inset: 0;
-      background: rgba(20, 10, 12, 0.58);
-    }
-
-    .px-copy {
-      position: absolute;
-      left: 0; top: 0;
-      width: 100%; height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      color: white; text-align: center;
-      pointer-events: none; z-index: 2;
-      padding: 0 28px;
-    }
-
-    .px-sub {
-      font-size: 0.78rem; font-weight: 700;
-      letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--amarillo); margin-bottom: 18px;
-    }
-
-    .px-head {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 800; line-height: 1.08;
-      color: #fff;
-    }
-
-    .px-content {
-      display: grid;
-      grid-template-columns: 5fr 7fr;
-      gap: 56px; max-width: 1000px;
-      margin: 0 auto;
-      padding: 80px 28px 96px;
-    }
-
-    .px-content-h {
-      font-size: 1.85rem; font-weight: 700;
-      color: var(--marron); line-height: 1.22;
-    }
-
-    .px-content-body p {
-      font-size: 1rem; color: var(--texto-s);
-      line-height: 1.78; margin-bottom: 24px;
-    }
-
-    @media (max-width: 768px) {
-      .px-content { grid-template-columns: 1fr; gap: 20px; padding: 52px 20px 68px; }
-      .px-img { border-radius: 14px; }
-      .px-head { font-size: 2.2rem; }
-    }
-
-    /* ================================================================
        RESPONSIVE
     ================================================================ */
     @media (max-width: 1024px) {
@@ -893,13 +808,11 @@
 
       .quien-grid { grid-template-columns: 1fr; }
       .pq-grid { grid-template-columns: 1fr; }
-      .sv-fan-layout { height: 360px; }
-      .sv-fan-card { width: 252px; }
-      .dif-fan-layout { height: 370px; }
-      .dif-fan-card { width: 162px; height: 272px; padding: 22px 14px 18px; }
-      .dif-fan-card h3 { font-size: 0.82rem; }
-      .dif-fan-card p  { font-size: 0.70rem; }
-      .dif-fan-icon { width: 52px; height: 52px; }
+      .dif-fan-layout { height: 400px; }
+      .dif-fan-card { padding: 32px 24px 28px; }
+      .dif-fan-card h3 { font-size: 0.96rem; }
+      .dif-fan-card p  { font-size: 0.80rem; }
+      .dif-fan-icon { width: 60px; height: 60px; }
       .cur-grid { grid-template-columns: 1fr; }
       .cta-options { grid-template-columns: 1fr; }
       .cur-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
@@ -1172,8 +1085,7 @@
       <p class="lead center">Cada modalidad está diseñada para diferentes momentos y necesidades. Siempre con metodología y calidez.</p>
     </div>
 
-    <div class="sv-fan-outer">
-      <div class="sv-fan-layout" id="svFanLayout">
+    <div class="sv-grid">
 
         <div class="sv-fan-card" id="svCard0">
           <div class="sv-top">
@@ -1271,23 +1183,7 @@
           </div>
         </div>
 
-      </div>
-
-      <div class="sv-controls">
-        <button class="sv-arrow" id="svPrev" aria-label="Anterior">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-        </button>
-        <div class="sv-dots" id="svDots">
-          <span class="sv-dot active" data-idx="0"></span>
-          <span class="sv-dot" data-idx="1"></span>
-          <span class="sv-dot" data-idx="2"></span>
-          <span class="sv-dot" data-idx="3"></span>
-        </div>
-        <button class="sv-arrow" id="svNext" aria-label="Siguiente">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-        </button>
-      </div>
-    </div>
+    </div><!-- /sv-grid -->
   </div>
 </section>
 
@@ -1343,6 +1239,15 @@
         <p>Trabajo organizado que transforma lo simple en algo genuinamente valioso.</p>
       </div>
 
+    </div><!-- /dif-fan-layout -->
+
+    <div class="dif-dots">
+      <div class="dif-dot active"></div>
+      <div class="dif-dot"></div>
+      <div class="dif-dot"></div>
+      <div class="dif-dot"></div>
+      <div class="dif-dot"></div>
+      <div class="dif-dot"></div>
     </div>
 
     <div class="neuro-block fade-up">
@@ -1366,74 +1271,6 @@
       </div>
     </div>
   </div>
-</section>
-
-
-<!-- ══════════════════════════════════════
-     PARALLAX COACHING
-══════════════════════════════════════ -->
-<section id="parallax-coaching" class="px-section">
-
-  <!-- Bloque 1: Sesiones 1:1 -->
-  <div class="px-block">
-    <div class="px-inner">
-      <div class="px-img" style="background-image:url('sesion.jpeg'); background-position: center 30%;">
-        <div class="px-dim"></div>
-      </div>
-      <div class="px-copy">
-        <p class="px-sub">Sesión 1:1</p>
-        <p class="px-head">Descubrí quién<br>querés ser</p>
-      </div>
-    </div>
-    <div class="px-content">
-      <h2 class="px-content-h">Un espacio diseñado solo para vos</h2>
-      <div class="px-content-body">
-        <p>Cada sesión es una conversación que te lleva más cerca de quien querés ser. Sin fórmulas ni recetas. Con escucha real, herramientas concretas y un proceso que respeta tu historia y tu tiempo.</p>
-        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery%2C%20quiero%20agendar%20una%20sesi%C3%B3n%201%3A1" class="btn btn-gold" target="_blank" rel="noopener">Agendá tu sesión →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bloque 2: Desarrollo personal -->
-  <div class="px-block">
-    <div class="px-inner">
-      <div class="px-img" style="background-image:url('desarrollo.jpeg'); background-position: center 40%;">
-        <div class="px-dim"></div>
-      </div>
-      <div class="px-copy">
-        <p class="px-sub">Desarrollo Personal</p>
-        <p class="px-head">Construí la vida<br>que realmente querés</p>
-      </div>
-    </div>
-    <div class="px-content">
-      <h2 class="px-content-h">6 módulos que cambian el juego</h2>
-      <div class="px-content-body">
-        <p>Potenciá tu Desarrollo Personal es el programa grabado para trabajar el lenguaje, las emociones, las creencias y el propósito — todo con base en coaching ontológico y neurociencias, a tu ritmo y con workbook descargable.</p>
-        <a href="curso-potencia.html" class="btn btn-gold">Ver el curso completo →</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Bloque 3: Equipos -->
-  <div class="px-block">
-    <div class="px-inner">
-      <div class="px-img" style="background-image:url('enfoque.jpeg'); background-position: center 35%;">
-        <div class="px-dim"></div>
-      </div>
-      <div class="px-copy">
-        <p class="px-sub">Para Equipos</p>
-        <p class="px-head">El cambio empieza<br>en las personas</p>
-      </div>
-    </div>
-    <div class="px-content">
-      <h2 class="px-content-h">Llevá el cambio a tu organización</h2>
-      <div class="px-content-body">
-        <p>Las organizaciones cambian cuando cambian las personas que las forman. Trabajamos la comunicación, el liderazgo y la cultura desde adentro, con la misma profundidad metodológica que el proceso individual.</p>
-        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery%2C%20quiero%20consultar%20sobre%20coaching%20para%20equipos" class="btn btn-gold" target="_blank" rel="noopener">Consultá disponibilidad →</a>
-      </div>
-    </div>
-  </div>
-
 </section>
 
 
@@ -1661,287 +1498,92 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-/* ── SERVICIOS FAN CAROUSEL (GSAP) ───────────────────── */
+/* ── DIFERENCIADORES — SINGLE-CARD AUTO-CAROUSEL ─── */
 (function () {
-  const TOTAL = 4;
-  let centerIdx = 0;
-  let svAnim = false;
-  let lastDir = 'next';
-
-  // 5 logical slots: hidden-left, near-left, CENTER, near-right, hidden-right
-  const SLOTS = {
-    HL: { x:  '-52rem', rotation: -36, scale: 0.48, opacity: 0, zIndex: 0, y: '12rem' },
-    L:  { x:  '-18rem', rotation: -13, scale: 0.84, opacity: 1, zIndex: 3, y:  '4rem' },
-    C:  { x:    '0rem', rotation:   0, scale: 1.00, opacity: 1, zIndex: 10, y:  '0rem' },
-    R:  { x:   '18rem', rotation:  13, scale: 0.84, opacity: 1, zIndex: 3, y:  '4rem' },
-    HR: { x:   '52rem', rotation:  36, scale: 0.48, opacity: 0, zIndex: 0, y: '12rem' },
-  };
-
-  function roleOf(cardIdx) {
-    const diff = (cardIdx - centerIdx + TOTAL) % TOTAL;
-    if (diff === 0) return 'C';
-    if (diff === 1) return 'R';
-    if (diff === 3) return 'L';
-    // diff === 2: the "hidden" card — comes from right when going next, left when going prev
-    return lastDir === 'next' ? 'HR' : 'HL';
-  }
-
-  const cards = Array.from(document.querySelectorAll('.sv-fan-card'));
-  const dotEls = Array.from(document.querySelectorAll('.sv-dot'));
-
-  function updateDots() {
-    dotEls.forEach((d, i) => d.classList.toggle('active', i === centerIdx));
-  }
-
-  function applyPositions(isFirst) {
-    let done = 0;
-    cards.forEach((card, i) => {
-      const pos = SLOTS[roleOf(i)];
-      card.classList.toggle('sv-center-card', roleOf(i) === 'C');
-
-      if (isFirst) {
-        gsap.set(card, { x: '0rem', y: '22rem', rotation: 0, scale: 0.55, opacity: 0, zIndex: 0 });
-        gsap.to(card, {
-          ...pos, duration: 1.15, ease: 'elastic.out(1,.76)',
-          delay: 0.12 + i * 0.09,
-          onComplete: () => { if (++done >= TOTAL) svAnim = false; }
-        });
-      } else {
-        gsap.to(card, {
-          ...pos, duration: 0.55, ease: 'power2.out',
-          onComplete: () => { if (++done >= TOTAL) svAnim = false; }
-        });
-      }
-    });
-    updateDots();
-  }
-
-  function cycle(dir) {
-    if (svAnim) return;
-    svAnim = true;
-    lastDir = dir;
-    centerIdx = dir === 'next' ? (centerIdx + 1) % TOTAL : (centerIdx - 1 + TOTAL) % TOTAL;
-    applyPositions(false);
-  }
-
-  // Arrow buttons
-  document.getElementById('svPrev').addEventListener('click', () => cycle('prev'));
-  document.getElementById('svNext').addEventListener('click', () => cycle('next'));
-
-  // Dot clicks
-  dotEls.forEach((dot, i) => {
-    dot.addEventListener('click', () => {
-      if (svAnim || i === centerIdx) return;
-      lastDir = i > centerIdx ? 'next' : 'prev';
-      svAnim = true;
-      centerIdx = i;
-      applyPositions(false);
-    });
-  });
-
-  // Click side cards to bring them to center
-  cards.forEach((card, i) => {
-    card.addEventListener('click', () => {
-      if (svAnim) return;
-      const role = roleOf(i);
-      if (role === 'R') cycle('next');
-      else if (role === 'L') cycle('prev');
-    });
-  });
-
-  // Hover lift for side cards
-  cards.forEach((card, i) => {
-    card.addEventListener('mouseenter', () => {
-      if (svAnim) return;
-      const role = roleOf(i);
-      if (role === 'L' || role === 'R') {
-        const pos = SLOTS[role];
-        gsap.to(card, { y: `calc(${pos.y} - 1.8rem)`, scale: pos.scale * 1.05, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
-      }
-    });
-    card.addEventListener('mouseleave', () => {
-      if (svAnim) return;
-      const role = roleOf(i);
-      if (role === 'L' || role === 'R') {
-        const pos = SLOTS[role];
-        gsap.to(card, { y: pos.y, scale: pos.scale, duration: 0.45, ease: 'elastic.out(1,.75)', overwrite: 'auto' });
-      }
-    });
-  });
-
-  // Touch/swipe
-  let svTouchX = 0;
-  const fanEl = document.getElementById('svFanLayout');
-  fanEl.addEventListener('touchstart', e => { svTouchX = e.touches[0].clientX; }, { passive: true });
-  fanEl.addEventListener('touchend', e => {
-    const diff = svTouchX - e.changedTouches[0].clientX;
-    if (Math.abs(diff) > 44) cycle(diff > 0 ? 'next' : 'prev');
-  });
-
-  // Enter animation on scroll into view
-  cards.forEach(c => gsap.set(c, { opacity: 0 }));
-  svAnim = true;
-  const fanObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { applyPositions(true); fanObs.disconnect(); }
-  }, { threshold: 0.15 });
-  fanObs.observe(fanEl);
-})();
-
-/* ── DIFERENCIADORES FAN AUTO-CAROUSEL (GSAP) ─────── */
-(function () {
-  function rMult(w) {
-    if (w < 480) return 0.32; if (w < 640) return 0.44;
-    if (w < 768) return 0.56; if (w < 1024) return 0.76; return 1.0;
-  }
-
-  /* symmetric fan: center = (n-1)/2 so 6 cards spread equally on both sides */
-  function slotCfg(total, slot) {
-    const center = (total - 1) / 2;
-    const d = total > 1 ? (slot - center) / center : 0;
-    const a = Math.abs(d);
-    return {
-      rot: d * 21, scale: 1.0 - 0.22 * a * a,
-      x: d * 28,   y: a * a * 6.2,
-      zIndex: 10 - Math.round(a * center),
-    };
-  }
-
-  const container = document.getElementById('difFanLayout');
+  var container = document.getElementById('difFanLayout');
   if (!container) return;
-  const cards = Array.from(container.querySelectorAll('.dif-fan-card'));
-  const total = cards.length;
-  const centerSlot = (total - 1) / 2;
+  var cards = Array.from(container.querySelectorAll('.dif-fan-card'));
+  var dots  = Array.from(document.querySelectorAll('.dif-dot'));
+  var total = cards.length;
+  var current = 0;
+  var autoTimer = null;
+  var paused = false;
 
-  /* ── spotlight: lift one card, push others apart ── */
-  function spotlight(hovered) {
-    const m = rMult(window.innerWidth);
-    cards.forEach((card, slot) => {
-      const base = slotCfg(total, slot);
-      let tx = base.x * m, ty = base.y, tr = base.rot, ts = base.scale, delay = 0;
-      if (hovered !== null) {
-        const dist = Math.abs(slot - hovered);
-        delay = dist * 0.025;
-        if (slot === hovered) {
-          ty -= 2.8; ts *= 1.10;
-        } else {
-          const norm = centerSlot > 0 ? (slot - centerSlot) / centerSlot : 0;
-          const push = 7 * (1 - Math.abs(norm) * 0.4) * (1 + 0.15 * Math.max(0, 3 - dist));
-          if (slot < hovered) { tx -= push * m; tr -= 2.5 / (dist + 1); }
-          else                 { tx += push * m; tr += 2.5 / (dist + 1); }
-        }
-      } else {
-        delay = Math.abs(slot - centerSlot) * 0.025;
-      }
-      gsap.to(card, { x: `${tx}rem`, y: `${ty}rem`, rotation: tr, scale: ts,
-        duration: 0.55, delay, ease: 'elastic.out(1,.75)', overwrite: 'auto' });
-      gsap.set(card, { zIndex: base.zIndex + (slot === hovered ? 5 : 0) });
-    });
-  }
+  function show(idx, dir) {
+    var prev = current;
+    current = ((idx % total) + total) % total;
+    if (prev === current) return;
 
-  /* ── entrance animation ─────────────────────────── */
-  function enter() {
-    const m = rMult(window.innerWidth);
-    cards.forEach((card, slot) => {
-      const { rot, scale, x, y, zIndex } = slotCfg(total, slot);
-      gsap.set(card, { x: 0, y: '12rem', rotation: 0, scale: 0.48, opacity: 0, zIndex: 0 });
-      gsap.to(card, {
-        x: `${x * m}rem`, y: `${y}rem`, rotation: rot, scale, zIndex, opacity: 1,
-        duration: 1.18, ease: 'elastic.out(1.05,.78)', delay: 0.1 + slot * 0.08,
+    var outX = dir === 'next' ? '-60px' : '60px';
+    var inX  = dir === 'next' ? '60px'  : '-60px';
+
+    cards[prev].style.transition = 'opacity 0.42s ease, transform 0.42s ease';
+    cards[prev].style.opacity = '0';
+    cards[prev].style.transform = 'translateX(' + outX + ')';
+    cards[prev].classList.remove('dif-active');
+
+    cards[current].style.transition = 'none';
+    cards[current].style.opacity = '0';
+    cards[current].style.transform = 'translateX(' + inX + ')';
+
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        cards[current].style.transition = 'opacity 0.42s ease, transform 0.42s ease';
+        cards[current].style.opacity = '1';
+        cards[current].style.transform = 'translateX(0)';
+        cards[current].classList.add('dif-active');
       });
     });
-  }
 
-  /* ── auto-rotation: spotlight cycles through cards ─ */
-  let autoIdx = 0, autoTimer = null, userActive = false;
-
-  function autoTick() {
-    if (userActive) return;
-    autoIdx = (autoIdx + 1) % total;
-    spotlight(autoIdx);
+    dots.forEach(function (d, i) { d.classList.toggle('active', i === current); });
   }
 
   function startAuto() {
     clearInterval(autoTimer);
-    autoTimer = setInterval(autoTick, 2800);
+    autoTimer = setInterval(function () {
+      if (!paused) show(current + 1, 'next');
+    }, 3000);
   }
 
-  /* ── hover interaction ──────────────────────────── */
-  let leaveTimer = null;
-  cards.forEach((card, slot) => {
-    card.addEventListener('mouseenter', () => {
-      userActive = true;
+  // Init: show first card
+  cards.forEach(function (c, i) {
+    c.style.opacity = i === 0 ? '1' : '0';
+    c.style.transform = 'translateX(0)';
+    if (i === 0) c.classList.add('dif-active');
+  });
+  if (dots[0]) dots[0].classList.add('active');
+
+  // Dot clicks
+  dots.forEach(function (dot, i) {
+    dot.addEventListener('click', function () {
+      if (i === current) return;
+      show(i, i > current ? 'next' : 'prev');
       clearInterval(autoTimer);
-      if (leaveTimer) { clearTimeout(leaveTimer); leaveTimer = null; }
-      spotlight(slot);
+      startAuto();
     });
   });
-  container.addEventListener('mouseleave', () => {
-    if (leaveTimer) clearTimeout(leaveTimer);
-    leaveTimer = setTimeout(() => {
-      userActive = false;
-      spotlight(null);
-      setTimeout(startAuto, 800);
-    }, 200);
-  });
 
-  /* ── trigger on scroll ──────────────────────────── */
-  cards.forEach(c => gsap.set(c, { opacity: 0 }));
-  const difObs = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) {
-      enter();
-      difObs.disconnect();
-      const enterDur = (0.1 + (total - 1) * 0.08 + 1.18 + 0.5) * 1000;
-      setTimeout(() => { if (!userActive) { spotlight(autoIdx); startAuto(); } }, enterDur);
+  // Pause on hover
+  container.addEventListener('mouseenter', function () { paused = true; });
+  container.addEventListener('mouseleave', function () { paused = false; });
+
+  // Touch swipe
+  var touchX = 0;
+  container.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  container.addEventListener('touchend', function (e) {
+    var diff = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 44) {
+      show(current + (diff > 0 ? 1 : -1), diff > 0 ? 'next' : 'prev');
+      clearInterval(autoTimer);
+      startAuto();
     }
-  }, { threshold: 0.12 });
-  difObs.observe(container);
-})();
-
-/* ── PARALLAX SCROLL (ScrollTrigger) ─────────────── */
-(function () {
-  gsap.registerPlugin(ScrollTrigger);
-
-  document.querySelectorAll('.px-block').forEach(function (block) {
-    const img    = block.querySelector('.px-img');
-    const dim    = block.querySelector('.px-dim');
-    const inner  = block.querySelector('.px-inner');
-    const copy   = block.querySelector('.px-copy');
-
-    /* image: scale down + dim fades as user scrolls past */
-    gsap.to(img, {
-      scale: 0.86,
-      ease: 'none',
-      scrollTrigger: { trigger: inner, start: 'end end', end: 'end start', scrub: 1.2 }
-    });
-    gsap.to(dim, {
-      opacity: 0,
-      ease: 'none',
-      scrollTrigger: { trigger: inner, start: 'end end', end: 'end start', scrub: 1.2 }
-    });
-
-    /* text: parallax Y movement */
-    gsap.fromTo(copy,
-      { y: 220 },
-      { y: -220, ease: 'none',
-        scrollTrigger: { trigger: inner, start: 'top bottom', end: 'bottom top', scrub: 1.8 }
-      }
-    );
-
-    /* text: fade in / stay / fade out as section scrolls */
-    ScrollTrigger.create({
-      trigger: inner,
-      start: 'top bottom',
-      end: 'bottom top',
-      scrub: true,
-      onUpdate: function (self) {
-        var p = self.progress;
-        var op = p < 0.25 ? p / 0.25
-               : p < 0.75 ? 1
-               : 1 - (p - 0.75) / 0.25;
-        gsap.set(copy, { opacity: op });
-      }
-    });
   });
+
+  // Start on scroll into view
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { startAuto(); obs.disconnect(); }
+  }, { threshold: 0.2 });
+  obs.observe(container);
 })();
 </script>
 

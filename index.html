@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeryGo. Coach | Coaching Ontológico & Neurociencias</title>
+  <meta name="description" content="María Isabel González — Coach Ontológica Profesional con Posgrado en Neurociencias. Acompañamiento para personas y empresas que quieren resultados reales." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ================================================================
+       VARIABLES & RESET
+    ================================================================ */
+    :root {
+      --amarillo:    #F5C02A;
+      --amarillo-l:  #FFF3C7;
+      --marron:      #2D1B1E;
+      --marron-m:    #4a2d32;
+      --terracota:   #C4612B;
+      --terracota-l: #FFE4D4;
+      --crema:       #FDF6E3;
+      --crema-m:     #F5E8B0;
+      --blanco:      #FFFFFF;
+      --gris:        #F8F5F0;
+      --texto:       #3D2B2E;
+      --texto-s:     #7A6065;
+      --sombra:      rgba(45,27,30,0.10);
+      --sombra-m:    rgba(45,27,30,0.18);
+      --radio:       16px;
+      --radio-l:     24px;
+      --t:           all 0.3s ease;
+      --fuente:      'Poppins', sans-serif;
+    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body { font-family: var(--fuente); color: var(--texto); background: var(--blanco); overflow-x: hidden; }
+    img { max-width: 100%; height: auto; display: block; }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    button { font-family: var(--fuente); cursor: pointer; }
+
+    /* ================================================================
+       ANIMACIONES SCROLL
+    ================================================================ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible        { opacity: 1; transform: translateY(0); }
+    .fade-up.d1             { transition-delay: 0.10s; }
+    .fade-up.d2             { transition-delay: 0.20s; }
+    .fade-up.d3             { transition-delay: 0.30s; }
+    .fade-up.d4             { transition-delay: 0.40s; }
+    .fade-up.d5             { transition-delay: 0.50s; }
+
+    /* ================================================================
+       UTILIDADES
+    ================================================================ */
+    .container { max-width: 1140px; margin: 0 auto; padding: 0 24px; }
+
+    .tag {
+      display: inline-block;
+      font-size: 0.70rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px;
+      margin-bottom: 14px;
+    }
+    .tag-gold     { background: var(--amarillo);    color: var(--marron); }
+    .tag-dark     { background: var(--marron);      color: var(--amarillo); }
+    .tag-terra    { background: var(--terracota);   color: var(--blanco); }
+    .tag-outline  { border: 1.5px solid var(--terracota); color: var(--terracota); }
+
+    .h2 {
+      font-size: clamp(1.85rem, 3.8vw, 2.9rem);
+      font-weight: 800; line-height: 1.18;
+      color: var(--marron);
+    }
+    .h2.light       { color: var(--blanco); }
+    .h2 .gold       { color: var(--amarillo); }
+    .h2 .underline  { text-decoration: underline; text-decoration-color: var(--terracota); text-underline-offset: 6px; }
+
+    .lead {
+      font-size: 0.97rem; font-weight: 300;
+      line-height: 1.80; color: var(--texto-s);
+      max-width: 560px;
+    }
+    .lead.light { color: rgba(255,255,255,0.72); }
+    .lead.center { margin: 0 auto; }
+
+    /* Botones */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 13px 30px; border-radius: 50px;
+      font-weight: 700; font-size: 0.92rem;
+      letter-spacing: 0.02em; border: 2px solid transparent;
+      transition: var(--t);
+    }
+    .btn-gold  { background: var(--amarillo); color: var(--marron); }
+    .btn-gold:hover  { background: var(--terracota); color: var(--blanco); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(196,97,43,0.35); }
+    .btn-dark  { background: var(--marron);   color: var(--blanco); }
+    .btn-dark:hover  { background: var(--terracota); transform: translateY(-2px); box-shadow: 0 8px 20px var(--sombra-m); }
+    .btn-ghost { background: transparent; border-color: var(--blanco); color: var(--blanco); }
+    .btn-ghost:hover { background: var(--blanco); color: var(--marron); transform: translateY(-2px); }
+    .btn-wpp   { background: #25D366; color: var(--blanco); }
+    .btn-wpp:hover   { background: #1dbc5b; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.4); }
+    .btn-sm { padding: 9px 20px; font-size: 0.82rem; }
+
+    /* ================================================================
+       NAV
+    ================================================================ */
+    #nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+      padding: 18px 0;
+      transition: background 0.35s, box-shadow 0.35s, padding 0.35s;
+    }
+    #nav.scrolled {
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(45,27,30,0.07);
+      padding: 11px 0;
+    }
+    .nav-wrap {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 20px;
+    }
+    .nav-logo {
+      font-size: 1.45rem; font-weight: 800;
+      color: var(--blanco); display: flex; align-items: center; gap: 7px;
+      transition: color 0.3s;
+    }
+    #nav.scrolled .nav-logo { color: var(--marron); }
+    .nav-logo .gold { color: var(--amarillo); }
+
+    .nav-links {
+      display: flex; gap: 26px; align-items: center;
+    }
+    .nav-links a {
+      font-size: 0.80rem; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      color: rgba(255,255,255,0.82); transition: color 0.2s;
+    }
+    #nav.scrolled .nav-links a { color: var(--texto-s); }
+    .nav-links a:hover, #nav.scrolled .nav-links a:hover { color: var(--terracota); }
+    .nav-cta {
+      background: var(--amarillo); color: var(--marron) !important;
+      padding: 8px 20px !important; border-radius: 50px;
+      font-weight: 700 !important; font-size: 0.80rem !important;
+      transition: var(--t) !important;
+    }
+    .nav-cta:hover { background: var(--terracota) !important; color: var(--blanco) !important; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; padding: 4px; cursor: pointer;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--blanco); border-radius: 2px; transition: var(--t);
+    }
+    #nav.scrolled .hamburger span { background: var(--marron); }
+
+    /* Mobile menu overlay */
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: fixed; inset: 0;
+      background: var(--marron); z-index: 901;
+      justify-content: center; align-items: center;
+      gap: 32px; padding: 40px;
+    }
+    .nav-links.open a { font-size: 1.2rem !important; color: var(--blanco) !important; }
+    .nav-close {
+      display: none; position: absolute; top: 24px; right: 28px;
+      background: none; border: none;
+      font-size: 2rem; color: var(--blanco); cursor: pointer;
+    }
+    .nav-links.open .nav-close { display: block; }
+
+    /* ================================================================
+       HERO
+    ================================================================ */
+    #hero {
+      min-height: 100vh;
+      background: linear-gradient(155deg, var(--marron) 0%, var(--marron-m) 55%, var(--terracota) 100%);
+      display: flex; align-items: center;
+      padding: 120px 0 90px;
+      position: relative; overflow: hidden;
+    }
+    /* Decoraciones de fondo */
+    .h-deco {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .h-deco-1 { width: 500px; height: 500px; background: var(--amarillo); opacity: 0.06; top: -120px; right: -120px; }
+    .h-deco-2 { width: 280px; height: 280px; background: var(--terracota); opacity: 0.14; bottom: 80px; left: -80px; }
+    .h-deco-3 { width: 130px; height: 130px; border: 2px solid rgba(245,192,42,0.18); top: 42%; right: 14%; }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 64px; align-items: center; position: relative; z-index: 1;
+    }
+
+    /* Texto hero */
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,192,42,0.14); border: 1px solid rgba(245,192,42,0.32);
+      color: var(--amarillo); font-size: 0.76rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 7px 18px; border-radius: 50px; margin-bottom: 22px;
+    }
+    .hero-h1 {
+      font-size: clamp(2.1rem, 4.5vw, 3.7rem);
+      font-weight: 800; color: var(--blanco);
+      line-height: 1.10; margin-bottom: 20px;
+    }
+    .hero-h1 .gold { color: var(--amarillo); }
+    .hero-sub {
+      font-size: 1.02rem; font-weight: 300;
+      color: rgba(255,255,255,0.76); line-height: 1.75;
+      max-width: 490px; margin-bottom: 36px;
+    }
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    /* Foto hero */
+    .hero-photo-col {
+      display: flex; justify-content: center; align-items: flex-end;
+      position: relative;
+    }
+    .hero-frame {
+      width: 100%; max-width: 390px;
+      aspect-ratio: 3/4;
+      border-radius: 200px 200px 32px 32px;
+      overflow: hidden; position: relative;
+      background: linear-gradient(180deg, rgba(245,192,42,0.18), rgba(196,97,43,0.28));
+      border: 1.5px solid rgba(245,192,42,0.22);
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* ── PARA AGREGAR FOTO: reemplazar el div.photo-placeholder con:
+       <img src="mery-foto.jpg" alt="María Isabel González – MeryGo Coach"
+            style="width:100%;height:100%;object-fit:cover;object-position:top"> ── */
+    .photo-placeholder {
+      text-align: center; color: rgba(255,255,255,0.38); padding: 24px;
+    }
+    .photo-placeholder span { font-size: 4rem; display: block; margin-bottom: 10px; }
+    .photo-placeholder p { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .h-float {
+      position: absolute; border-radius: var(--radio);
+      box-shadow: 0 8px 28px var(--sombra-m);
+    }
+    .h-float-1 {
+      background: var(--blanco); padding: 14px 18px;
+      top: 28px; left: -24px; min-width: 164px;
+    }
+    .h-float-1 .fi { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+    .h-float-1 strong { font-size: 0.80rem; font-weight: 700; color: var(--marron); display: block; }
+    .h-float-1 span   { font-size: 0.70rem; color: var(--texto-s); }
+    .h-float-2 {
+      background: var(--amarillo); padding: 14px 18px; text-align: center;
+      bottom: 40px; right: -20px;
+    }
+    .h-float-2 strong { font-size: 2rem; font-weight: 800; color: var(--marron); display: block; line-height: 1; }
+    .h-float-2 span   { font-size: 0.70rem; font-weight: 600; color: rgba(45,27,30,0.65); }
+
+    /* Ola separadora */
+    .wave { display: block; width: 100%; line-height: 0; }
+
+    /* ================================================================
+       ANTES — DOLORES
+    ================================================================ */
+    #antes { padding: 96px 0 80px; background: var(--crema); }
+
+    .section-head { text-align: center; margin-bottom: 56px; }
+    .section-head .lead { margin: 14px auto 0; }
+
+    /* Tabs personas / empresas */
+    .tab-toggle {
+      display: flex; justify-content: center; margin-bottom: 44px;
+    }
+    .tab-wrap {
+      display: inline-flex;
+      border: 2px solid var(--marron); border-radius: 50px; overflow: hidden;
+    }
+    .tab-btn {
+      padding: 11px 28px; background: transparent; border: none;
+      font-size: 0.86rem; font-weight: 700; color: var(--texto-s);
+      transition: var(--t); white-space: nowrap;
+    }
+    .tab-btn.active { background: var(--marron); color: var(--blanco); }
+
+    .tab-panel { display: none; }
+    .tab-panel.active {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px;
+    }
+
+    .dolor-card {
+      background: var(--blanco); border-radius: var(--radio);
+      padding: 28px 24px; border-left: 4px solid var(--amarillo);
+      transition: transform 0.22s, box-shadow 0.22s;
+    }
+    .dolor-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px var(--sombra); }
+    .d-icon {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: var(--crema-m); display: flex; align-items: center;
+      justify-content: center; font-size: 1.35rem; margin-bottom: 14px;
+    }
+    .dolor-card h3 { font-size: 0.93rem; font-weight: 700; color: var(--marron); margin-bottom: 8px; }
+    .dolor-card p  { font-size: 0.83rem; font-weight: 400; color: var(--texto-s); line-height: 1.65; }
+
+    .antes-cierre {
+      margin-top: 52px; padding: 48px 44px;
+      background: var(--marron); border-radius: var(--radio-l);
+      text-align: center; color: var(--blanco);
+    }
+    .antes-cierre p {
+      font-size: 1.10rem; font-weight: 300; line-height: 1.72;
+      max-width: 620px; margin: 0 auto 26px;
+    }
+    .antes-cierre strong { color: var(--amarillo); font-weight: 700; }
+
+    /* ================================================================
+       QUIÉN ES MERY
+    ================================================================ */
+    #quien { padding: 100px 0; background: var(--blanco); }
+
+    .quien-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+    }
+
+    /* Foto quien */
+    .quien-photo { position: relative; }
+    .quien-deco-circle {
+      position: absolute; top: -18px; right: -18px;
+      width: 110px; height: 110px;
+      background: var(--amarillo); border-radius: 50%; opacity: 0.45; z-index: 0;
+    }
+    .quien-frame {
+      border-radius: var(--radio-l); overflow: hidden;
+      aspect-ratio: 4/5; position: relative; z-index: 1;
+      background: linear-gradient(135deg, var(--crema-m), var(--amarillo));
+      display: flex; align-items: center; justify-content: center;
+    }
+    /* ── PARA AGREGAR FOTO: reemplazar div.quien-placeholder con <img ...> ── */
+    .quien-placeholder {
+      font-size: 7rem; opacity: 0.5;
+      position: relative; z-index: 2;
+    }
+    .quien-frame::after {
+      content: '📸  Foto de Mery';
+      position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+      font-size: 0.70rem; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(45,27,30,0.4); white-space: nowrap;
+    }
+    .quien-badge-float {
+      position: absolute; bottom: -22px; right: -22px; z-index: 3;
+      background: var(--marron); border-radius: var(--radio);
+      padding: 18px 22px; box-shadow: 0 8px 28px var(--sombra-m);
+      text-align: center;
+    }
+    .quien-badge-float .num { font-size: 1.6rem; font-weight: 800; color: var(--amarillo); display: block; line-height: 1; }
+    .quien-badge-float .lbl { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.08em; text-transform: uppercase; }
+
+    /* Texto quien */
+    .quien-text blockquote {
+      font-size: 1.05rem; font-weight: 500; font-style: italic;
+      color: var(--terracota); line-height: 1.65;
+      border-left: 3px solid var(--amarillo); padding-left: 18px;
+      margin: 22px 0;
+    }
+    .quien-text p {
+      font-size: 0.93rem; font-weight: 300; color: var(--texto-s);
+      line-height: 1.80; margin-bottom: 14px;
+    }
+    .quien-text p strong { color: var(--marron); font-weight: 600; }
+    .chips {
+      display: flex; flex-wrap: wrap; gap: 9px; margin-top: 26px;
+    }
+    .chip {
+      display: flex; align-items: center; gap: 6px;
+      background: var(--crema); color: var(--marron);
+      font-size: 0.76rem; font-weight: 600;
+      padding: 7px 14px; border-radius: 50px;
+      border: 1.5px solid rgba(245,192,42,0.38);
+    }
+
+    /* ================================================================
+       PARA QUIÉN ES
+    ================================================================ */
+    #para-quien { padding: 100px 0; background: var(--gris); }
+
+    .pq-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 28px; margin-top: 60px;
+    }
+    .pq-card {
+      border-radius: var(--radio-l); padding: 48px 40px;
+      position: relative; overflow: hidden;
+    }
+    .pq-personas { background: var(--crema); border: 2px solid rgba(245,192,42,0.30); }
+    .pq-empresas { background: var(--marron); color: var(--blanco); }
+
+    .pq-icon-wrap {
+      width: 62px; height: 62px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; margin-bottom: 18px;
+    }
+    .pq-personas .pq-icon-wrap { background: var(--amarillo); }
+    .pq-empresas .pq-icon-wrap { background: rgba(245,192,42,0.15); }
+
+    .pq-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
+    .pq-personas h3 { color: var(--marron); }
+    .pq-empresas h3 { color: var(--blanco); }
+
+    .pq-card .sub {
+      font-size: 0.88rem; font-weight: 300; line-height: 1.70;
+      margin-bottom: 24px;
+    }
+    .pq-personas .sub { color: var(--texto-s); }
+    .pq-empresas .sub { color: rgba(255,255,255,0.68); }
+
+    .pq-list li {
+      font-size: 0.85rem; font-weight: 500;
+      padding: 8px 0; display: flex; align-items: center; gap: 10px;
+    }
+    .pq-personas .pq-list li { color: var(--marron); border-bottom: 1px solid rgba(45,27,30,0.07); }
+    .pq-empresas .pq-list li { color: rgba(255,255,255,0.82); border-bottom: 1px solid rgba(255,255,255,0.09); }
+    .pq-list li::before { content: '✦'; color: var(--amarillo); font-size: 0.62rem; flex-shrink: 0; }
+    .pq-card .btn { margin-top: 28px; }
+
+    /* ================================================================
+       SERVICIOS
+    ================================================================ */
+    #servicios { padding: 100px 0; background: var(--blanco); }
+
+    .sv-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 26px; margin-top: 60px;
+    }
+    .sv-card {
+      border-radius: var(--radio-l);
+      border: 1.5px solid rgba(45,27,30,0.08);
+      display: flex; flex-direction: column;
+      transition: var(--t);
+    }
+    .sv-card:hover { border-color: var(--amarillo); transform: translateY(-5px); box-shadow: 0 16px 40px var(--sombra); }
+
+    .sv-top { padding: 30px 30px 20px; display: flex; align-items: flex-start; gap: 18px; }
+    .sv-circle {
+      width: 58px; height: 58px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.55rem; flex-shrink: 0;
+    }
+    .sv-c1 { background: rgba(245,192,42,0.18); }
+    .sv-c2 { background: rgba(196,97,43,0.14); }
+    .sv-c3 { background: rgba(45,27,30,0.08);  }
+    .sv-c4 { background: rgba(245,232,176,0.55); }
+
+    .sv-top h3 { font-size: 1.02rem; font-weight: 700; color: var(--marron); margin-bottom: 5px; }
+    .sv-top p  { font-size: 0.82rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; }
+
+    .sv-body { padding: 0 30px 28px; flex: 1; display: flex; flex-direction: column; }
+    .sv-items { flex: 1; margin-bottom: 20px; }
+    .sv-items li {
+      font-size: 0.81rem; font-weight: 500; color: var(--texto);
+      padding: 6px 0; border-bottom: 1px solid rgba(45,27,30,0.06);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .sv-items li::before { content: '✓'; color: var(--amarillo); font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+
+    .sv-footer {
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 12px;
+      padding-top: 18px; border-top: 1.5px solid rgba(45,27,30,0.07);
+    }
+    .sv-tag {
+      font-size: 0.70rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--terracota); background: rgba(196,97,43,0.10);
+      padding: 5px 12px; border-radius: 50px;
+    }
+
+    /* ================================================================
+       POR QUÉ MERY
+    ================================================================ */
+    #por-que {
+      padding: 100px 0;
+      background: linear-gradient(148deg, var(--marron) 0%, #3e2226 100%);
+      position: relative; overflow: hidden;
+    }
+    .pq-bg-deco {
+      position: absolute; border-radius: 50%; pointer-events: none;
+    }
+    .pq-bg-1 { width: 360px; height: 360px; background: var(--amarillo); opacity: 0.05; top: -80px; right: -80px; }
+    .pq-bg-2 { width: 220px; height: 220px; background: var(--terracota); opacity: 0.10; bottom: -40px; left: -40px; }
+
+    .dif-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 60px; margin-bottom: 56px;
+      position: relative; z-index: 1;
+    }
+    .dif-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radio-l); padding: 34px 26px; text-align: center;
+      transition: var(--t);
+    }
+    .dif-card:hover { background: rgba(245,192,42,0.09); border-color: rgba(245,192,42,0.28); transform: translateY(-4px); }
+    .dif-icon {
+      width: 68px; height: 68px; background: rgba(245,192,42,0.14);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.9rem; margin: 0 auto 18px;
+    }
+    .dif-card h3 { font-size: 0.97rem; font-weight: 700; color: var(--blanco); margin-bottom: 10px; }
+    .dif-card p  { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.62); line-height: 1.68; }
+
+    /* Bloque ontología + neurociencias */
+    .neuro-block {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 44px;
+      align-items: center; padding: 44px 48px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radio-l);
+      position: relative; z-index: 1;
+    }
+    .neuro-text h3 { font-size: 1.4rem; font-weight: 800; color: var(--blanco); margin-bottom: 14px; line-height: 1.25; }
+    .neuro-text h3 span { color: var(--amarillo); }
+    .neuro-text p { font-size: 0.88rem; font-weight: 300; color: rgba(255,255,255,0.68); line-height: 1.78; margin-bottom: 14px; }
+    .neuro-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+    .neuro-pill {
+      background: rgba(245,192,42,0.11); border: 1px solid rgba(245,192,42,0.28);
+      color: var(--amarillo); font-size: 0.74rem; font-weight: 600;
+      padding: 6px 14px; border-radius: 50px;
+    }
+    .neuro-visual {
+      background: rgba(245,192,42,0.06); border: 1px solid rgba(245,192,42,0.14);
+      border-radius: var(--radio-l); padding: 36px; text-align: center;
+    }
+    .neuro-visual .big { font-size: 5rem; font-weight: 800; color: var(--amarillo); line-height: 1; }
+    .neuro-visual .sub { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.36); margin: 8px 0 22px; }
+    .neuro-visual blockquote { font-size: 0.92rem; color: rgba(255,255,255,0.72); font-style: italic; line-height: 1.65; }
+    .neuro-visual cite { display: block; margin-top: 12px; font-size: 0.74rem; font-weight: 700; color: rgba(245,192,42,0.65); font-style: normal; letter-spacing: 0.06em; }
+
+    /* ================================================================
+       TESTIMONIOS — CARRUSEL
+    ================================================================ */
+    #testimonios { padding: 100px 0; background: var(--crema); }
+
+    .carousel-wrap { margin-top: 56px; position: relative; }
+    .carousel-track-outer { overflow: hidden; }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.46s cubic-bezier(0.4,0,0.2,1);
+    }
+    .test-slide {
+      min-width: 100%; padding: 0 48px; box-sizing: border-box;
+    }
+    .test-card {
+      background: var(--blanco); border-radius: var(--radio-l);
+      padding: 48px 52px; max-width: 820px; margin: 0 auto;
+      position: relative; box-shadow: 0 8px 36px var(--sombra);
+    }
+    .test-q {
+      position: absolute; top: 24px; right: 36px;
+      font-size: 5.5rem; font-weight: 800;
+      color: var(--amarillo); opacity: 0.18; line-height: 1;
+    }
+    .test-stars { color: var(--amarillo); font-size: 1.05rem; letter-spacing: 2px; margin-bottom: 16px; }
+    .test-text {
+      font-size: 1.02rem; font-weight: 400; font-style: italic;
+      color: var(--texto); line-height: 1.80; margin-bottom: 26px;
+    }
+    .test-author { display: flex; align-items: center; gap: 14px; }
+    .test-avatar {
+      width: 48px; height: 48px; border-radius: 50%;
+      background: var(--crema-m); border: 2.5px solid var(--amarillo);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem; flex-shrink: 0;
+    }
+    .test-author strong { font-size: 0.88rem; font-weight: 700; color: var(--marron); display: block; }
+    .test-author span   { font-size: 0.75rem; color: var(--texto-s); }
+    .placeholder-note { font-size: 0.70rem; color: rgba(45,27,30,0.28); font-style: italic; margin-top: 14px; text-align: right; }
+
+    .carousel-controls {
+      display: flex; align-items: center;
+      justify-content: center; gap: 16px; margin-top: 32px;
+    }
+    .c-btn {
+      width: 42px; height: 42px; border-radius: 50%;
+      border: 2px solid var(--marron); background: transparent;
+      font-size: 1rem; display: flex; align-items: center;
+      justify-content: center; transition: var(--t); color: var(--marron);
+    }
+    .c-btn:hover { background: var(--marron); color: var(--blanco); }
+    .c-dots { display: flex; gap: 8px; }
+    .c-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(45,27,30,0.18); cursor: pointer; transition: var(--t);
+    }
+    .c-dot.active { background: var(--terracota); width: 22px; border-radius: 4px; }
+
+    /* ================================================================
+       CONTADORES ANIMADOS
+    ================================================================ */
+    #contadores { padding: 76px 0; background: var(--amarillo); }
+
+    .cnt-grid {
+      display: grid; grid-template-columns: repeat(4,1fr);
+      gap: 16px; text-align: center;
+    }
+    .cnt-item {}
+    .cnt-num {
+      font-size: clamp(2.4rem,4.5vw,3.8rem);
+      font-weight: 800; color: var(--marron); line-height: 1; display: block;
+    }
+    .cnt-lbl {
+      font-size: 0.84rem; font-weight: 600;
+      color: rgba(45,27,30,0.68); margin-top: 8px; letter-spacing: 0.03em;
+    }
+
+    /* ================================================================
+       CURSOS Y RECURSOS
+    ================================================================ */
+    #cursos { padding: 100px 0; background: var(--blanco); }
+
+    .cur-grid {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 26px; margin-top: 56px; margin-bottom: 36px;
+    }
+    .cur-card {
+      border-radius: var(--radio-l); overflow: hidden;
+      border: 1.5px solid rgba(45,27,30,0.08);
+      transition: var(--t); position: relative;
+    }
+    .cur-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px var(--sombra); border-color: var(--amarillo); }
+    .cur-card.featured { border-color: var(--amarillo); border-width: 2px; }
+    .featured-badge {
+      position: absolute; top: 14px; right: 14px;
+      background: var(--amarillo); color: var(--marron);
+      font-size: 0.62rem; font-weight: 800; letter-spacing: 0.10em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 50px;
+    }
+    .cur-thumb {
+      height: 155px; display: flex;
+      align-items: center; justify-content: center; font-size: 3.4rem;
+    }
+    .ct1 { background: linear-gradient(135deg,#FFF3C7,#FFD84D); }
+    .ct2 { background: linear-gradient(135deg,#FFE4D4,#F0A07A); }
+    .ct3 { background: linear-gradient(135deg,#F5E8C0,#E8C84A); }
+    .cur-body { padding: 22px; }
+    .cur-body h3 { font-size: 0.97rem; font-weight: 700; color: var(--marron); margin-bottom: 7px; line-height: 1.35; }
+    .cur-body p  { font-size: 0.80rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; margin-bottom: 14px; }
+    .cur-tags { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
+    .cur-tag {
+      font-size: 0.68rem; font-weight: 600; color: var(--terracota);
+      background: rgba(196,97,43,0.10); padding: 3px 10px; border-radius: 50px;
+    }
+    .cur-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 14px; border-top: 1px solid rgba(45,27,30,0.07);
+    }
+    .cur-estado { font-size: 0.70rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
+    .estado-ok  { color: #16a34a; }
+    .estado-soon{ color: var(--terracota); }
+
+    .cur-banner {
+      background: var(--crema); border-radius: var(--radio-l);
+      padding: 36px 44px; border: 1.5px dashed rgba(245,192,42,0.48);
+      display: flex; align-items: center; justify-content: space-between; gap: 28px;
+    }
+    .cur-banner h3 { font-size: 1.15rem; font-weight: 700; color: var(--marron); margin-bottom: 4px; }
+    .cur-banner p  { font-size: 0.85rem; color: var(--texto-s); font-weight: 300; }
+    .cur-banner .btns { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+
+    /* ================================================================
+       CTA FINAL
+    ================================================================ */
+    #cta-final {
+      padding: 120px 0;
+      background: linear-gradient(155deg, var(--marron) 0%, var(--marron-m) 55%, var(--terracota) 100%);
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-deco { position: absolute; border-radius: 50%; pointer-events: none; }
+    .cd1 { width: 400px; height: 400px; background: var(--amarillo); opacity: 0.07; top: -100px; right: -100px; }
+    .cd2 { width: 240px; height: 240px; background: var(--amarillo); opacity: 0.07; bottom: -60px; left: -60px; }
+
+    .cta-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+    .cta-h2 {
+      font-size: clamp(1.9rem,3.8vw,3.1rem); font-weight: 800;
+      color: var(--blanco); line-height: 1.15; margin: 14px 0 16px;
+    }
+    .cta-h2 span { color: var(--amarillo); }
+    .cta-sub { font-size: 1.02rem; font-weight: 300; color: rgba(255,255,255,0.72); line-height: 1.72; margin-bottom: 44px; }
+
+    .cta-options {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 14px; margin-bottom: 42px;
+    }
+    .cta-opt {
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11);
+      border-radius: var(--radio); padding: 22px 16px;
+      color: var(--blanco); transition: var(--t); display: block;
+    }
+    .cta-opt:hover { background: rgba(245,192,42,0.11); border-color: rgba(245,192,42,0.32); transform: translateY(-3px); }
+    .cta-opt-icon { font-size: 1.75rem; display: block; margin-bottom: 9px; }
+    .cta-opt h3 { font-size: 0.86rem; font-weight: 700; margin-bottom: 5px; }
+    .cta-opt p  { font-size: 0.74rem; font-weight: 300; opacity: 0.62; line-height: 1.5; }
+
+    .cta-wpp {
+      display: inline-flex; align-items: center; gap: 12px;
+      background: #25D366; color: var(--blanco);
+      padding: 17px 48px; border-radius: 50px;
+      font-weight: 700; font-size: 1.02rem;
+      transition: var(--t);
+      box-shadow: 0 8px 28px rgba(37,211,102,0.40);
+    }
+    .cta-wpp:hover { background: #1dbc5b; transform: translateY(-2px); box-shadow: 0 12px 36px rgba(37,211,102,0.52); }
+    .cta-email { margin-top: 16px; font-size: 0.83rem; color: rgba(255,255,255,0.42); }
+    .cta-email a { color: var(--amarillo); }
+
+    /* ================================================================
+       FOOTER
+    ================================================================ */
+    footer { background: #190e10; padding: 56px 0 28px; }
+    .ft-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 44px; margin-bottom: 40px;
+    }
+    .ft-brand .logo { font-size: 1.4rem; font-weight: 800; color: var(--blanco); margin-bottom: 10px; }
+    .ft-brand .logo span { color: var(--amarillo); }
+    .ft-brand p { font-size: 0.80rem; font-weight: 300; color: rgba(255,255,255,0.40); line-height: 1.70; }
+    .ft-brand .tagline { font-style: italic; color: rgba(255,255,255,0.28); margin-top: 10px; font-size: 0.76rem; }
+    .ft-col h4 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amarillo); margin-bottom: 14px; }
+    .ft-col li { margin-bottom: 9px; }
+    .ft-col a { font-size: 0.80rem; color: rgba(255,255,255,0.44); transition: color 0.2s; }
+    .ft-col a:hover { color: var(--amarillo); }
+
+    .ft-bottom {
+      border-top: 1px solid rgba(255,255,255,0.07); padding-top: 22px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+    }
+    .ft-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.22); }
+    .ft-bottom a { color: rgba(255,255,255,0.38); }
+    .social { display: flex; gap: 10px; }
+    .soc-link {
+      width: 34px; height: 34px; border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.14);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.88rem; color: rgba(255,255,255,0.44);
+      transition: var(--t);
+    }
+    .soc-link:hover { border-color: var(--amarillo); color: var(--amarillo); }
+
+    /* ================================================================
+       WHATSAPP FLOTANTE
+    ================================================================ */
+    .wpp-float {
+      position: fixed; bottom: 26px; right: 26px; z-index: 800;
+      width: 58px; height: 58px; background: #25D366;
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; font-size: 1.65rem; text-decoration: none;
+      box-shadow: 0 4px 22px rgba(37,211,102,0.52);
+      animation: wpp-pulse 2.8s ease-in-out infinite;
+    }
+    .wpp-float:hover { transform: scale(1.10); animation: none; box-shadow: 0 8px 32px rgba(37,211,102,0.65); }
+    @keyframes wpp-pulse {
+      0%,100% { box-shadow: 0 4px 22px rgba(37,211,102,0.52); }
+      50%      { box-shadow: 0 4px 32px rgba(37,211,102,0.75), 0 0 0 10px rgba(37,211,102,0.10); }
+    }
+    .wpp-tip {
+      position: fixed; bottom: 34px; right: 94px; z-index: 799;
+      background: var(--marron); color: var(--blanco);
+      padding: 7px 14px; border-radius: 8px;
+      font-size: 0.76rem; font-weight: 600; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity 0.2s;
+    }
+    .wpp-float:hover ~ .wpp-tip { opacity: 1; }
+
+    /* ================================================================
+       RESPONSIVE
+    ================================================================ */
+    @media (max-width: 1024px) {
+      .dif-grid { grid-template-columns: repeat(2,1fr); }
+      .neuro-block { grid-template-columns: 1fr; }
+      .cnt-grid { grid-template-columns: repeat(2,1fr); row-gap: 36px; }
+      .ft-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-photo-col { order: -1; }
+      .hero-frame { max-width: 280px; margin: 0 auto; }
+      .h-float-1 { left: 0; }
+      .h-float-2 { right: 0; }
+      .hero-btns { flex-direction: column; align-items: flex-start; }
+
+      .tab-panel.active { grid-template-columns: 1fr; }
+      .antes-cierre { padding: 36px 28px; }
+
+      .quien-grid { grid-template-columns: 1fr; }
+      .pq-grid { grid-template-columns: 1fr; }
+      .sv-grid { grid-template-columns: 1fr; }
+      .dif-grid { grid-template-columns: 1fr; }
+      .cur-grid { grid-template-columns: 1fr; }
+      .cta-options { grid-template-columns: 1fr; }
+      .cur-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+      .ft-grid { grid-template-columns: 1fr; gap: 28px; }
+      .ft-bottom { flex-direction: column; text-align: center; }
+      .neuro-block { padding: 28px 24px; }
+      .test-slide { padding: 0 12px; }
+      .test-card { padding: 32px 26px; }
+    }
+
+    @media (max-width: 480px) {
+      .cnt-grid { grid-template-columns: 1fr 1fr; }
+      .cta-wpp { padding: 14px 32px; font-size: 0.92rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     NAV
+══════════════════════════════════════ -->
+<nav id="nav">
+  <div class="container">
+    <div class="nav-wrap">
+      <a href="#" class="nav-logo">🐝&nbsp;Mery<span class="gold">Go.</span></a>
+      <ul class="nav-links" id="navLinks">
+        <button class="nav-close" onclick="closeMenu()">✕</button>
+        <li><a href="#quien">Sobre Mery</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#cursos">Cursos</a></li>
+        <li><a href="#para-quien">Empresas</a></li>
+        <li><a href="#cta-final" class="nav-cta">Agendar sesión</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+  <div class="h-deco h-deco-1"></div>
+  <div class="h-deco h-deco-2"></div>
+  <div class="h-deco h-deco-3"></div>
+
+  <div class="container">
+    <div class="hero-grid">
+
+      <!-- Texto -->
+      <div class="fade-up">
+        <div class="hero-badge">🐝 &nbsp;Coaching Ontológico &amp; Neurociencias</div>
+        <h1 class="hero-h1">
+          Descubrí quién sos<br>y construí la vida<br><span class="gold">que realmente querés</span>
+        </h1>
+        <p class="hero-sub">
+          Acompañamiento profesional que une el poder del coaching ontológico con las últimas investigaciones en neurociencias. Para personas y equipos que quieren resultados reales y duraderos.
+        </p>
+        <div class="hero-btns">
+          <a href="#cta-final" class="btn btn-gold">Quiero empezar →</a>
+          <a href="#servicios" class="btn btn-ghost">Ver servicios</a>
+        </div>
+      </div>
+
+      <!-- Foto -->
+      <div class="hero-photo-col fade-up d2">
+        <div class="hero-frame">
+          <!--
+            ▸ REEMPLAZAR con foto real:
+            <img src="mery-foto.jpg" alt="María Isabel González – MeryGo Coach"
+                 style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+          -->
+          <div class="photo-placeholder">
+            <span>📸</span>
+            <p>Foto de Mery<br>aquí</p>
+          </div>
+        </div>
+        <div class="h-float h-float-1">
+          <span class="fi">🎓</span>
+          <strong>Posgrado en Neurociencias</strong>
+          <span>Coach Ontológica Certificada</span>
+        </div>
+        <div class="h-float h-float-2">
+          <strong>∞</strong>
+          <span>posibilidades</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Ola de transición -->
+  <svg class="wave" viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,36 C360,72 1080,0 1440,36 L1440,72 L0,72 Z" fill="#FDF6E3"/>
+  </svg>
+</section>
+
+<!-- ══════════════════════════════════════
+     ANTES — DOLORES
+══════════════════════════════════════ -->
+<section id="antes">
+  <div class="container">
+
+    <div class="section-head fade-up">
+      <span class="tag tag-outline">¿Te suena esto?</span>
+      <h2 class="h2">Antes de empezar el proceso,<br>muchas personas se sienten así</h2>
+      <p class="lead center">Reconocer el punto de partida es el primer acto de honestidad con uno mismo.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tab-toggle fade-up">
+      <div class="tab-wrap">
+        <button class="tab-btn active" onclick="showTab('personas', this)">🙋 Personas</button>
+        <button class="tab-btn" onclick="showTab('empresas', this)">🏢 Empresas &amp; Equipos</button>
+      </div>
+    </div>
+
+    <!-- Panel personas -->
+    <div class="tab-panel active fade-up" id="tab-personas">
+      <div class="dolor-card d1">
+        <div class="d-icon">😶‍🌫️</div>
+        <h3>"Sé que puedo más, pero algo me frena"</h3>
+        <p>Tenés claridad de que tu potencial es mayor, pero la distancia entre donde estás y donde querés estar parece imposible de cruzar sola/solo.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🔁</div>
+        <h3>"Siempre termino en el mismo lugar"</h3>
+        <p>Cambiás de trabajo, de pareja, de ciudad... pero los mismos problemas reaparecen. Los patrones se repiten y no entendés por qué.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🪞</div>
+        <h3>"Me exijo demasiado y nunca es suficiente"</h3>
+        <p>La autocrítica es constante. El síndrome del impostor aparece justo cuando más lo necesitás. Nunca te sentís merecedor/a de lo que lograste.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🎯</div>
+        <h3>"No sé qué quiero en mi vida"</h3>
+        <p>Perdiste el propósito o quizás nunca lo encontraste. Cumplís con todo, pero sentís un vacío que no sabés cómo nombrar.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">😰</div>
+        <h3>"El estrés no me da tregua"</h3>
+        <p>Las demandas no paran. La ansiedad aparece como señal de que algo está desequilibrado, pero no tenés las herramientas para gestionarlo.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🏁</div>
+        <h3>"Tengo proyectos que nunca arrancan"</h3>
+        <p>Ideas, sueños, metas. Pero la procrastinación, el miedo o la falta de estructura te paralizan antes de dar el primer paso.</p>
+      </div>
+    </div>
+
+    <!-- Panel empresas -->
+    <div class="tab-panel" id="tab-empresas">
+      <div class="dolor-card">
+        <div class="d-icon">🔥</div>
+        <h3>"El equipo está agotado y desmotivado"</h3>
+        <p>La rotación aumenta, el compromiso baja y el clima se deteriora. Sabés que el problema es profundo pero no sabés cómo abordarlo.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">💬</div>
+        <h3>"La comunicación interna no funciona"</h3>
+        <p>Los conflictos se evitan en lugar de resolverse. Las conversaciones importantes no se tienen. Los malentendidos se multiplican.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">👑</div>
+        <h3>"Los líderes no saben liderar personas"</h3>
+        <p>Excelentes profesionales técnicos que al asumir posiciones de liderazgo no tienen las habilidades para gestionar equipos y emociones.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">📉</div>
+        <h3>"Los resultados no acompañan el esfuerzo"</h3>
+        <p>El equipo trabaja mucho pero los resultados no lo reflejan. Hay algo en la dinámica grupal que frena el rendimiento colectivo.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🔄</div>
+        <h3>"El cambio genera resistencia constante"</h3>
+        <p>Cada vez que la empresa intenta transformarse, el equipo se resiste. La gestión del cambio nunca sale bien y la incertidumbre paraliza.</p>
+      </div>
+      <div class="dolor-card">
+        <div class="d-icon">🧩</div>
+        <h3>"No hay cultura de equipo real"</h3>
+        <p>Cada persona trabaja en su silo. Sin confianza, sin colaboración genuina. El equipo funciona como individuos, no como un sistema.</p>
+      </div>
+    </div>
+
+    <div class="antes-cierre fade-up">
+      <p>No estás roto/a. No falla el equipo. <strong>Lo que falta es metodología probada, el acompañamiento correcto y la decisión de empezar.</strong> Para eso estoy.</p>
+      <a href="#cta-final" class="btn btn-gold">Quiero dar el primer paso →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     QUIÉN ES MERY
+══════════════════════════════════════ -->
+<section id="quien">
+  <div class="container">
+    <div class="quien-grid">
+
+      <!-- Foto -->
+      <div class="quien-photo fade-up">
+        <div class="quien-deco-circle"></div>
+        <div class="quien-frame">
+          <!--
+            ▸ REEMPLAZAR con foto real:
+            <img src="mery-foto-2.jpg" alt="Mery González"
+                 style="width:100%;height:100%;object-fit:cover;object-position:top center;">
+          -->
+          <div class="quien-placeholder">🌻</div>
+        </div>
+        <div class="quien-badge-float">
+          <span class="num">🐝</span>
+          <span class="lbl">MeryGo. Coach</span>
+        </div>
+      </div>
+
+      <!-- Texto -->
+      <div class="fade-up d2">
+        <span class="tag tag-gold">¿Quién es Mery?</span>
+        <h2 class="h2">Soy María Isabel González.<br>Todos me llaman <span class="gold">Mery.</span></h2>
+
+        <blockquote>
+          "Mi propósito es servir y compartir mi filosofía de vida: conectar con lo que realmente importa, disfrutar los procesos y confiar en una misma."
+        </blockquote>
+
+        <p>Soy <strong>Coach Ontológica Profesional con Posgrado en Neurociencias</strong>. Nací en Río Gallegos, Patagonia Argentina, y desde allí acompaño a personas y equipos en todo el país y el mundo en formato online.</p>
+
+        <p>Hace unos años atravesé situaciones difíciles que me llevaron a cuestionar mi vida y mis elecciones. Fue entonces cuando descubrí la importancia de conectar con el cuerpo y la mente — y que la naturaleza era mi camino para hacerlo. Esa búsqueda me llevó al coaching, y el coaching me llevó a vos.</p>
+
+        <p>Hoy combino la profundidad del <strong>coaching ontológico</strong> con el rigor científico de las <strong>neurociencias</strong> para acompañar procesos reales: sin fórmulas mágicas, sin atajos, con presencia auténtica y herramientas concretas.</p>
+
+        <div class="chips">
+          <span class="chip">🎓 Coach Ontológica Profesional</span>
+          <span class="chip">🧠 Posgrado en Neurociencias</span>
+          <span class="chip">📍 Río Gallegos, Argentina</span>
+          <span class="chip">💻 Online y presencial</span>
+          <span class="chip">🌿 Mente · Cuerpo · Naturaleza</span>
+          <span class="chip">👩‍👧‍👦 Mamá presente</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     PARA QUIÉN ES
+══════════════════════════════════════ -->
+<section id="para-quien">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="tag tag-terra">¿Es para mí?</span>
+      <h2 class="h2">Trabajo con <span class="gold">personas</span><br>y con <span class="underline">empresas</span></h2>
+      <p class="lead center">Dos mundos que requieren el mismo ingrediente: personas dispuestas a crecer de verdad.</p>
+    </div>
+
+    <div class="pq-grid fade-up">
+
+      <div class="pq-card pq-personas">
+        <div class="pq-icon-wrap">🙋</div>
+        <h3>Para personas</h3>
+        <p class="sub">Si estás en un momento de búsqueda, transición o simplemente querés vivir de forma más plena y auténtica.</p>
+        <ul class="pq-list">
+          <li>Profesionales en crisis de propósito o dirección</li>
+          <li>Personas que quieren conocerse más profundamente</li>
+          <li>Emprendedores que quieren liderar desde adentro</li>
+          <li>Quienes buscan mejorar sus relaciones y comunicación</li>
+          <li>Personas atravesando cambios de vida importantes</li>
+          <li>Cualquiera que quiera dejar de repetir los mismos patrones</li>
+        </ul>
+        <a href="#cta-final" class="btn btn-dark">Quiero una sesión individual →</a>
+      </div>
+
+      <div class="pq-card pq-empresas">
+        <div class="pq-icon-wrap">🏢</div>
+        <h3>Para empresas y equipos</h3>
+        <p class="sub">Si liderás un equipo, una empresa o un área y querés que las personas den lo mejor de sí mismas.</p>
+        <ul class="pq-list">
+          <li>Líderes que quieren potenciar su estilo de liderazgo</li>
+          <li>Equipos con problemas de comunicación o cohesión</li>
+          <li>Organizaciones en procesos de cambio o transformación</li>
+          <li>HR que buscan programas de bienestar con impacto real</li>
+          <li>Empresas que quieren reducir burnout y rotación</li>
+          <li>Equipos de alto rendimiento que van al siguiente nivel</li>
+        </ul>
+        <a href="#cta-final" class="btn btn-gold">Solicitar propuesta empresarial →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     SERVICIOS
+══════════════════════════════════════ -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="tag tag-gold">Servicios</span>
+      <h2 class="h2">¿Cómo puedo <span class="gold">acompañarte</span>?</h2>
+      <p class="lead center">Cada modalidad está diseñada para diferentes momentos y necesidades. Siempre con metodología y calidez.</p>
+    </div>
+
+    <div class="sv-grid">
+
+      <div class="sv-card fade-up d1">
+        <div class="sv-top">
+          <div class="sv-circle sv-c1">🌱</div>
+          <div>
+            <h3>Sesiones 1:1 — Coaching Individual</h3>
+            <p>Proceso personalizado para encontrar tu propósito, superar bloqueos y vivir de forma más auténtica.</p>
+          </div>
+        </div>
+        <div class="sv-body">
+          <ul class="sv-items">
+            <li>Autoliderazgo y autoconocimiento profundo</li>
+            <li>Gestión emocional y creencias limitantes</li>
+            <li>Propósito, valores y toma de decisiones</li>
+            <li>Amor propio y superación de la autoexigencia</li>
+            <li>Sesiones online y presencial (Río Gallegos)</li>
+            <li>Sesiones individuales o procesos completos</li>
+          </ul>
+          <div class="sv-footer">
+            <span class="sv-tag">Consultá disponibilidad</span>
+            <a href="#cta-final" class="btn btn-gold btn-sm">Agendar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sv-card fade-up d2">
+        <div class="sv-top">
+          <div class="sv-circle sv-c2">💼</div>
+          <div>
+            <h3>Coaching Ejecutivo</h3>
+            <p>Para líderes y profesionales que quieren potenciar su performance, comunicación y bienestar laboral.</p>
+          </div>
+        </div>
+        <div class="sv-body">
+          <ul class="sv-items">
+            <li>Liderazgo consciente y situacional</li>
+            <li>Gestión del estrés y productividad sostenible</li>
+            <li>Comunicación efectiva y conversaciones difíciles</li>
+            <li>Toma de decisiones bajo presión</li>
+            <li>Síndrome del impostor en posiciones de liderazgo</li>
+            <li>Equilibrio vida personal y profesional</li>
+          </ul>
+          <div class="sv-footer">
+            <span class="sv-tag">Consultá disponibilidad</span>
+            <a href="#cta-final" class="btn btn-gold btn-sm">Consultar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sv-card fade-up d3">
+        <div class="sv-top">
+          <div class="sv-circle sv-c3">🤝</div>
+          <div>
+            <h3>Talleres y Programas para Empresas</h3>
+            <p>Intervenciones grupales diseñadas a medida para transformar la dinámica de tu equipo u organización.</p>
+          </div>
+        </div>
+        <div class="sv-body">
+          <ul class="sv-items">
+            <li>Talleres de comunicación y trabajo en equipo</li>
+            <li>Programas de gestión del cambio organizacional</li>
+            <li>Desarrollo de liderazgo para jefes y coordinadores</li>
+            <li>Retiros y jornadas de cohesión grupal</li>
+            <li>Diagnóstico inicial y seguimiento de impacto</li>
+            <li>Modalidad presencial, online o híbrida</li>
+          </ul>
+          <div class="sv-footer">
+            <span class="sv-tag">Propuesta a medida</span>
+            <a href="#cta-final" class="btn btn-gold btn-sm">Solicitar →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="sv-card fade-up d4">
+        <div class="sv-top">
+          <div class="sv-circle sv-c4">🎓</div>
+          <div>
+            <h3>Cursos Online y Recursos Digitales</h3>
+            <p>Programas intensivos que podés hacer a tu ritmo, con metodología ontológica y base en neurociencias.</p>
+          </div>
+        </div>
+        <div class="sv-body">
+          <ul class="sv-items">
+            <li>Cursos en vivo con grupos reducidos</li>
+            <li>Contenidos grabados disponibles 24/7</li>
+            <li>Recursos y herramientas descargables</li>
+            <li>Comunidad de práctica y acompañamiento</li>
+            <li>Certificados de finalización</li>
+            <li>Integración práctica en tu vida cotidiana</li>
+          </ul>
+          <div class="sv-footer">
+            <span class="sv-tag">Consultá disponibilidad</span>
+            <a href="#cursos" class="btn btn-dark btn-sm">Ver cursos →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     POR QUÉ MERY
+══════════════════════════════════════ -->
+<section id="por-que">
+  <div class="pq-bg-deco pq-bg-1"></div>
+  <div class="pq-bg-deco pq-bg-2"></div>
+
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="tag tag-dark">¿Por qué Mery?</span>
+      <h2 class="h2 light">La diferencia que cambia<br><span class="gold">el resultado</span></h2>
+      <p class="lead light center">No todo el coaching es igual. Esto es lo que hace único el proceso con MeryGo.</p>
+    </div>
+
+    <div class="dif-grid">
+      <div class="dif-card fade-up d1">
+        <div class="dif-icon">🧠</div>
+        <h3>Ontología + Neurociencias</h3>
+        <p>La única combinación que trabaja al mismo tiempo con el lenguaje, las emociones y la biología del cambio. No intuición: metodología con respaldo científico.</p>
+      </div>
+      <div class="dif-card fade-up d2">
+        <div class="dif-icon">💛</div>
+        <h3>Presencia auténtica</h3>
+        <p>Mery no aplica recetas ni repite fórmulas. Llega a cada proceso con escucha real, sin juicios, y con la disposición de quien ya atravesó su propia transformación.</p>
+      </div>
+      <div class="dif-card fade-up d3">
+        <div class="dif-icon">∞</div>
+        <h3>La vida no es lineal</h3>
+        <p>El proceso respeta tu tiempo, tu historia y tus posibilidades reales. No hay una sola forma de crecer: hay la tuya.</p>
+      </div>
+      <div class="dif-card fade-up d1">
+        <div class="dif-icon">🎯</div>
+        <h3>Resultados observables</h3>
+        <p>El coaching ontológico trabaja en la acción: cada sesión incluye compromisos concretos que transforman la realidad cotidiana, no solo el pensamiento.</p>
+      </div>
+      <div class="dif-card fade-up d2">
+        <div class="dif-icon">🏢</div>
+        <h3>Individual y organizacional</h3>
+        <p>La misma profundidad metodológica para personas y para equipos. El cambio en las organizaciones empieza en las personas que las forman.</p>
+      </div>
+      <div class="dif-card fade-up d3">
+        <div class="dif-icon">🐝</div>
+        <h3>Productividad con propósito</h3>
+        <p>La abeja como símbolo no es casual: trabajo organizado, colectivo, que transforma lo simple en algo valioso. Así es el proceso con Mery.</p>
+      </div>
+    </div>
+
+    <div class="neuro-block fade-up">
+      <div class="neuro-text">
+        <h3>Coaching Ontológico <span>+</span> Neurociencias:<br>¿qué significa esto para vos?</h3>
+        <p>El coaching ontológico trabaja con el lenguaje, las emociones y el cuerpo como los tres pilares que determinan cómo interpretamos el mundo y cómo actuamos en él.</p>
+        <p>Las neurociencias nos explican por qué ciertos patrones se repiten, cómo se forman las creencias y cómo el cerebro puede cambiar con las condiciones adecuadas. Juntos, estos dos marcos te dan herramientas concretas para ser diferente, no solo pensarlo.</p>
+        <div class="neuro-pills">
+          <span class="neuro-pill">Neuroplasticidad</span>
+          <span class="neuro-pill">Gestión emocional</span>
+          <span class="neuro-pill">Lenguaje generativo</span>
+          <span class="neuro-pill">Corporalidad</span>
+          <span class="neuro-pill">Observador · acción · resultado</span>
+        </div>
+      </div>
+      <div class="neuro-visual">
+        <div class="big">∞</div>
+        <div class="sub">posibilidades desde adentro</div>
+        <blockquote>"La autenticidad convierte lo imposible en millones de posibilidades. Confiá en lo que sos."</blockquote>
+        <cite>— MeryGo. Coach</cite>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIOS — CARRUSEL
+══════════════════════════════════════ -->
+<section id="testimonios">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="tag tag-terra">Testimonios</span>
+      <h2 class="h2">Lo que dicen quienes ya<br><span class="gold">dieron el paso</span></h2>
+      <p class="lead center">El cambio real se mide en la vida de las personas que decidieron empezar.</p>
+    </div>
+
+    <div class="carousel-wrap fade-up">
+      <div class="carousel-track-outer">
+        <div class="carousel-track" id="carouselTrack">
+
+          <div class="test-slide">
+            <div class="test-card">
+              <div class="test-q">"</div>
+              <div class="test-stars">★★★★★</div>
+              <p class="test-text">"El proceso con Mery fue un antes y un después en mi vida. Por primera vez entendí por qué repetía los mismos patrones y cómo salir de ellos. No es solo 'hablar con alguien': es un trabajo profundo que te transforma desde adentro."</p>
+              <div class="test-author">
+                <div class="test-avatar">👩</div>
+                <div>
+                  <strong>Laura G.</strong>
+                  <span>Profesional, 38 años · Buenos Aires</span>
+                </div>
+              </div>
+              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
+            </div>
+          </div>
+
+          <div class="test-slide">
+            <div class="test-card">
+              <div class="test-q">"</div>
+              <div class="test-stars">★★★★★</div>
+              <p class="test-text">"Llegué sintiéndome perdido en mi carrera y sin energía para nada. Hoy lidero mi equipo desde un lugar completamente diferente. Las herramientas que me dio Mery son para toda la vida."</p>
+              <div class="test-author">
+                <div class="test-avatar">👨</div>
+                <div>
+                  <strong>Marcos T.</strong>
+                  <span>Gerente de Operaciones, 44 años · Mendoza</span>
+                </div>
+              </div>
+              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
+            </div>
+          </div>
+
+          <div class="test-slide">
+            <div class="test-card">
+              <div class="test-q">"</div>
+              <div class="test-stars">★★★★★</div>
+              <p class="test-text">"Lo que más me sorprendió fue la calidez del acompañamiento. Mery no te juzga, te escucha de verdad y sabe exactamente qué preguntas hacerte para que vos mismo encontrés las respuestas. Eso no tiene precio."</p>
+              <div class="test-author">
+                <div class="test-avatar">👩</div>
+                <div>
+                  <strong>Valeria M.</strong>
+                  <span>Emprendedora, 35 años · Córdoba</span>
+                </div>
+              </div>
+              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
+            </div>
+          </div>
+
+          <div class="test-slide">
+            <div class="test-card">
+              <div class="test-q">"</div>
+              <div class="test-stars">★★★★★</div>
+              <p class="test-text">"Contratamos a Mery para un programa con nuestro equipo de liderazgo y el impacto fue inmediato. La comunicación mejoró notablemente y el clima organizacional cambió en pocas semanas."</p>
+              <div class="test-author">
+                <div class="test-avatar">🏢</div>
+                <div>
+                  <strong>Empresa — [Nombre a agregar]</strong>
+                  <span>⚠️ Testimonio empresarial placeholder</span>
+                </div>
+              </div>
+              <p class="placeholder-note">⚠️ Testimonio placeholder — reemplazar con texto real</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="carousel-controls">
+        <button class="c-btn" onclick="moveCarousel(-1)">←</button>
+        <div class="c-dots" id="cDots">
+          <div class="c-dot active" onclick="goToSlide(0)"></div>
+          <div class="c-dot" onclick="goToSlide(1)"></div>
+          <div class="c-dot" onclick="goToSlide(2)"></div>
+          <div class="c-dot" onclick="goToSlide(3)"></div>
+        </div>
+        <button class="c-btn" onclick="moveCarousel(1)">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CONTADORES ANIMADOS
+══════════════════════════════════════ -->
+<section id="contadores">
+  <div class="container">
+    <div class="cnt-grid">
+      <div class="cnt-item fade-up d1">
+        <span class="cnt-num" data-target="100" data-suffix="+">0</span>
+        <p class="cnt-lbl">Personas acompañadas</p>
+      </div>
+      <div class="cnt-item fade-up d2">
+        <span class="cnt-num" data-target="5" data-suffix="+">0</span>
+        <p class="cnt-lbl">Años de experiencia</p>
+      </div>
+      <div class="cnt-item fade-up d3">
+        <span class="cnt-num" data-target="10" data-suffix="+">0</span>
+        <p class="cnt-lbl">Empresas y equipos</p>
+      </div>
+      <div class="cnt-item fade-up d4">
+        <span class="cnt-num" data-target="98" data-suffix="%">0</span>
+        <p class="cnt-lbl">Recomendarían el proceso</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CURSOS Y RECURSOS
+══════════════════════════════════════ -->
+<section id="cursos">
+  <div class="container">
+    <div class="section-head fade-up">
+      <span class="tag tag-gold">Cursos y recursos</span>
+      <h2 class="h2">Aprendé a tu ritmo,<br><span class="gold">transformate sin límites</span></h2>
+      <p class="lead center">Programas intensivos con metodología ontológica y base en neurociencias. Desde cualquier lugar del mundo.</p>
+    </div>
+
+    <div class="cur-grid">
+
+      <div class="cur-card featured fade-up d1">
+        <div class="featured-badge">✦ Disponible</div>
+        <div class="cur-thumb ct1">🚀</div>
+        <div class="cur-body">
+          <h3>Potenciá tu Desarrollo Personal</h3>
+          <p>6 encuentros intensivos en vivo para transformar tu relación con vos mismo/a. Metodología ontológica + herramientas de neurociencias.</p>
+          <div class="cur-tags">
+            <span class="cur-tag">100% Online</span>
+            <span class="cur-tag">6 encuentros en vivo</span>
+            <span class="cur-tag">Grupo reducido</span>
+          </div>
+          <div class="cur-footer">
+            <span class="cur-estado estado-ok">● Disponible ahora</span>
+            <a href="#cta-final" class="btn btn-gold btn-sm">Anotarme →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cur-card fade-up d2">
+        <div class="cur-thumb ct2">🧠</div>
+        <div class="cur-body">
+          <h3>Autoliderazgo: Tu Brújula Interior</h3>
+          <p>Herramientas prácticas para liderar tu vida desde adentro: emociones, creencias, decisiones y acción. Próxima edición en preparación.</p>
+          <div class="cur-tags">
+            <span class="cur-tag">Online</span>
+            <span class="cur-tag">En desarrollo</span>
+          </div>
+          <div class="cur-footer">
+            <span class="cur-estado estado-soon">◌ Próximamente</span>
+            <a href="#cta-final" class="btn btn-dark btn-sm">Avisame →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="cur-card fade-up d3">
+        <div class="cur-thumb ct3">💛</div>
+        <div class="cur-body">
+          <h3>Amor Propio sin Autoexigencia</h3>
+          <p>Un recorrido por la autocompasión, el merecimiento y la construcción de una relación más amable con vos mismo/a.</p>
+          <div class="cur-tags">
+            <span class="cur-tag">Online</span>
+            <span class="cur-tag">En desarrollo</span>
+          </div>
+          <div class="cur-footer">
+            <span class="cur-estado estado-soon">◌ Próximamente</span>
+            <a href="#cta-final" class="btn btn-dark btn-sm">Avisame →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cur-banner fade-up">
+      <div>
+        <h3>🐝 ¿Querés ser el primero en saber sobre nuevos cursos?</h3>
+        <p>Escribinos y te avisamos antes que a nadie. Sin spam — solo lo que te suma.</p>
+      </div>
+      <div class="btns">
+        <a href="#cta-final" class="btn btn-gold">Quiero que me avisen</a>
+        <a href="#cta-final" class="btn btn-dark">Ver todos los cursos</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CTA FINAL
+══════════════════════════════════════ -->
+<section id="cta-final">
+  <div class="cta-deco cd1"></div>
+  <div class="cta-deco cd2"></div>
+
+  <div class="container">
+    <div class="cta-inner">
+      <span class="tag tag-dark">¿Empezamos?</span>
+      <h2 class="cta-h2">El primer paso es decidir<br>que <span>querés más</span></h2>
+      <p class="cta-sub">Cada transformación empieza con una conversación honesta. Elegí cómo querés conectar con Mery y empecemos juntos.</p>
+
+      <div class="cta-options fade-up">
+        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Me%20gustaría%20agendar%20una%20sesión%20de%20coaching." class="cta-opt" target="_blank">
+          <span class="cta-opt-icon">📱</span>
+          <h3>Sesión individual</h3>
+          <p>Coordinamos una sesión de diagnóstico sin costo por WhatsApp.</p>
+        </a>
+        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20información%20sobre%20los%20cursos%20online." class="cta-opt" target="_blank">
+          <span class="cta-opt-icon">🎓</span>
+          <h3>Cursos online</h3>
+          <p>Consultá disponibilidad e inscripción a los próximos programas.</p>
+        </a>
+        <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20conocer%20opciones%20de%20coaching%20para%20mi%20empresa." class="cta-opt" target="_blank">
+          <span class="cta-opt-icon">🏢</span>
+          <h3>Propuesta empresarial</h3>
+          <p>Diseñamos un programa a medida para tu equipo u organización.</p>
+        </a>
+      </div>
+
+      <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20conocer%20más%20sobre%20el%20coaching." class="cta-wpp" target="_blank">
+        💬 &nbsp;Escribime por WhatsApp
+      </a>
+      <p class="cta-email">O por email: <a href="mailto:merygon@gmail.com">merygon@gmail.com</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <p class="logo">🐝 Mery<span>Go.</span> Coach</p>
+        <p>Coach Ontológica Profesional con Posgrado en Neurociencias. Acompañamiento auténtico para personas y equipos que quieren crecer de verdad.</p>
+        <p class="tagline">"La verdadera belleza yace en poder ser creíble y auténtico."</p>
+      </div>
+      <div class="ft-col">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Coaching Individual</a></li>
+          <li><a href="#servicios">Coaching Ejecutivo</a></li>
+          <li><a href="#servicios">Talleres para Empresas</a></li>
+          <li><a href="#cursos">Cursos Online</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Secciones</h4>
+        <ul>
+          <li><a href="#quien">Sobre Mery</a></li>
+          <li><a href="#por-que">Por qué MeryGo.</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+          <li><a href="#cta-final">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/549XXXXXXXXXX" target="_blank">💬 WhatsApp</a></li>
+          <li><a href="mailto:merygon@gmail.com">✉️ merygon@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/merygo.coach" target="_blank">📸 @merygo.coach</a></li>
+          <li><a href="#">📍 Río Gallegos, Argentina</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2024 MeryGo. Coach — Todos los derechos reservados</p>
+      <div class="social">
+        <a href="https://www.instagram.com/merygo.coach" class="soc-link" target="_blank">📸</a>
+        <a href="https://wa.me/549XXXXXXXXXX" class="soc-link" target="_blank">💬</a>
+        <a href="mailto:merygon@gmail.com" class="soc-link">✉️</a>
+      </div>
+      <p>Diseñado con ❤️ para <a href="#">MeryGo. Coach</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!" class="wpp-float" target="_blank" title="Escribirme por WhatsApp">💬</a>
+<div class="wpp-tip">¡Hablemos! 🐝</div>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+'use strict';
+
+/* ── NAV: sticky scroll ───────────────────────────── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ── NAV: mobile menu ─────────────────────────────── */
+function toggleMenu() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('navLinks').classList.remove('open');
+}
+document.querySelectorAll('#navLinks a').forEach(a =>
+  a.addEventListener('click', closeMenu)
+);
+
+/* ── TABS personas / empresas ─────────────────────── */
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+/* ── SCROLL FADE-UP (Intersection Observer) ───────── */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+/* ── CONTADORES ANIMADOS ──────────────────────────── */
+let countersRan = false;
+
+function runCounters() {
+  document.querySelectorAll('.cnt-num').forEach(el => {
+    const target  = parseInt(el.dataset.target);
+    const suffix  = el.dataset.suffix || '';
+    const dur     = 1800;
+    const start   = performance.now();
+
+    (function tick(now) {
+      const p = Math.min((now - start) / dur, 1);
+      const v = Math.floor((1 - Math.pow(1 - p, 3)) * target);
+      el.textContent = v + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(start);
+  });
+}
+
+const cntObs = new IntersectionObserver(entries => {
+  if (entries[0].isIntersecting && !countersRan) {
+    countersRan = true;
+    runCounters();
+    cntObs.disconnect();
+  }
+}, { threshold: 0.35 });
+cntObs.observe(document.getElementById('contadores'));
+
+/* ── CARRUSEL TESTIMONIOS ─────────────────────────── */
+const TOTAL_SLIDES = 4;
+let current = 0;
+const track = document.getElementById('carouselTrack');
+const dots  = document.querySelectorAll('.c-dot');
+
+function goToSlide(idx) {
+  current = idx;
+  track.style.transform = `translateX(-${current * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === current));
+}
+
+function moveCarousel(dir) {
+  let next = (current + dir + TOTAL_SLIDES) % TOTAL_SLIDES;
+  goToSlide(next);
+}
+
+/* Auto-avance cada 6 s, pausa en hover */
+let autoPlay = setInterval(() => moveCarousel(1), 6000);
+const carousel = document.querySelector('.carousel-wrap');
+carousel.addEventListener('mouseenter', () => clearInterval(autoPlay));
+carousel.addEventListener('mouseleave', () => {
+  autoPlay = setInterval(() => moveCarousel(1), 6000);
+});
+
+/* Swipe touch */
+let touchX = 0;
+track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+track.addEventListener('touchend',   e => {
+  const diff = touchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 48) moveCarousel(diff > 0 ? 1 : -1);
+});
+</script>
+
+</body>
+</html>

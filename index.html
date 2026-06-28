@@ -273,8 +273,8 @@
     #antes {
       padding: 96px 0 80px;
       background:
-        linear-gradient(rgba(245,235,220,0.90), rgba(245,235,220,0.90)),
-        url('sesion.jpeg') center 40% / cover no-repeat;
+        linear-gradient(rgba(245,235,220,0.78), rgba(245,235,220,0.82)),
+        url('sesion.jpeg') center 35% / cover no-repeat;
     }
 
     .section-head { text-align: center; margin-bottom: 56px; }
@@ -344,18 +344,17 @@
     .quien-frame {
       border-radius: var(--radio-l); overflow: hidden;
       aspect-ratio: 4/5; position: relative; z-index: 1;
-      background: linear-gradient(135deg, var(--crema-m), var(--amarillo));
-      display: flex; align-items: center; justify-content: center;
+      background: var(--crema-m);
+      display: block;
     }
     .quien-placeholder {
       font-size: 7rem; opacity: 0.5;
-      position: relative; z-index: 2;
     }
     .quien-frame img {
       position: absolute; inset: 0;
       width: 100%; height: 100%;
-      object-fit: cover; object-position: center top;
-      z-index: 1;
+      object-fit: cover; object-position: center 22%;
+      display: block;
     }
     .quien-frame::after {
       content: '';
@@ -398,7 +397,12 @@
     /* ================================================================
        PARA QUIÉN ES
     ================================================================ */
-    #para-quien { padding: 100px 0; background: var(--gris); }
+    #para-quien {
+      padding: 100px 0;
+      background:
+        linear-gradient(rgba(247,242,235,0.93), rgba(247,242,235,0.93)),
+        url('desarrollo.jpeg') center 30% / cover no-repeat;
+    }
 
     .pq-grid {
       display: grid; grid-template-columns: 1fr 1fr;
@@ -534,7 +538,9 @@
     ================================================================ */
     #por-que {
       padding: 100px 0;
-      background: linear-gradient(148deg, var(--marron) 0%, #3e2226 100%);
+      background:
+        linear-gradient(rgba(45,27,30,0.82), rgba(45,27,30,0.86)),
+        url('enfoque.jpeg') center 35% / cover no-repeat;
       position: relative; overflow: hidden;
     }
     .pq-bg-deco {
@@ -996,7 +1002,7 @@
         <div class="quien-deco-circle"></div>
         <div class="quien-frame">
           <img src="foto-personal3.jpeg" alt="Mery González – Coach Ontológica"
-               style="width:100%;height:100%;object-fit:cover;object-position:center 15%;">
+               style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 22%;display:block;">
         </div>
         <div class="quien-badge-float">
           <span class="num">M.</span>

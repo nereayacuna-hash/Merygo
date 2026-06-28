@@ -405,10 +405,10 @@
     .pq-icon-wrap {
       width: 62px; height: 62px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.75rem; margin-bottom: 18px;
+      margin-bottom: 18px;
     }
-    .pq-personas .pq-icon-wrap { background: var(--amarillo); }
-    .pq-empresas .pq-icon-wrap { background: rgba(245,192,42,0.15); }
+    .pq-personas .pq-icon-wrap { background: var(--amarillo); color: var(--marron); }
+    .pq-empresas .pq-icon-wrap { background: rgba(245,192,42,0.15); color: var(--amarillo); }
 
     .pq-card h3 { font-size: 1.25rem; font-weight: 800; margin-bottom: 10px; }
     .pq-personas h3 { color: var(--marron); }
@@ -451,8 +451,9 @@
     .sv-circle {
       width: 58px; height: 58px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.55rem; flex-shrink: 0;
+      flex-shrink: 0; color: var(--marron);
     }
+    .sv-c2 { color: var(--terracota); }
     .sv-c1 { background: rgba(245,192,42,0.18); }
     .sv-c2 { background: rgba(196,97,43,0.14); }
     .sv-c3 { background: rgba(45,27,30,0.08);  }
@@ -511,7 +512,7 @@
     .dif-icon {
       width: 68px; height: 68px; background: rgba(245,192,42,0.14);
       border-radius: 50%; display: flex; align-items: center;
-      justify-content: center; font-size: 1.9rem; margin: 0 auto 18px;
+      justify-content: center; margin: 0 auto 18px; color: var(--amarillo);
     }
     .dif-card h3 { font-size: 0.97rem; font-weight: 700; color: var(--blanco); margin-bottom: 10px; }
     .dif-card p  { font-size: 0.82rem; font-weight: 300; color: rgba(255,255,255,0.62); line-height: 1.68; }
@@ -644,11 +645,12 @@
     }
     .cur-thumb {
       height: 155px; display: flex;
-      align-items: center; justify-content: center; font-size: 3.4rem;
+      align-items: center; justify-content: center;
+      position: relative; overflow: hidden;
     }
-    .ct1 { background: linear-gradient(135deg,#FFF3C7,#FFD84D); }
-    .ct2 { background: linear-gradient(135deg,#FFE4D4,#F0A07A); }
-    .ct3 { background: linear-gradient(135deg,#F5E8C0,#E8C84A); }
+    .ct1 { background: linear-gradient(135deg, #2D1B1E 0%, #4a2d32 100%); }
+    .ct2 { background: linear-gradient(135deg, #C4612B 0%, #8B3010 100%); }
+    .ct3 { background: linear-gradient(135deg, #D4960A 0%, #F5C02A 100%); }
     .cur-body { padding: 22px; }
     .cur-body h3 { font-size: 0.97rem; font-weight: 700; color: var(--marron); margin-bottom: 7px; line-height: 1.35; }
     .cur-body p  { font-size: 0.80rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; margin-bottom: 14px; }
@@ -704,7 +706,7 @@
       color: var(--blanco); transition: var(--t); display: block;
     }
     .cta-opt:hover { background: rgba(245,192,42,0.11); border-color: rgba(245,192,42,0.32); transform: translateY(-3px); }
-    .cta-opt-icon { font-size: 1.75rem; display: block; margin-bottom: 9px; }
+    .cta-opt-icon { display: flex; align-items: center; justify-content: center; margin-bottom: 9px; color: var(--marron); }
     .cta-opt h3 { font-size: 0.86rem; font-weight: 700; margin-bottom: 5px; }
     .cta-opt p  { font-size: 0.74rem; font-weight: 300; opacity: 0.62; line-height: 1.5; }
 
@@ -875,11 +877,11 @@
       <!-- Foto -->
       <div class="hero-photo-col fade-up d2">
         <div class="hero-frame">
-          <img src="foto-personal2.jpeg" alt="María Isabel González – MeryGo Coach"
+          <img src="fotopersonal.jpeg" alt="María Isabel González – MeryGo Coach"
                style="width:100%;height:100%;object-fit:cover;object-position:top center;">
         </div>
         <div class="h-float h-float-1">
-          <span class="fi">🎓</span>
+          <span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--marron)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
           <strong>Posgrado en Neurociencias</strong>
           <span>Coach Ontológica Certificada</span>
         </div>
@@ -1005,7 +1007,7 @@
       <div class="quien-photo fade-up">
         <div class="quien-deco-circle"></div>
         <div class="quien-frame">
-          <img src="fotopersonal.jpeg" alt="Mery González – Coach Ontológica"
+          <img src="foto-personal2.jpeg" alt="Mery González – Coach Ontológica"
                style="width:100%;height:100%;object-fit:cover;object-position:top center;">
         </div>
         <div class="quien-badge-float">
@@ -1030,10 +1032,10 @@
         <p>Hoy combino la profundidad del <strong>coaching ontológico</strong> con el rigor científico de las <strong>neurociencias</strong> para acompañar procesos reales: sin fórmulas mágicas, sin atajos, con presencia auténtica y herramientas concretas.</p>
 
         <div class="chips">
-          <span class="chip">🎓 Coach Ontológica Profesional</span>
-          <span class="chip">🧠 Posgrado en Neurociencias</span>
-          <span class="chip">📍 Río Gallegos, Argentina</span>
-          <span class="chip">💻 Online y presencial</span>
+          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/></svg> Coach Ontológica Profesional</span>
+          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Posgrado en Neurociencias</span>
+          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Río Gallegos, Argentina</span>
+          <span class="chip"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8,21 16,21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Online y presencial</span>
           <span class="chip">🌿 Mente · Cuerpo · Naturaleza</span>
           <span class="chip">👩‍👧‍👦 Mamá presente</span>
         </div>
@@ -1057,7 +1059,7 @@
     <div class="pq-grid fade-up">
 
       <div class="pq-card pq-personas">
-        <div class="pq-icon-wrap">🙋</div>
+        <div class="pq-icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
         <h3>Para personas</h3>
         <p class="sub">Si estás en un momento de búsqueda, transición o simplemente querés vivir de forma más plena y auténtica.</p>
         <ul class="pq-list">
@@ -1072,7 +1074,7 @@
       </div>
 
       <div class="pq-card pq-empresas">
-        <div class="pq-icon-wrap">🏢</div>
+        <div class="pq-icon-wrap"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
         <h3>Para empresas y equipos</h3>
         <p class="sub">Si liderás un equipo, una empresa o un área y querés que las personas den lo mejor de sí mismas.</p>
         <ul class="pq-list">
@@ -1105,7 +1107,7 @@
 
       <div class="sv-card fade-up d1">
         <div class="sv-top">
-          <div class="sv-circle sv-c1">🌱</div>
+          <div class="sv-circle sv-c1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
           <div>
             <h3>Sesiones 1:1 — Coaching Individual</h3>
             <p>Proceso personalizado para encontrar tu propósito, superar bloqueos y vivir de forma más auténtica.</p>
@@ -1129,7 +1131,7 @@
 
       <div class="sv-card fade-up d2">
         <div class="sv-top">
-          <div class="sv-circle sv-c2">💼</div>
+          <div class="sv-circle sv-c2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
           <div>
             <h3>Coaching Ejecutivo</h3>
             <p>Para líderes y profesionales que quieren potenciar su performance, comunicación y bienestar laboral.</p>
@@ -1153,7 +1155,7 @@
 
       <div class="sv-card fade-up d3">
         <div class="sv-top">
-          <div class="sv-circle sv-c3">🤝</div>
+          <div class="sv-circle sv-c3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
           <div>
             <h3>Talleres y Programas para Empresas</h3>
             <p>Intervenciones grupales diseñadas a medida para transformar la dinámica de tu equipo u organización.</p>
@@ -1177,7 +1179,7 @@
 
       <div class="sv-card fade-up d4">
         <div class="sv-top">
-          <div class="sv-circle sv-c4">🎓</div>
+          <div class="sv-circle sv-c4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div>
           <div>
             <h3>Cursos Online y Recursos Digitales</h3>
             <p>Programas intensivos que podés hacer a tu ritmo, con metodología ontológica y base en neurociencias.</p>
@@ -1219,32 +1221,32 @@
 
     <div class="dif-grid">
       <div class="dif-card fade-up d1">
-        <div class="dif-icon">🧠</div>
+        <div class="dif-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
         <h3>Ontología + Neurociencias</h3>
         <p>La única combinación que trabaja al mismo tiempo con el lenguaje, las emociones y la biología del cambio. No intuición: metodología con respaldo científico.</p>
       </div>
       <div class="dif-card fade-up d2">
-        <div class="dif-icon">💛</div>
+        <div class="dif-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <h3>Presencia auténtica</h3>
         <p>Mery no aplica recetas ni repite fórmulas. Llega a cada proceso con escucha real, sin juicios, y con la disposición de quien ya atravesó su propia transformación.</p>
       </div>
       <div class="dif-card fade-up d3">
-        <div class="dif-icon">∞</div>
+        <div class="dif-icon"><span style="font-size:2rem;font-weight:300;line-height:1;color:var(--amarillo);">∞</span></div>
         <h3>La vida no es lineal</h3>
         <p>El proceso respeta tu tiempo, tu historia y tus posibilidades reales. No hay una sola forma de crecer: hay la tuya.</p>
       </div>
       <div class="dif-card fade-up d1">
-        <div class="dif-icon">🎯</div>
+        <div class="dif-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
         <h3>Resultados observables</h3>
         <p>El coaching ontológico trabaja en la acción: cada sesión incluye compromisos concretos que transforman la realidad cotidiana, no solo el pensamiento.</p>
       </div>
       <div class="dif-card fade-up d2">
-        <div class="dif-icon">🏢</div>
+        <div class="dif-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="18"/><rect x="14" y="9" width="7" height="12"/><path d="M10 3v18M21 21H3"/></svg></div>
         <h3>Individual y organizacional</h3>
         <p>La misma profundidad metodológica para personas y para equipos. El cambio en las organizaciones empieza en las personas que las forman.</p>
       </div>
       <div class="dif-card fade-up d3">
-        <div class="dif-icon">🐝</div>
+        <div class="dif-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8 12 2"/><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div>
         <h3>Productividad con propósito</h3>
         <p>La abeja como símbolo no es casual: trabajo organizado, colectivo, que transforma lo simple en algo valioso. Así es el proceso con Mery.</p>
       </div>
@@ -1410,7 +1412,7 @@
 
       <div class="cur-card featured fade-up d1">
         <div class="featured-badge">✦ Disponible</div>
-        <div class="cur-thumb ct1">🚀</div>
+        <div class="cur-thumb ct1"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
         <div class="cur-body">
           <h3>Potenciá tu Desarrollo Personal</h3>
           <p>6 módulos grabados para transformar tu relación con vos mismo/a. Coaching ontológico + neurociencias. A tu ritmo, con workbook descargable.</p>
@@ -1427,7 +1429,7 @@
       </div>
 
       <div class="cur-card fade-up d2">
-        <div class="cur-thumb ct2">🧠</div>
+        <div class="cur-thumb ct2"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.85)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" fill="rgba(255,255,255,0.7)" stroke="none"/></svg></div>
         <div class="cur-body">
           <h3>Autoliderazgo: Tu Brújula Interior</h3>
           <p>Herramientas prácticas para liderar tu vida desde adentro: emociones, creencias, decisiones y acción. Próxima edición en preparación.</p>
@@ -1443,7 +1445,7 @@
       </div>
 
       <div class="cur-card fade-up d3">
-        <div class="cur-thumb ct3">💛</div>
+        <div class="cur-thumb ct3"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="rgba(45,27,30,0.75)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
         <div class="cur-body">
           <h3>Amor Propio sin Autoexigencia</h3>
           <p>Un recorrido por la autocompasión, el merecimiento y la construcción de una relación más amable con vos mismo/a.</p>
@@ -1489,17 +1491,17 @@
 
       <div class="cta-options fade-up">
         <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Me%20gustaría%20agendar%20una%20sesión%20de%20coaching." class="cta-opt" target="_blank">
-          <span class="cta-opt-icon">📱</span>
+          <span class="cta-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
           <h3>Sesión individual</h3>
           <p>Coordinamos una sesión de diagnóstico sin costo por WhatsApp.</p>
         </a>
         <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20información%20sobre%20los%20cursos%20online." class="cta-opt" target="_blank">
-          <span class="cta-opt-icon">🎓</span>
+          <span class="cta-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></span>
           <h3>Cursos online</h3>
           <p>Consultá disponibilidad e inscripción a los próximos programas.</p>
         </a>
         <a href="https://wa.me/549XXXXXXXXXX?text=Hola%20Mery!%20Quiero%20conocer%20opciones%20de%20coaching%20para%20mi%20empresa." class="cta-opt" target="_blank">
-          <span class="cta-opt-icon">🏢</span>
+          <span class="cta-opt-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span>
           <h3>Propuesta empresarial</h3>
           <p>Diseñamos un programa a medida para tu equipo u organización.</p>
         </a>

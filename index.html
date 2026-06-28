@@ -430,56 +430,122 @@
     .pq-card .btn { margin-top: 28px; }
 
     /* ================================================================
-       SERVICIOS
+       SERVICIOS — FAN CAROUSEL
     ================================================================ */
-    #servicios { padding: 100px 0; background: var(--blanco); }
-
-    .sv-grid {
-      display: grid; grid-template-columns: repeat(2, 1fr);
-      gap: 26px; margin-top: 60px;
+    #servicios {
+      padding: 100px 0;
+      background: linear-gradient(145deg, #2D1B1E 0%, #3e2226 55%, #4a2d32 100%);
+      position: relative; overflow: hidden;
     }
-    .sv-card {
-      border-radius: var(--radio-l);
-      border: 1.5px solid rgba(45,27,30,0.08);
-      display: flex; flex-direction: column;
-      transition: var(--t);
+    #servicios::before {
+      content: ''; position: absolute;
+      width: 600px; height: 600px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,192,42,0.07) 0%, transparent 65%);
+      top: -150px; right: -150px; pointer-events: none;
     }
-    .sv-card:hover { border-color: var(--amarillo); transform: translateY(-5px); box-shadow: 0 16px 40px var(--sombra); }
+    #servicios::after {
+      content: ''; position: absolute;
+      width: 400px; height: 400px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(196,97,43,0.07) 0%, transparent 65%);
+      bottom: -100px; left: -100px; pointer-events: none;
+    }
+    #servicios .section-head { position: relative; z-index: 1; }
+    #servicios .h2 { color: var(--blanco); }
+    #servicios .lead { color: rgba(255,255,255,0.65); }
 
-    .sv-top { padding: 30px 30px 20px; display: flex; align-items: flex-start; gap: 18px; }
-    .sv-circle {
-      width: 58px; height: 58px; border-radius: 50%;
+    /* Fan outer */
+    .sv-fan-outer {
+      position: relative; margin-top: 56px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .sv-fan-layout {
+      position: relative; width: 100%; height: 480px;
       display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0; color: var(--marron);
     }
-    .sv-c2 { color: var(--terracota); }
-    .sv-c1 { background: rgba(245,192,42,0.18); }
-    .sv-c2 { background: rgba(196,97,43,0.14); }
-    .sv-c3 { background: rgba(45,27,30,0.08);  }
-    .sv-c4 { background: rgba(245,232,176,0.55); }
 
-    .sv-top h3 { font-size: 1.02rem; font-weight: 700; color: var(--marron); margin-bottom: 5px; }
-    .sv-top p  { font-size: 0.82rem; font-weight: 300; color: var(--texto-s); line-height: 1.60; }
+    /* Glass cards */
+    .sv-fan-card {
+      position: absolute;
+      width: 320px;
+      background: rgba(255,255,255,0.09);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 22px;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
+      will-change: transform, opacity;
+      cursor: pointer;
+      display: flex; flex-direction: column;
+    }
+    .sv-fan-card.sv-center-card {
+      background: rgba(255,255,255,0.13);
+      border-color: rgba(255,255,255,0.22);
+    }
 
-    .sv-body { padding: 0 30px 28px; flex: 1; display: flex; flex-direction: column; }
-    .sv-items { flex: 1; margin-bottom: 20px; }
+    .sv-top { padding: 28px 26px 16px; display: flex; align-items: flex-start; gap: 16px; }
+    .sv-circle {
+      width: 52px; height: 52px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .sv-c1 { background: rgba(245,192,42,0.20); color: var(--amarillo); }
+    .sv-c2 { background: rgba(196,97,43,0.22); color: #f07a4a; }
+    .sv-c3 { background: rgba(255,255,255,0.10); color: rgba(255,255,255,0.80); }
+    .sv-c4 { background: rgba(245,192,42,0.16); color: var(--amarillo); }
+
+    .sv-top h3 { font-size: 0.98rem; font-weight: 700; color: var(--blanco); margin-bottom: 5px; line-height: 1.35; }
+    .sv-top p  { font-size: 0.79rem; font-weight: 300; color: rgba(255,255,255,0.60); line-height: 1.55; }
+
+    .sv-body { padding: 0 26px 22px; flex: 1; display: flex; flex-direction: column; }
+    .sv-items { flex: 1; margin-bottom: 16px; }
     .sv-items li {
-      font-size: 0.81rem; font-weight: 500; color: var(--texto);
-      padding: 6px 0; border-bottom: 1px solid rgba(45,27,30,0.06);
+      font-size: 0.78rem; font-weight: 400; color: rgba(255,255,255,0.72);
+      padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
       display: flex; align-items: center; gap: 8px;
     }
-    .sv-items li::before { content: '✓'; color: var(--amarillo); font-weight: 800; font-size: 0.78rem; flex-shrink: 0; }
+    .sv-items li::before { content: '✓'; color: var(--amarillo); font-weight: 800; font-size: 0.74rem; flex-shrink: 0; }
 
     .sv-footer {
-      display: flex; align-items: center;
-      justify-content: space-between; gap: 12px;
-      padding-top: 18px; border-top: 1.5px solid rgba(45,27,30,0.07);
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.09);
     }
     .sv-tag {
-      font-size: 0.70rem; font-weight: 700;
-      letter-spacing: 0.08em; text-transform: uppercase;
-      color: var(--terracota); background: rgba(196,97,43,0.10);
-      padding: 5px 12px; border-radius: 50px;
+      font-size: 0.66rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--amarillo); background: rgba(245,192,42,0.14);
+      padding: 4px 11px; border-radius: 50px;
+      border: 1px solid rgba(245,192,42,0.22);
+    }
+
+    /* Fan controls */
+    .sv-controls {
+      display: flex; align-items: center; gap: 22px;
+      margin-top: 28px; position: relative; z-index: 20;
+    }
+    .sv-arrow {
+      width: 46px; height: 46px; border-radius: 50%;
+      border: 1.5px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px);
+      color: rgba(255,255,255,0.65);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.25s ease;
+    }
+    .sv-arrow:hover { background: rgba(245,192,42,0.18); border-color: rgba(245,192,42,0.45); color: var(--amarillo); transform: scale(1.08); }
+
+    .sv-dots { display: flex; gap: 8px; align-items: center; }
+    .sv-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: rgba(255,255,255,0.22); transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .sv-dot.active { background: var(--amarillo); transform: scale(1.45); }
+
+    @media (max-width: 768px) {
+      .sv-fan-layout { height: 400px; }
+      .sv-fan-card { width: 272px; }
+    }
+    @media (max-width: 480px) {
+      .sv-fan-layout { height: 340px; }
+      .sv-fan-card { width: 236px; }
     }
 
     /* ================================================================
@@ -542,83 +608,6 @@
     .neuro-visual .sub { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.36); margin: 8px 0 22px; }
     .neuro-visual blockquote { font-size: 0.92rem; color: rgba(255,255,255,0.72); font-style: italic; line-height: 1.65; }
     .neuro-visual cite { display: block; margin-top: 12px; font-size: 0.74rem; font-weight: 700; color: rgba(245,192,42,0.65); font-style: normal; letter-spacing: 0.06em; }
-
-    /* ================================================================
-       TESTIMONIOS — CARRUSEL
-    ================================================================ */
-    #testimonios { padding: 100px 0; background: var(--crema); }
-
-    .carousel-wrap { margin-top: 56px; position: relative; }
-    .carousel-track-outer { overflow: hidden; }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.46s cubic-bezier(0.4,0,0.2,1);
-    }
-    .test-slide {
-      min-width: 100%; padding: 0 48px; box-sizing: border-box;
-    }
-    .test-card {
-      background: var(--blanco); border-radius: var(--radio-l);
-      padding: 48px 52px; max-width: 820px; margin: 0 auto;
-      position: relative; box-shadow: 0 8px 36px var(--sombra);
-    }
-    .test-q {
-      position: absolute; top: 24px; right: 36px;
-      font-size: 5.5rem; font-weight: 800;
-      color: var(--amarillo); opacity: 0.18; line-height: 1;
-    }
-    .test-stars { color: var(--amarillo); font-size: 1.05rem; letter-spacing: 2px; margin-bottom: 16px; }
-    .test-text {
-      font-size: 1.02rem; font-weight: 400; font-style: italic;
-      color: var(--texto); line-height: 1.80; margin-bottom: 26px;
-    }
-    .test-author { display: flex; align-items: center; gap: 14px; }
-    .test-avatar {
-      width: 48px; height: 48px; border-radius: 50%;
-      background: var(--crema-m); border: 2.5px solid var(--amarillo);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.35rem; flex-shrink: 0;
-    }
-    .test-author strong { font-size: 0.88rem; font-weight: 700; color: var(--marron); display: block; }
-    .test-author span   { font-size: 0.75rem; color: var(--texto-s); }
-    .placeholder-note { font-size: 0.70rem; color: rgba(45,27,30,0.28); font-style: italic; margin-top: 14px; text-align: right; }
-
-    .carousel-controls {
-      display: flex; align-items: center;
-      justify-content: center; gap: 16px; margin-top: 32px;
-    }
-    .c-btn {
-      width: 42px; height: 42px; border-radius: 50%;
-      border: 2px solid var(--marron); background: transparent;
-      font-size: 1rem; display: flex; align-items: center;
-      justify-content: center; transition: var(--t); color: var(--marron);
-    }
-    .c-btn:hover { background: var(--marron); color: var(--blanco); }
-    .c-dots { display: flex; gap: 8px; }
-    .c-dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(45,27,30,0.18); cursor: pointer; transition: var(--t);
-    }
-    .c-dot.active { background: var(--terracota); width: 22px; border-radius: 4px; }
-
-    /* ================================================================
-       CONTADORES ANIMADOS
-    ================================================================ */
-    #contadores { padding: 76px 0; background: var(--amarillo); }
-
-    .cnt-grid {
-      display: grid; grid-template-columns: repeat(4,1fr);
-      gap: 16px; text-align: center;
-    }
-    .cnt-item {}
-    .cnt-num {
-      font-size: clamp(2.4rem,4.5vw,3.8rem);
-      font-weight: 800; color: var(--marron); line-height: 1; display: block;
-    }
-    .cnt-lbl {
-      font-size: 0.84rem; font-weight: 600;
-      color: rgba(45,27,30,0.68); margin-top: 8px; letter-spacing: 0.03em;
-    }
 
     /* ================================================================
        CURSOS Y RECURSOS
@@ -786,7 +775,6 @@
     @media (max-width: 1024px) {
       .dif-grid { grid-template-columns: repeat(2,1fr); }
       .neuro-block { grid-template-columns: 1fr; }
-      .cnt-grid { grid-template-columns: repeat(2,1fr); row-gap: 36px; }
       .ft-grid { grid-template-columns: 1fr 1fr; }
     }
 
@@ -806,7 +794,8 @@
 
       .quien-grid { grid-template-columns: 1fr; }
       .pq-grid { grid-template-columns: 1fr; }
-      .sv-grid { grid-template-columns: 1fr; }
+      .sv-fan-layout { height: 360px; }
+      .sv-fan-card { width: 252px; }
       .dif-grid { grid-template-columns: 1fr; }
       .cur-grid { grid-template-columns: 1fr; }
       .cta-options { grid-template-columns: 1fr; }
@@ -814,12 +803,9 @@
       .ft-grid { grid-template-columns: 1fr; gap: 28px; }
       .ft-bottom { flex-direction: column; text-align: center; }
       .neuro-block { padding: 28px 24px; }
-      .test-slide { padding: 0 12px; }
-      .test-card { padding: 32px 26px; }
     }
 
     @media (max-width: 480px) {
-      .cnt-grid { grid-template-columns: 1fr 1fr; }
       .cta-wpp { padding: 14px 32px; font-size: 0.92rem; }
     }
   </style>
@@ -1083,104 +1069,121 @@
       <p class="lead center">Cada modalidad está diseñada para diferentes momentos y necesidades. Siempre con metodología y calidez.</p>
     </div>
 
-    <div class="sv-grid">
+    <div class="sv-fan-outer">
+      <div class="sv-fan-layout" id="svFanLayout">
 
-      <div class="sv-card fade-up d1">
-        <div class="sv-top">
-          <div class="sv-circle sv-c1"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
-          <div>
-            <h3>Sesiones 1:1 — Coaching Individual</h3>
-            <p>Proceso personalizado para encontrar tu propósito, superar bloqueos y vivir de forma más auténtica.</p>
+        <div class="sv-fan-card" id="svCard0">
+          <div class="sv-top">
+            <div class="sv-circle sv-c1"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20v-1a8 8 0 0 1 16 0v1"/></svg></div>
+            <div>
+              <h3>Sesiones 1:1 — Coaching Individual</h3>
+              <p>Proceso personalizado para encontrar tu propósito, superar bloqueos y vivir de forma más auténtica.</p>
+            </div>
+          </div>
+          <div class="sv-body">
+            <ul class="sv-items">
+              <li>Autoliderazgo y autoconocimiento profundo</li>
+              <li>Gestión emocional y creencias limitantes</li>
+              <li>Propósito, valores y toma de decisiones</li>
+              <li>Amor propio y superación de la autoexigencia</li>
+              <li>Sesiones online y presencial (Río Gallegos)</li>
+              <li>Sesiones individuales o procesos completos</li>
+            </ul>
+            <div class="sv-footer">
+              <span class="sv-tag">Consultá disponibilidad</span>
+              <a href="#cta-final" class="btn btn-gold btn-sm">Agendar →</a>
+            </div>
           </div>
         </div>
-        <div class="sv-body">
-          <ul class="sv-items">
-            <li>Autoliderazgo y autoconocimiento profundo</li>
-            <li>Gestión emocional y creencias limitantes</li>
-            <li>Propósito, valores y toma de decisiones</li>
-            <li>Amor propio y superación de la autoexigencia</li>
-            <li>Sesiones online y presencial (Río Gallegos)</li>
-            <li>Sesiones individuales o procesos completos</li>
-          </ul>
-          <div class="sv-footer">
-            <span class="sv-tag">Consultá disponibilidad</span>
-            <a href="#cta-final" class="btn btn-gold btn-sm">Agendar →</a>
+
+        <div class="sv-fan-card" id="svCard1">
+          <div class="sv-top">
+            <div class="sv-circle sv-c2"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+            <div>
+              <h3>Coaching Ejecutivo</h3>
+              <p>Para líderes y profesionales que quieren potenciar su performance, comunicación y bienestar laboral.</p>
+            </div>
+          </div>
+          <div class="sv-body">
+            <ul class="sv-items">
+              <li>Liderazgo consciente y situacional</li>
+              <li>Gestión del estrés y productividad sostenible</li>
+              <li>Comunicación efectiva y conversaciones difíciles</li>
+              <li>Toma de decisiones bajo presión</li>
+              <li>Síndrome del impostor en posiciones de liderazgo</li>
+              <li>Equilibrio vida personal y profesional</li>
+            </ul>
+            <div class="sv-footer">
+              <span class="sv-tag">Consultá disponibilidad</span>
+              <a href="#cta-final" class="btn btn-gold btn-sm">Consultar →</a>
+            </div>
           </div>
         </div>
+
+        <div class="sv-fan-card" id="svCard2">
+          <div class="sv-top">
+            <div class="sv-circle sv-c3"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+            <div>
+              <h3>Talleres y Programas para Empresas</h3>
+              <p>Intervenciones grupales diseñadas a medida para transformar la dinámica de tu equipo u organización.</p>
+            </div>
+          </div>
+          <div class="sv-body">
+            <ul class="sv-items">
+              <li>Talleres de comunicación y trabajo en equipo</li>
+              <li>Programas de gestión del cambio organizacional</li>
+              <li>Desarrollo de liderazgo para jefes y coordinadores</li>
+              <li>Retiros y jornadas de cohesión grupal</li>
+              <li>Diagnóstico inicial y seguimiento de impacto</li>
+              <li>Modalidad presencial, online o híbrida</li>
+            </ul>
+            <div class="sv-footer">
+              <span class="sv-tag">Propuesta a medida</span>
+              <a href="#cta-final" class="btn btn-gold btn-sm">Solicitar →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="sv-fan-card" id="svCard3">
+          <div class="sv-top">
+            <div class="sv-circle sv-c4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div>
+            <div>
+              <h3>Cursos Online y Recursos Digitales</h3>
+              <p>Programas intensivos que podés hacer a tu ritmo, con metodología ontológica y base en neurociencias.</p>
+            </div>
+          </div>
+          <div class="sv-body">
+            <ul class="sv-items">
+              <li>Cursos en vivo con grupos reducidos</li>
+              <li>Contenidos grabados disponibles 24/7</li>
+              <li>Recursos y herramientas descargables</li>
+              <li>Comunidad de práctica y acompañamiento</li>
+              <li>Certificados de finalización</li>
+              <li>Integración práctica en tu vida cotidiana</li>
+            </ul>
+            <div class="sv-footer">
+              <span class="sv-tag">Consultá disponibilidad</span>
+              <a href="#cursos" class="btn btn-dark btn-sm">Ver cursos →</a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <div class="sv-card fade-up d2">
-        <div class="sv-top">
-          <div class="sv-circle sv-c2"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
-          <div>
-            <h3>Coaching Ejecutivo</h3>
-            <p>Para líderes y profesionales que quieren potenciar su performance, comunicación y bienestar laboral.</p>
-          </div>
+      <div class="sv-controls">
+        <button class="sv-arrow" id="svPrev" aria-label="Anterior">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <div class="sv-dots" id="svDots">
+          <span class="sv-dot active" data-idx="0"></span>
+          <span class="sv-dot" data-idx="1"></span>
+          <span class="sv-dot" data-idx="2"></span>
+          <span class="sv-dot" data-idx="3"></span>
         </div>
-        <div class="sv-body">
-          <ul class="sv-items">
-            <li>Liderazgo consciente y situacional</li>
-            <li>Gestión del estrés y productividad sostenible</li>
-            <li>Comunicación efectiva y conversaciones difíciles</li>
-            <li>Toma de decisiones bajo presión</li>
-            <li>Síndrome del impostor en posiciones de liderazgo</li>
-            <li>Equilibrio vida personal y profesional</li>
-          </ul>
-          <div class="sv-footer">
-            <span class="sv-tag">Consultá disponibilidad</span>
-            <a href="#cta-final" class="btn btn-gold btn-sm">Consultar →</a>
-          </div>
-        </div>
+        <button class="sv-arrow" id="svNext" aria-label="Siguiente">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
       </div>
-
-      <div class="sv-card fade-up d3">
-        <div class="sv-top">
-          <div class="sv-circle sv-c3"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-          <div>
-            <h3>Talleres y Programas para Empresas</h3>
-            <p>Intervenciones grupales diseñadas a medida para transformar la dinámica de tu equipo u organización.</p>
-          </div>
-        </div>
-        <div class="sv-body">
-          <ul class="sv-items">
-            <li>Talleres de comunicación y trabajo en equipo</li>
-            <li>Programas de gestión del cambio organizacional</li>
-            <li>Desarrollo de liderazgo para jefes y coordinadores</li>
-            <li>Retiros y jornadas de cohesión grupal</li>
-            <li>Diagnóstico inicial y seguimiento de impacto</li>
-            <li>Modalidad presencial, online o híbrida</li>
-          </ul>
-          <div class="sv-footer">
-            <span class="sv-tag">Propuesta a medida</span>
-            <a href="#cta-final" class="btn btn-gold btn-sm">Solicitar →</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="sv-card fade-up d4">
-        <div class="sv-top">
-          <div class="sv-circle sv-c4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8" fill="currentColor" stroke="none"/></svg></div>
-          <div>
-            <h3>Cursos Online y Recursos Digitales</h3>
-            <p>Programas intensivos que podés hacer a tu ritmo, con metodología ontológica y base en neurociencias.</p>
-          </div>
-        </div>
-        <div class="sv-body">
-          <ul class="sv-items">
-            <li>Cursos en vivo con grupos reducidos</li>
-            <li>Contenidos grabados disponibles 24/7</li>
-            <li>Recursos y herramientas descargables</li>
-            <li>Comunidad de práctica y acompañamiento</li>
-            <li>Certificados de finalización</li>
-            <li>Integración práctica en tu vida cotidiana</li>
-          </ul>
-          <div class="sv-footer">
-            <span class="sv-tag">Consultá disponibilidad</span>
-            <a href="#cursos" class="btn btn-dark btn-sm">Ver cursos →</a>
-          </div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
@@ -1438,6 +1441,7 @@
 <!-- ══════════════════════════════════════
      JAVASCRIPT
 ══════════════════════════════════════ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script>
 'use strict';
 
@@ -1478,66 +1482,131 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
 
-/* ── CONTADORES ANIMADOS ──────────────────────────── */
-let countersRan = false;
+/* ── SERVICIOS FAN CAROUSEL (GSAP) ───────────────────── */
+(function () {
+  const TOTAL = 4;
+  let centerIdx = 0;
+  let svAnim = false;
+  let lastDir = 'next';
 
-function runCounters() {
-  document.querySelectorAll('.cnt-num').forEach(el => {
-    const target  = parseInt(el.dataset.target);
-    const suffix  = el.dataset.suffix || '';
-    const dur     = 1800;
-    const start   = performance.now();
+  // 5 logical slots: hidden-left, near-left, CENTER, near-right, hidden-right
+  const SLOTS = {
+    HL: { x:  '-52rem', rotation: -36, scale: 0.48, opacity: 0, zIndex: 0, y: '12rem' },
+    L:  { x:  '-18rem', rotation: -13, scale: 0.84, opacity: 1, zIndex: 3, y:  '4rem' },
+    C:  { x:    '0rem', rotation:   0, scale: 1.00, opacity: 1, zIndex: 10, y:  '0rem' },
+    R:  { x:   '18rem', rotation:  13, scale: 0.84, opacity: 1, zIndex: 3, y:  '4rem' },
+    HR: { x:   '52rem', rotation:  36, scale: 0.48, opacity: 0, zIndex: 0, y: '12rem' },
+  };
 
-    (function tick(now) {
-      const p = Math.min((now - start) / dur, 1);
-      const v = Math.floor((1 - Math.pow(1 - p, 3)) * target);
-      el.textContent = v + suffix;
-      if (p < 1) requestAnimationFrame(tick);
-    })(start);
-  });
-}
-
-const cntObs = new IntersectionObserver(entries => {
-  if (entries[0].isIntersecting && !countersRan) {
-    countersRan = true;
-    runCounters();
-    cntObs.disconnect();
+  function roleOf(cardIdx) {
+    const diff = (cardIdx - centerIdx + TOTAL) % TOTAL;
+    if (diff === 0) return 'C';
+    if (diff === 1) return 'R';
+    if (diff === 3) return 'L';
+    // diff === 2: the "hidden" card — comes from right when going next, left when going prev
+    return lastDir === 'next' ? 'HR' : 'HL';
   }
-}, { threshold: 0.35 });
-cntObs.observe(document.getElementById('contadores'));
 
-/* ── CARRUSEL TESTIMONIOS ─────────────────────────── */
-const TOTAL_SLIDES = 4;
-let current = 0;
-const track = document.getElementById('carouselTrack');
-const dots  = document.querySelectorAll('.c-dot');
+  const cards = Array.from(document.querySelectorAll('.sv-fan-card'));
+  const dotEls = Array.from(document.querySelectorAll('.sv-dot'));
 
-function goToSlide(idx) {
-  current = idx;
-  track.style.transform = `translateX(-${current * 100}%)`;
-  dots.forEach((d, i) => d.classList.toggle('active', i === current));
-}
+  function updateDots() {
+    dotEls.forEach((d, i) => d.classList.toggle('active', i === centerIdx));
+  }
 
-function moveCarousel(dir) {
-  let next = (current + dir + TOTAL_SLIDES) % TOTAL_SLIDES;
-  goToSlide(next);
-}
+  function applyPositions(isFirst) {
+    let done = 0;
+    cards.forEach((card, i) => {
+      const pos = SLOTS[roleOf(i)];
+      card.classList.toggle('sv-center-card', roleOf(i) === 'C');
 
-/* Auto-avance cada 6 s, pausa en hover */
-let autoPlay = setInterval(() => moveCarousel(1), 6000);
-const carousel = document.querySelector('.carousel-wrap');
-carousel.addEventListener('mouseenter', () => clearInterval(autoPlay));
-carousel.addEventListener('mouseleave', () => {
-  autoPlay = setInterval(() => moveCarousel(1), 6000);
-});
+      if (isFirst) {
+        gsap.set(card, { x: '0rem', y: '22rem', rotation: 0, scale: 0.55, opacity: 0, zIndex: 0 });
+        gsap.to(card, {
+          ...pos, duration: 1.15, ease: 'elastic.out(1,.76)',
+          delay: 0.12 + i * 0.09,
+          onComplete: () => { if (++done >= TOTAL) svAnim = false; }
+        });
+      } else {
+        gsap.to(card, {
+          ...pos, duration: 0.55, ease: 'power2.out',
+          onComplete: () => { if (++done >= TOTAL) svAnim = false; }
+        });
+      }
+    });
+    updateDots();
+  }
 
-/* Swipe touch */
-let touchX = 0;
-track.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
-track.addEventListener('touchend',   e => {
-  const diff = touchX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 48) moveCarousel(diff > 0 ? 1 : -1);
-});
+  function cycle(dir) {
+    if (svAnim) return;
+    svAnim = true;
+    lastDir = dir;
+    centerIdx = dir === 'next' ? (centerIdx + 1) % TOTAL : (centerIdx - 1 + TOTAL) % TOTAL;
+    applyPositions(false);
+  }
+
+  // Arrow buttons
+  document.getElementById('svPrev').addEventListener('click', () => cycle('prev'));
+  document.getElementById('svNext').addEventListener('click', () => cycle('next'));
+
+  // Dot clicks
+  dotEls.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      if (svAnim || i === centerIdx) return;
+      lastDir = i > centerIdx ? 'next' : 'prev';
+      svAnim = true;
+      centerIdx = i;
+      applyPositions(false);
+    });
+  });
+
+  // Click side cards to bring them to center
+  cards.forEach((card, i) => {
+    card.addEventListener('click', () => {
+      if (svAnim) return;
+      const role = roleOf(i);
+      if (role === 'R') cycle('next');
+      else if (role === 'L') cycle('prev');
+    });
+  });
+
+  // Hover lift for side cards
+  cards.forEach((card, i) => {
+    card.addEventListener('mouseenter', () => {
+      if (svAnim) return;
+      const role = roleOf(i);
+      if (role === 'L' || role === 'R') {
+        const pos = SLOTS[role];
+        gsap.to(card, { y: `calc(${pos.y} - 1.8rem)`, scale: pos.scale * 1.05, duration: 0.3, ease: 'power2.out', overwrite: 'auto' });
+      }
+    });
+    card.addEventListener('mouseleave', () => {
+      if (svAnim) return;
+      const role = roleOf(i);
+      if (role === 'L' || role === 'R') {
+        const pos = SLOTS[role];
+        gsap.to(card, { y: pos.y, scale: pos.scale, duration: 0.45, ease: 'elastic.out(1,.75)', overwrite: 'auto' });
+      }
+    });
+  });
+
+  // Touch/swipe
+  let svTouchX = 0;
+  const fanEl = document.getElementById('svFanLayout');
+  fanEl.addEventListener('touchstart', e => { svTouchX = e.touches[0].clientX; }, { passive: true });
+  fanEl.addEventListener('touchend', e => {
+    const diff = svTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 44) cycle(diff > 0 ? 'next' : 'prev');
+  });
+
+  // Enter animation on scroll into view
+  cards.forEach(c => gsap.set(c, { opacity: 0 }));
+  svAnim = true;
+  const fanObs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { applyPositions(true); fanObs.disconnect(); }
+  }, { threshold: 0.15 });
+  fanObs.observe(fanEl);
+})();
 </script>
 
 </body>

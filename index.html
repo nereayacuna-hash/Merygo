@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MeryGo. Coach | Coaching Ontológico & Neurociencias</title>
-  <meta name="description" content="María Isabel González — Coach Ontológica Profesional con Posgrado en Neurociencias. Acompañamiento para personas y empresas que quieren resultados reales." />
+  <meta name="description" content="María Isabel González — Coach Ontológica Profesional con Postitulo Internacional en Neurociencias. Acompañamiento para personas y empresas que quieren resultados reales." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
@@ -771,6 +771,47 @@
     .cta-email a { color: var(--amarillo); }
 
     /* ================================================================
+       CREDENCIALES
+    ================================================================ */
+    #credenciales {
+      padding: 88px 0;
+      background: linear-gradient(135deg, #160a0c 0%, #2D1B1E 50%, #160a0c 100%);
+      position: relative; overflow: hidden;
+    }
+    #credenciales::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 50%, rgba(245,192,42,0.07) 0%, transparent 55%),
+        radial-gradient(ellipse at 75% 50%, rgba(196,97,43,0.06) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .cred-head { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
+    .cred-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 36px; max-width: 880px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .cred-frame img {
+      width: 100%; border-radius: 12px; display: block;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,192,42,0.25);
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+    }
+    .cred-frame img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.65), 0 0 0 2px rgba(245,192,42,0.45);
+    }
+    .cred-label {
+      text-align: center; margin-top: 14px;
+      font-size: 0.75rem; font-weight: 600;
+      color: rgba(255,255,255,0.50);
+      letter-spacing: 0.07em; text-transform: uppercase;
+    }
+    @media (max-width: 620px) {
+      .cred-grid { grid-template-columns: 1fr; gap: 28px; max-width: 420px; }
+      #credenciales { padding: 64px 0; }
+    }
+
+    /* ================================================================
        FOOTER
     ================================================================ */
     footer { background: #190e10; padding: 56px 0 28px; }
@@ -1001,7 +1042,7 @@
         </div>
         <div class="h-float h-float-1">
           <span class="fi"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--marron)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
-          <strong>Posgrado en Neurociencias</strong>
+          <strong>Postitulo Internacional en Neurociencias</strong>
           <span>Coach Ontológica Certificada</span>
         </div>
         <div class="h-float h-float-2">
@@ -1132,18 +1173,41 @@
           "Estoy aquí para acompañarte en tu camino de autodescubrimiento y crecimiento personal. Me emociona ser parte de tu proceso de transformación."
         </blockquote>
 
-        <p>Soy <strong>Coach Ontológica Profesional con Posgrado en Neurociencias</strong>, nacida en Río Gallegos, Patagonia Argentina. Comparto mis experiencias y conocimientos para que puedas desarrollar todo tu potencial y alcanzar tus objetivos — en todo el país y el mundo.</p>
+        <p>Soy <strong>Coach Ontológica Profesional con Postitulo Internacional en Neurociencias</strong>, nacida en Río Gallegos, Patagonia Argentina. Comparto mis experiencias y conocimientos para que puedas desarrollar todo tu potencial y alcanzar tus objetivos — en todo el país y el mundo.</p>
 
         <p>Mi acompañamiento es integral: enfocado en <strong>potenciar tu autoestima</strong>, adquirir herramientas para superar situaciones de conflicto y aumentar tu capacidad de acción. Juntos podemos crear un espacio de crecimiento y aprendizaje real, sin fórmulas y con presencia auténtica.</p>
 
         <div class="chips">
           <span class="chip">Coach Ontológica Profesional</span>
-          <span class="chip">Posgrado en Neurociencias</span>
+          <span class="chip">Postitulo Internacional en Neurociencias</span>
           <span class="chip">Río Gallegos, Argentina</span>
           <span class="chip">Online y presencial</span>
         </div>
       </div>
 
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     CREDENCIALES
+══════════════════════════════════════ -->
+<section id="credenciales">
+  <div class="container">
+    <div class="cred-head fade-up">
+      <span class="tag tag-dark">Formación</span>
+      <h2 class="h2 light">Credenciales & <span class="gold">Certificaciones</span></h2>
+      <p class="lead light center">Una formación sólida puesta al servicio de tu proceso de transformación.</p>
+    </div>
+    <div class="cred-grid">
+      <div class="cred-frame fade-up d1">
+        <img src="titulo.jpeg" alt="Coach Ontológico Profesional — María Isabel González">
+        <p class="cred-label">Coach Ontológico Profesional</p>
+      </div>
+      <div class="cred-frame fade-up d2">
+        <img src="titulo2.jpeg" alt="Postitulo Internacional en Neurociencias para Coaches Ontológicos">
+        <p class="cred-label">Postitulo Internacional en Neurociencias para Coaches Ontológicos · AACOP + CEOP</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1536,7 +1600,7 @@
     <div class="ft-grid">
       <div class="ft-brand">
         <p class="logo"><img src="isotipo-logo.png" alt="" style="height:22px;width:22px;object-fit:contain;vertical-align:middle;margin-right:6px;filter:brightness(0) invert(1);">Mery<span>Go.</span> Coach</p>
-        <p>Coach Ontológica Profesional con Posgrado en Neurociencias. Acompañamiento auténtico para personas y equipos que quieren crecer de verdad.</p>
+        <p>Coach Ontológica Profesional con Postitulo Internacional en Neurociencias. Acompañamiento auténtico para personas y equipos que quieren crecer de verdad.</p>
         <p class="tagline">"La verdadera belleza yace en poder ser creíble y auténtico."</p>
       </div>
       <div class="ft-col">

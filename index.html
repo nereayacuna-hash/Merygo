@@ -801,44 +801,117 @@
     /* ================================================================
        RESPONSIVE
     ================================================================ */
+
+    /* ── Tablet ──────────────────────────────────────────────────── */
     @media (max-width: 1024px) {
-      .dif-fan-layout { height: 390px; }
-      .dif-fan-card { width: 196px; height: 304px; }
       .neuro-block { grid-template-columns: 1fr; }
       .ft-grid { grid-template-columns: 1fr 1fr; }
+      .sv-grid { grid-template-columns: 1fr 1fr; }
+      .dif-fan-layout { height: 380px; }
     }
 
+    /* ── Mobile grande (≤768px) ──────────────────────────────────── */
     @media (max-width: 768px) {
+      /* Nav */
       .nav-links { display: none; }
       .hamburger { display: flex; }
 
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      /* Sections padding */
+      #hero    { padding: 88px 0 60px; }
+      #quien, #servicios, #antes, #para-quien,
+      #por-que, #cursos, #cta-final { padding: 68px 0; }
+      .section-head { margin-bottom: 40px; }
+
+      /* Hero */
+      .hero-grid { grid-template-columns: 1fr; gap: 36px; }
       .hero-photo-col { order: -1; }
-      .hero-frame { max-width: 280px; margin: 0 auto; }
-      .h-float-1 { left: 0; }
-      .h-float-2 { right: 0; }
-      .hero-btns { flex-direction: column; align-items: flex-start; }
+      .hero-frame { max-width: 240px; margin: 0 auto; }
+      .h-float-1, .h-float-2 { display: none; }
+      .hero-btns { flex-direction: column; align-items: stretch; }
+      .hero-btns .btn { justify-content: center; }
+      .hero-sub { font-size: 0.94rem; margin-bottom: 28px; }
 
+      /* Quién */
+      .quien-grid { grid-template-columns: 1fr; gap: 40px; }
+      .quien-frame { max-width: 300px; margin: 0 auto; }
+      .quien-badge-float { bottom: -14px; right: -6px; }
+
+      /* Antes / dolor */
       .tab-panel.active { grid-template-columns: 1fr; }
-      .antes-cierre { padding: 36px 28px; }
+      .antes-cierre { padding: 32px 22px; }
+      .antes-cierre-grid { grid-template-columns: 1fr !important; }
 
-      .quien-grid { grid-template-columns: 1fr; }
+      /* Para quién */
       .pq-grid { grid-template-columns: 1fr; }
-      .dif-fan-layout { height: 400px; }
-      .dif-fan-card { padding: 32px 24px 28px; }
-      .dif-fan-card h3 { font-size: 0.96rem; }
-      .dif-fan-card p  { font-size: 0.80rem; }
-      .dif-fan-icon { width: 60px; height: 60px; }
-      .cur-grid { grid-template-columns: 1fr; }
+      .pq-card { padding: 36px 28px; }
+
+      /* Servicios */
+      .sv-grid { grid-template-columns: 1fr; gap: 16px; margin-top: 36px; }
+      .sv-top { padding: 22px 20px 12px; }
+      .sv-body { padding: 0 20px 18px; }
+
+      /* Diferenciadores */
+      .dif-fan-layout { height: 360px; margin-top: 32px; }
+      .dif-fan-card { width: min(92vw, 420px); padding: 36px 28px 30px; }
+      .dif-fan-card h3 { font-size: 1.02rem; }
+      .dif-fan-card p  { font-size: 0.84rem; }
+      .dif-fan-icon { width: 64px; height: 64px; margin-bottom: 16px; }
+      .neuro-block { grid-template-columns: 1fr; padding: 28px 22px; gap: 28px; }
+
+      /* Cursos */
+      .cur-grid { grid-template-columns: 1fr; gap: 20px; }
+      .cur-banner { flex-direction: column; text-align: center; padding: 28px 22px; gap: 18px; }
+
+      /* CTA */
       .cta-options { grid-template-columns: 1fr; }
-      .cur-banner { flex-direction: column; text-align: center; padding: 28px 24px; }
+
+      /* Footer */
       .ft-grid { grid-template-columns: 1fr; gap: 28px; }
-      .ft-bottom { flex-direction: column; text-align: center; }
-      .neuro-block { padding: 28px 24px; }
+      .ft-bottom { flex-direction: column; text-align: center; gap: 12px; }
+
+      /* WPP flotante */
+      .wpp-float { bottom: 18px; right: 18px; width: 52px; height: 52px; font-size: 1.45rem; }
+      .wpp-tip { display: none; }
     }
 
+    /* ── Mobile (≤480px) ─────────────────────────────────────────── */
     @media (max-width: 480px) {
-      .cta-wpp { padding: 14px 32px; font-size: 0.92rem; }
+      .container { padding: 0 18px; }
+
+      #hero { padding: 80px 0 52px; }
+      #quien, #servicios, #antes, #para-quien,
+      #por-que, #cursos, #cta-final { padding: 56px 0; }
+
+      .hero-h1 { font-size: 1.9rem; }
+      .hero-sub { font-size: 0.88rem; }
+      .hero-frame { max-width: 200px; }
+
+      .h2 { font-size: 1.65rem; }
+      .lead { font-size: 0.90rem; }
+
+      .btn { padding: 12px 24px; font-size: 0.88rem; }
+      .btn-sm { padding: 8px 16px; font-size: 0.78rem; }
+      .cta-wpp { padding: 14px 28px; font-size: 0.90rem; }
+
+      .quien-frame { max-width: 260px; }
+      .quien-badge-float { padding: 14px 16px; }
+
+      .dif-fan-layout { height: 340px; }
+      .dif-fan-card { padding: 28px 22px 24px; }
+      .dif-fan-card h3 { font-size: 0.94rem; }
+      .dif-fan-card p  { font-size: 0.80rem; }
+      .dif-fan-icon { width: 56px; height: 56px; }
+
+      .pq-card { padding: 28px 20px; }
+      .sv-top h3 { font-size: 0.90rem; }
+      .sv-items li { font-size: 0.74rem; }
+
+      .cur-thumb { height: 130px; }
+      .neuro-text h3 { font-size: 1.15rem; }
+      .neuro-visual .big { font-size: 3.5rem; }
+
+      .antes-cierre { padding: 26px 18px; }
+      .section-head { margin-bottom: 30px; }
     }
   </style>
 </head>

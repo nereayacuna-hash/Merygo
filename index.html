@@ -688,6 +688,32 @@
     .cur-estado { font-size: 0.70rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase; }
     .estado-ok  { color: #16a34a; }
     .estado-soon{ color: var(--terracota); }
+    .cur-video-card {
+      display: flex; align-items: center; gap: 36px;
+      border-radius: var(--radio-l);
+      border: 1.5px dashed rgba(245,192,42,0.45);
+      background: rgba(245,192,42,0.05);
+      padding: 32px 40px;
+      margin-bottom: 36px;
+    }
+    .cur-video-icon {
+      width: 72px; height: 72px; border-radius: 50%; flex-shrink: 0;
+      background: rgba(245,192,42,0.12);
+      border: 2px solid rgba(245,192,42,0.3);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.9rem;
+    }
+    .cur-video-info { flex: 1; }
+    .cur-video-info h3 { font-size: 1.05rem; font-weight: 700; color: var(--marron); margin-bottom: 6px; }
+    .cur-video-info p  { font-size: 0.87rem; color: var(--texto-s); line-height: 1.6; margin: 0; }
+    .cur-video-soon-badge {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.07em;
+      text-transform: uppercase; color: var(--terracota);
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) {
+      .cur-video-card { flex-direction: column; text-align: center; padding: 24px 22px; gap: 16px; }
+    }
 
     .cur-banner {
       background: var(--crema); border-radius: var(--radio-l);
@@ -927,7 +953,7 @@
 <nav id="nav">
   <div class="container">
     <div class="nav-wrap">
-      <a href="#" class="nav-logo"><img src="isotipo sin fondo.png" alt="" class="nav-bee-img">Mery<span class="gold">Go.</span></a>
+      <a href="#" class="nav-logo"><img src="isotipo-logo.png" alt="" class="nav-bee-img">Mery<span class="gold">Go.</span></a>
       <ul class="nav-links" id="navLinks">
         <button class="nav-close" onclick="closeMenu()">✕</button>
         <li><a href="#quien">Sobre Mery</a></li>
@@ -1381,57 +1407,72 @@
     <div class="cur-grid">
 
       <div class="cur-card fade-up d1">
-        <div class="featured-badge">✦ Próximamente</div>
-        <div class="cur-thumb ct1"><img src="thumb-desarrollo.png" alt="Potenciá tu Desarrollo Personal"></div>
+        <div class="featured-badge">✦ Disponible ahora</div>
+        <div class="cur-thumb ct1"><img src="foto-grupo.jpeg" alt="Potenciá tu Desarrollo Personal"></div>
         <div class="cur-body">
           <h3>Potenciá tu Desarrollo Personal</h3>
-          <p>Módulos grabados para transformar tu relación con vos mismo/a. Incluye workbook descargable + libro de desarrollo personal en PDF para profundizar a tu ritmo.</p>
+          <p>Herramientas y ejercicios para conocerte, potenciar tu autoestima y construir la vida que querés. Un proceso guiado para trabajar a tu propio ritmo.</p>
           <div class="cur-tags">
-            <span class="cur-tag">100% Online</span>
-            <span class="cur-tag">Módulos grabados</span>
-            <span class="cur-tag">Workbook + Libro PDF</span>
+            <span class="cur-tag">Workbook PDF</span>
+            <span class="cur-tag">Cuestionario</span>
+            <span class="cur-tag">+1 Libro de desarrollo personal (sorpresa)</span>
           </div>
+
           <div class="cur-footer">
-            <span class="cur-estado estado-soon">◌ Próximamente</span>
-            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20que%20me%20avises%20cuando%20salga%20el%20curso%20de%20Desarrollo%20Personal." class="btn btn-dark btn-sm" target="_blank">Avisame cuando salga →</a>
+            <span class="cur-estado estado-ok">● Disponible ahora</span>
+            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20acceder%20al%20programa%20de%20Desarrollo%20Personal." class="btn btn-gold btn-sm" target="_blank">Quiero acceder →</a>
           </div>
         </div>
       </div>
 
       <div class="cur-card fade-up d2">
-        <div class="cur-thumb ct2"><img src="thumb-autoliderazgo.png" alt="Autoliderazgo: Tu Brújula Interior"></div>
+        <div class="featured-badge">✦ Disponible ahora</div>
+        <div class="cur-thumb ct2"><img src="foto-grupo.jpeg" alt="Autoliderazgo: Tu Brújula Interior"></div>
         <div class="cur-body">
           <h3>Autoliderazgo: Tu Brújula Interior</h3>
-          <p>Herramientas prácticas para liderar tu vida desde adentro: emociones, creencias, decisiones y acción. Incluye workbook + libro de autoliderazgo en PDF.</p>
+          <p>Aprendé a liderar tus emociones, decisiones y creencias desde adentro. Herramientas prácticas para ser el protagonista de tu propia historia.</p>
           <div class="cur-tags">
-            <span class="cur-tag">100% Online</span>
-            <span class="cur-tag">Módulos grabados</span>
-            <span class="cur-tag">Workbook + Libro PDF</span>
+            <span class="cur-tag">Workbook PDF</span>
+            <span class="cur-tag">Cuestionario</span>
+            <span class="cur-tag">+1 Libro de autoliderazgo (sorpresa)</span>
           </div>
+
           <div class="cur-footer">
-            <span class="cur-estado estado-soon">◌ Próximamente</span>
-            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20que%20me%20avises%20cuando%20salga%20el%20curso%20de%20Autoliderazgo." class="btn btn-dark btn-sm" target="_blank">Avisame cuando salga →</a>
+            <span class="cur-estado estado-ok">● Disponible ahora</span>
+            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20acceder%20al%20programa%20de%20Autoliderazgo." class="btn btn-gold btn-sm" target="_blank">Quiero acceder →</a>
           </div>
         </div>
       </div>
 
       <div class="cur-card fade-up d3">
-        <div class="cur-thumb ct3"><img src="thumb-amorpropio.png" alt="Amor Propio sin Autoexigencia"></div>
+        <div class="featured-badge">✦ Disponible ahora</div>
+        <div class="cur-thumb ct3"><img src="foto-grupo.jpeg" alt="Amor Propio sin Autoexigencia"></div>
         <div class="cur-body">
           <h3>Amor Propio sin Autoexigencia</h3>
-          <p>Un recorrido por la autocompasión, el merecimiento y la relación más amable con vos mismo/a. Incluye workbook + libro de amor propio en PDF.</p>
+          <p>Un recorrido profundo hacia la autocompasión y el merecimiento. Construí una relación más amable y auténtica con vos mismo/a.</p>
           <div class="cur-tags">
-            <span class="cur-tag">100% Online</span>
-            <span class="cur-tag">Módulos grabados</span>
-            <span class="cur-tag">Workbook + Libro PDF</span>
+            <span class="cur-tag">Workbook PDF</span>
+            <span class="cur-tag">Cuestionario</span>
+            <span class="cur-tag">+1 Libro de amor propio (sorpresa)</span>
           </div>
+
           <div class="cur-footer">
-            <span class="cur-estado estado-soon">◌ Próximamente</span>
-            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20que%20me%20avises%20cuando%20salga%20el%20curso%20de%20Amor%20Propio." class="btn btn-dark btn-sm" target="_blank">Avisame cuando salga →</a>
+            <span class="cur-estado estado-ok">● Disponible ahora</span>
+            <a href="https://wa.me/5492966387440?text=Hola%20Mery!%20Quiero%20acceder%20al%20programa%20de%20Amor%20Propio." class="btn btn-gold btn-sm" target="_blank">Quiero acceder →</a>
           </div>
         </div>
       </div>
 
+    </div>
+
+    <!-- Card de videos -->
+    <div class="cur-video-card fade-up">
+      <div class="cur-video-icon">🎬</div>
+      <div class="cur-video-info">
+        <h3>Videos — Desarrollo Personal · Autoliderazgo · Amor Propio</h3>
+        <p>Estamos grabando los módulos en video para cada programa. Muy pronto vas a poder acompañar el workbook con clases grabadas de Mery, paso a paso.</p>
+      </div>
+      <span class="cur-video-soon-badge">◌ Próximamente</span>
     </div>
 
     <div class="cur-banner fade-up">
@@ -1494,7 +1535,7 @@
   <div class="container">
     <div class="ft-grid">
       <div class="ft-brand">
-        <p class="logo"><img src="isotipo sin fondo.png" alt="" style="height:22px;width:22px;object-fit:contain;vertical-align:middle;margin-right:6px;filter:brightness(0) invert(1);">Mery<span>Go.</span> Coach</p>
+        <p class="logo"><img src="isotipo-logo.png" alt="" style="height:22px;width:22px;object-fit:contain;vertical-align:middle;margin-right:6px;filter:brightness(0) invert(1);">Mery<span>Go.</span> Coach</p>
         <p>Coach Ontológica Profesional con Posgrado en Neurociencias. Acompañamiento auténtico para personas y equipos que quieren crecer de verdad.</p>
         <p class="tagline">"La verdadera belleza yace en poder ser creíble y auténtico."</p>
       </div>

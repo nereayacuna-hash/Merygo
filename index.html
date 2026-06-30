@@ -795,16 +795,16 @@
     }
     .cred-head { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
     .cred-grid {
-      display: grid; grid-template-columns: repeat(3, 1fr);
-      gap: 32px; max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 36px; max-width: 880px; margin: 0 auto;
       position: relative; z-index: 1;
     }
-    .cred-frame img {
+    .cred-frame img, .cred-main img {
       width: 100%; border-radius: 12px; display: block;
       box-shadow: 0 24px 64px rgba(0,0,0,0.55), 0 0 0 1px rgba(245,192,42,0.25);
       transition: transform 0.35s ease, box-shadow 0.35s ease;
     }
-    .cred-frame img:hover {
+    .cred-frame img:hover, .cred-main img:hover {
       transform: scale(1.02);
       box-shadow: 0 32px 80px rgba(0,0,0,0.65), 0 0 0 2px rgba(245,192,42,0.45);
     }
@@ -814,13 +814,13 @@
       color: rgba(255,255,255,0.50);
       letter-spacing: 0.07em; text-transform: uppercase;
     }
-    @media (max-width: 900px) {
-      .cred-grid { grid-template-columns: 1fr 1fr; max-width: 620px; }
-      .cred-frame:nth-child(3) { grid-column: 1 / -1; max-width: 360px; margin: 0 auto; }
+    .cred-main {
+      max-width: 320px; margin: 36px auto 0;
+      position: relative; z-index: 1;
     }
     @media (max-width: 620px) {
       .cred-grid { grid-template-columns: 1fr; gap: 28px; max-width: 420px; }
-      .cred-frame:nth-child(3) { max-width: 100%; }
+      .cred-main { max-width: 280px; margin-top: 28px; }
       #credenciales { padding: 64px 0; }
     }
 
@@ -1214,17 +1214,17 @@
     </div>
     <div class="cred-grid">
       <div class="cred-frame fade-up d1">
-        <img src="titulo.jpeg" alt="Coach Ontológico Profesional — María Isabel González">
-        <p class="cred-label">Coach Ontológico Profesional</p>
+        <img src="titulo.jpeg" alt="Postítulo de Especialización en Coaching Organizacional — María Isabel González">
+        <p class="cred-label">Postítulo de Especialización en Coaching Organizacional</p>
       </div>
       <div class="cred-frame fade-up d2">
         <img src="titulo2.jpeg" alt="Postitulo Internacional en Neurociencias para Coaches Ontológicos">
         <p class="cred-label">Postitulo Internacional en Neurociencias para Coaches Ontológicos · AACOP + CEOP</p>
       </div>
-      <div class="cred-frame fade-up d3">
-        <img src="titulo-principal.jpg" alt="Título principal — María Isabel González">
-        <p class="cred-label">Título Coach Ontológico Profesional</p>
-      </div>
+    </div>
+    <div class="cred-main fade-up d3">
+      <img src="titulo-principal.jpg" alt="Título Coach Ontológico Profesional — María Isabel González">
+      <p class="cred-label">Título Coach Ontológico Profesional</p>
     </div>
   </div>
 </section>
@@ -1550,8 +1550,8 @@
     <div class="cur-video-card fade-up">
       <div class="cur-video-icon">🎬</div>
       <div class="cur-video-info">
-        <h3>Videos — Desarrollo Personal · Autoliderazgo · Amor Propio</h3>
-        <p>Estamos grabando los módulos en video para cada programa. Muy pronto vas a poder acompañar el workbook con clases grabadas de Mery, paso a paso.</p>
+        <h3>Contenido audiovisual</h3>
+        <p>Próximamente vas a encontrar acá contenido audiovisual para acompañar cada programa.</p>
       </div>
       <span class="cur-video-soon-badge">◌ Próximamente</span>
     </div>

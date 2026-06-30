@@ -226,7 +226,18 @@
       font-weight: 800; color: var(--blanco);
       line-height: 1.10; margin-bottom: 20px;
     }
-    .hero-h1 .gold { color: var(--amarillo); }
+    @keyframes gold-shimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position: 200% center; }
+    }
+    .hero-h1 .gold {
+      background: linear-gradient(90deg, #c8860a 0%, #F5C02A 30%, #fff0a0 50%, #F5C02A 70%, #c8860a 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gold-shimmer 4s linear infinite;
+    }
     .hero-sub {
       font-size: 1.02rem; font-weight: 300;
       color: rgba(255,255,255,0.76); line-height: 1.75;

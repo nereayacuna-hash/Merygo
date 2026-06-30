@@ -745,6 +745,61 @@
     .cur-banner .btns { display: flex; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
 
     /* ================================================================
+       TESTIMONIOS
+    ================================================================ */
+    #testimonios {
+      padding: 88px 0;
+      background: linear-gradient(135deg, #0d0507 0%, #1c0e12 50%, #0d0507 100%);
+      position: relative; overflow: hidden;
+    }
+    .test-head { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
+    .test-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; max-width: 960px; margin: 0 auto;
+      position: relative; z-index: 1;
+    }
+    .test-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--radio);
+      padding: 36px 28px 28px;
+      position: relative;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .test-card:hover { border-color: rgba(245,192,42,0.30); transform: translateY(-3px); }
+    .test-card::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 6rem; line-height: 1;
+      color: var(--amarillo); opacity: 0.22;
+      position: absolute; top: 8px; left: 20px;
+      pointer-events: none;
+    }
+    .test-quote {
+      font-size: 0.90rem; font-weight: 300;
+      color: rgba(255,255,255,0.80); line-height: 1.80;
+      margin-bottom: 24px; padding-top: 20px;
+      font-style: italic;
+    }
+    .test-divider {
+      width: 32px; height: 2px;
+      background: var(--amarillo); opacity: 0.55;
+      margin-bottom: 16px; border-radius: 2px;
+    }
+    .test-name {
+      font-size: 0.82rem; font-weight: 700;
+      color: var(--amarillo); letter-spacing: 0.04em;
+      display: block; margin-bottom: 3px;
+    }
+    .test-role {
+      font-size: 0.71rem; color: rgba(255,255,255,0.38);
+      letter-spacing: 0.06em;
+    }
+    @media (max-width: 720px) {
+      .test-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ================================================================
        CTA FINAL
     ================================================================ */
     #cta-final {
@@ -1574,6 +1629,51 @@
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════
+     TESTIMONIOS
+══════════════════════════════════════ -->
+<section id="testimonios">
+  <div class="container">
+    <div class="test-head fade-up">
+      <span class="tag tag-dark">Testimonios</span>
+      <h2 class="h2 light">Lo que dicen quienes ya <span class="gold">transitaron el proceso</span></h2>
+      <p class="lead light center">Palabras reales de personas reales.</p>
+    </div>
+
+    <div class="test-grid">
+
+      <div class="test-card fade-up d1">
+        <p class="test-quote">"Lo que buscaba era entenderme, y supiste darme mis primeras herramientas. El proceso lo transité muy bien, me sentí acompañada. Aprendí a encarar desde mi lugar todas las herramientas trabajadas. Gracias. Gracias. Gracias."</p>
+        <div class="test-divider"></div>
+        <span class="test-name">Claudia</span>
+        <span class="test-role">Cliente</span>
+      </div>
+
+      <div class="test-card fade-up d2">
+        <p class="test-quote">"En mis sesiones sentí tu profesionalismo, pero por sobre todo tu escucha. Te recuerdo con mucha tranquilidad, brindándome herramientas para lograr mis metas. Tienen que elegirte por la transparencia, confianza, dedicación, compromiso y responsabilidad que ponés en lo que hacés."</p>
+        <div class="test-divider"></div>
+        <span class="test-name">Amalia Veuthey</span>
+        <span class="test-role">Cliente · @amaliaveuthey</span>
+      </div>
+
+      <div class="test-card fade-up d3">
+        <p class="test-quote">"En este proceso con Mery mejoré muchísimo en la toma de decisiones y en gestionar mis emociones para que no influyan negativamente a la hora de decidir. Me aportó muchísimas herramientas para lograr mis objetivos. Los invito a contactarse con ella — les va a aportar mucho en su área de crecimiento personal."</p>
+        <div class="test-divider"></div>
+        <span class="test-name">Gastón Gómez</span>
+        <span class="test-role">Lic. en Kinesiología y Fisiatría · Quiropráctico</span>
+      </div>
+
+      <div class="test-card fade-up d4">
+        <p class="test-quote">"Realicé un curso de Introducción al Coaching Ontológico y fue una experiencia increíble que superó mis expectativas. Su claridad al desarrollar los temas me hizo recordar y trabajar esos valores que tenía olvidados, aportándome nuevas herramientas para llegar a mis metas. Elegirla es acertado — en cada encuentro se nota la pasión con la que lo hace."</p>
+        <div class="test-divider"></div>
+        <span class="test-name">Kari Walker</span>
+        <span class="test-role">Cliente · @kary.walker.v</span>
+      </div>
+
+    </div>
   </div>
 </section>
 

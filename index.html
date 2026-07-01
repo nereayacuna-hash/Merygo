@@ -753,50 +753,75 @@
       position: relative; overflow: hidden;
     }
     .test-head { text-align: center; margin-bottom: 52px; position: relative; z-index: 1; }
-    .test-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 24px; max-width: 960px; margin: 0 auto;
+    .test-body {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 40px; max-width: 680px; margin: 0 auto;
       position: relative; z-index: 1;
     }
-    .test-card {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-radius: var(--radio);
-      padding: 36px 28px 28px;
-      position: relative;
-      transition: border-color 0.3s, transform 0.3s;
+    .test-quote-wrap {
+      position: relative; padding: 0 32px; text-align: center;
     }
-    .test-card:hover { border-color: rgba(245,192,42,0.30); transform: translateY(-3px); }
-    .test-card::before {
-      content: '\201C';
-      font-family: Georgia, serif;
-      font-size: 6rem; line-height: 1;
-      color: var(--amarillo); opacity: 0.22;
-      position: absolute; top: 8px; left: 20px;
-      pointer-events: none;
+    .test-open-q, .test-close-q {
+      font-family: Georgia, serif; font-size: 7rem; line-height: 1;
+      color: rgba(245,192,42,0.10); pointer-events: none; select: none;
+      position: absolute;
     }
-    .test-quote {
-      font-size: 0.90rem; font-weight: 300;
-      color: rgba(255,255,255,0.80); line-height: 1.80;
-      margin-bottom: 24px; padding-top: 20px;
-      font-style: italic;
+    .test-open-q { top: -24px; left: 0; }
+    .test-close-q { bottom: -40px; right: 0; }
+    .test-display-quote {
+      font-size: clamp(1.1rem, 2.2vw, 1.45rem);
+      font-weight: 300; color: rgba(255,255,255,0.88);
+      line-height: 1.75; font-style: italic;
+      transition: opacity 0.22s ease, filter 0.22s ease, transform 0.22s ease;
     }
-    .test-divider {
-      width: 32px; height: 2px;
-      background: var(--amarillo); opacity: 0.55;
-      margin-bottom: 16px; border-radius: 2px;
+    .test-display-quote.t-out {
+      opacity: 0; filter: blur(4px); transform: scale(0.97);
     }
-    .test-name {
-      font-size: 0.82rem; font-weight: 700;
-      color: var(--amarillo); letter-spacing: 0.04em;
-      display: block; margin-bottom: 3px;
+    .test-meta { display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    .test-display-role {
+      font-size: 0.72rem; font-weight: 600;
+      color: rgba(255,255,255,0.38);
+      letter-spacing: 0.18em; text-transform: uppercase;
+      transition: opacity 0.22s ease, transform 0.22s ease;
     }
-    .test-role {
-      font-size: 0.71rem; color: rgba(255,255,255,0.38);
-      letter-spacing: 0.06em;
+    .test-display-role.t-out { opacity: 0; transform: translateY(6px); }
+    .test-pills { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .test-pill {
+      display: flex; align-items: center; gap: 0;
+      border-radius: 999px; cursor: pointer; border: none;
+      background: transparent;
+      transition: background 0.4s cubic-bezier(0.4,0,0.2,1),
+                  padding 0.4s cubic-bezier(0.4,0,0.2,1),
+                  box-shadow 0.4s;
+      padding: 3px;
     }
-    @media (max-width: 720px) {
-      .test-grid { grid-template-columns: 1fr; }
+    .test-pill:hover { background: rgba(255,255,255,0.07); }
+    .test-pill.active {
+      background: rgba(255,255,255,0.92);
+      padding: 6px 14px 6px 6px;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+    }
+    .test-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.80rem; font-weight: 700; flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+    .test-pill:not(.active):hover .test-avatar { transform: scale(1.06); }
+    .test-pill.active .test-avatar { box-shadow: 0 0 0 2px rgba(0,0,0,0.12); }
+    .test-pill-name {
+      font-size: 0.83rem; font-weight: 600;
+      white-space: nowrap; overflow: hidden;
+      max-width: 0; opacity: 0; margin-left: 0;
+      color: var(--marron);
+      transition: max-width 0.4s cubic-bezier(0.4,0,0.2,1),
+                  opacity 0.3s, margin-left 0.4s;
+    }
+    .test-pill.active .test-pill-name {
+      max-width: 160px; opacity: 1; margin-left: 8px;
+    }
+    @media (max-width: 540px) {
+      .test-quote-wrap { padding: 0 16px; }
     }
 
     /* ================================================================
@@ -1643,37 +1668,85 @@
       <p class="lead light center">Algunos de ustedes ya transitaron el camino.<br><span style="font-size:0.88em;opacity:0.70;">Gracias por compartir su experiencia conmigo.</span></p>
     </div>
 
-    <div class="test-grid">
+    <div class="test-body fade-up">
 
-      <div class="test-card fade-up d1">
-        <p class="test-quote">"Lo que buscaba era entenderme, y supiste darme mis primeras herramientas. El proceso lo transité muy bien, me sentí acompañada. Aprendí a encarar desde mi lugar todas las herramientas trabajadas. Gracias. Gracias. Gracias."</p>
-        <div class="test-divider"></div>
-        <span class="test-name">Claudia</span>
-        <span class="test-role">Cliente</span>
+      <!-- Cita animada -->
+      <div class="test-quote-wrap">
+        <span class="test-open-q">&ldquo;</span>
+        <p class="test-display-quote" id="testQuote">Lo que buscaba era entenderme, y supiste darme mis primeras herramientas. El proceso lo transité muy bien, me sentí acompañada. Aprendí a encarar desde mi lugar todas las herramientas trabajadas. Gracias. Gracias. Gracias.</p>
+        <span class="test-close-q">&rdquo;</span>
       </div>
 
-      <div class="test-card fade-up d2">
-        <p class="test-quote">"En mis sesiones sentí tu profesionalismo, pero por sobre todo tu escucha. Te recuerdo con mucha tranquilidad, brindándome herramientas para lograr mis metas. Tienen que elegirte por la transparencia, confianza, dedicación, compromiso y responsabilidad que ponés en lo que hacés."</p>
-        <div class="test-divider"></div>
-        <span class="test-name">Amalia Veuthey</span>
-        <span class="test-role">Cliente · @amaliaveuthey</span>
-      </div>
+      <!-- Rol + pills -->
+      <div class="test-meta">
+        <p class="test-display-role" id="testRole">Cliente</p>
+        <div class="test-pills">
 
-      <div class="test-card fade-up d3">
-        <p class="test-quote">"En este proceso con Mery mejoré muchísimo en la toma de decisiones y en gestionar mis emociones para que no influyan negativamente a la hora de decidir. Me aportó muchísimas herramientas para lograr mis objetivos. Los invito a contactarse con ella — les va a aportar mucho en su área de crecimiento personal."</p>
-        <div class="test-divider"></div>
-        <span class="test-name">Gastón Gómez</span>
-        <span class="test-role">Lic. en Kinesiología y Fisiatría · Quiropráctico</span>
-      </div>
+          <button class="test-pill active" data-index="0">
+            <span class="test-avatar" style="background:#3a1a20;">
+              <span class="bee-circle sm"><img src="isotipo-logo.png" alt=""></span>
+            </span>
+            <span class="test-pill-name">Claudia</span>
+          </button>
 
-      <div class="test-card fade-up d4">
-        <p class="test-quote">"Realicé un curso de Introducción al Coaching Ontológico y fue una experiencia increíble que superó mis expectativas. Su claridad al desarrollar los temas me hizo recordar y trabajar esos valores que tenía olvidados, aportándome nuevas herramientas para llegar a mis metas. Elegirla es acertado — en cada encuentro se nota la pasión con la que lo hace."</p>
-        <div class="test-divider"></div>
-        <span class="test-name">Kari Walker</span>
-        <span class="test-role">Cliente · @kary.walker.v</span>
+          <button class="test-pill" data-index="1">
+            <span class="test-avatar" style="background:#3a1a20;">
+              <span class="bee-circle sm"><img src="isotipo-logo.png" alt=""></span>
+            </span>
+            <span class="test-pill-name">Amalia Veuthey</span>
+          </button>
+
+          <button class="test-pill" data-index="2">
+            <span class="test-avatar" style="background:#3a1a20;">
+              <span class="bee-circle sm"><img src="isotipo-logo.png" alt=""></span>
+            </span>
+            <span class="test-pill-name">Gastón Gómez</span>
+          </button>
+
+          <button class="test-pill" data-index="3">
+            <span class="test-avatar" style="background:#3a1a20;">
+              <span class="bee-circle sm"><img src="isotipo-logo.png" alt=""></span>
+            </span>
+            <span class="test-pill-name">Kari Walker</span>
+          </button>
+
+        </div>
       </div>
 
     </div>
+
+    <script>
+    (function(){
+      var data = [
+        { quote: "Lo que buscaba era entenderme, y supiste darme mis primeras herramientas. El proceso lo transité muy bien, me sentí acompañada. Aprendí a encarar desde mi lugar todas las herramientas trabajadas. Gracias. Gracias. Gracias.", role: "Cliente" },
+        { quote: "En mis sesiones sentí tu profesionalismo, pero por sobre todo tu escucha. Te recuerdo con mucha tranquilidad, brindándome herramientas para lograr mis metas. Tienen que elegirte por la transparencia, confianza, dedicación, compromiso y responsabilidad que ponés en lo que hacés.", role: "Cliente · @amaliaveuthey" },
+        { quote: "En este proceso con Mery mejoré muchísimo en la toma de decisiones y en gestionar mis emociones para que no influyan negativamente a la hora de decidir. Me aportó muchísimas herramientas para lograr mis objetivos. Los invito a contactarse con ella — les va a aportar mucho en su área de crecimiento personal.", role: "Lic. en Kinesiología y Fisiatría · Quiropráctico" },
+        { quote: "Realicé un curso de Introducción al Coaching Ontológico y fue una experiencia increíble que superó mis expectativas. Su claridad al desarrollar los temas me hizo recordar y trabajar esos valores que tenía olvidados, aportándome nuevas herramientas para llegar a mis metas. Elegirla es acertado — en cada encuentro se nota la pasión con la que lo hace.", role: "Cliente · @kary.walker.v" }
+      ];
+      var active = 0, busy = false;
+      var quoteEl = document.getElementById('testQuote');
+      var roleEl  = document.getElementById('testRole');
+      var pills   = document.querySelectorAll('.test-pill');
+      pills.forEach(function(pill, i){
+        pill.addEventListener('click', function(){
+          if(i === active || busy) return;
+          busy = true;
+          quoteEl.classList.add('t-out');
+          roleEl.classList.add('t-out');
+          setTimeout(function(){
+            quoteEl.textContent = data[i].quote;
+            roleEl.textContent  = data[i].role;
+            pills[active].classList.remove('active');
+            pills[i].classList.add('active');
+            active = i;
+            quoteEl.classList.remove('t-out');
+            roleEl.classList.remove('t-out');
+            setTimeout(function(){ busy = false; }, 400);
+          }, 220);
+        });
+      });
+    })();
+    </script>
   </div>
 </section>
 
